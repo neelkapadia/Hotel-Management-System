@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wolfinn;
+package form;
 
-import wolfinn.Manager;
+import form.Manager;
+import form.FrontDesk;
+//import form.ServiceRecords;
 import javax.swing.JOptionPane;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.*;
 /**
  *
  * @author saurabhshanbhag
@@ -119,7 +124,13 @@ public class Login extends javax.swing.JFrame {
         //check the kind of staff the user id belongs to
         Manager mng = new Manager();
         FrontDesk fd = new FrontDesk();
-        ServiceRecords sr = new ServiceRecords();
+        //ServiceRecords sr = new ServiceRecords();
+        try {
+            connect_db();
+        } catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Failed");
+        }
         
         String pwd = password.getText();
         String sid = StaffID_text.getText();
@@ -131,13 +142,12 @@ public class Login extends javax.swing.JFrame {
             //if sid belongs to front desk
                 fd.setVisible(true);
             //if sid belongs to others
-                sr.setVisible(true);
+                //sr.setVisible(true);
         }
         
         else if(sid.equals("106") && pwd.equals("olivia123")){
             sysExit();
             fd.setVisible(true);
-            
         } 
         else{
             JOptionPane.showMessageDialog(null,"INVALID LOGIN DETAILS","LOGIN ERROR",JOptionPane.ERROR_MESSAGE);
@@ -145,10 +155,19 @@ public class Login extends javax.swing.JFrame {
             StaffID_text.setText(null);
             
         }
-        
     }//GEN-LAST:event_Login_buttonActionPerformed
-    private void connect_db(){
+    private void connect_db() throws Exception {
+        String user = "root";
+        String pass = "";
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wolfinn",user, pass);
+        System.out.println("Connected");
+        Statement stmt = con.createStatement();
+        ResultSet r = stmt.executeQuery("select * from staff");
+        while(r.next()){
+            System.out.println(r.getString(1));
+        }
         
+        //System.out.println(con.getClass());
     }
     private void StaffID_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StaffID_textActionPerformed
         // TODO add your handling code here:
