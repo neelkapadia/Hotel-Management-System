@@ -116,19 +116,23 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         //JFrame jf = new JFrame();
         
-        
+        //check the kind of staff the user id belongs to
         Manager mng = new Manager();
         FrontDesk fd = new FrontDesk();
         ServiceRecords sr = new ServiceRecords();
-
+        
         String pwd = password.getText();
         String sid = StaffID_text.getText();
         
         if(sid.equals("100") && pwd.equals("mary123")){
             sysExit();
-            mng.setVisible(true);
-            
-        } 
+            //if sid belongs to manager)
+                mng.setVisible(true);
+            //if sid belongs to front desk
+                fd.setVisible(true);
+            //if sid belongs to others
+                sr.setVisible(true);
+        }
         
         else if(sid.equals("106") && pwd.equals("olivia123")){
             sysExit();
@@ -143,7 +147,9 @@ public class Login extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_Login_buttonActionPerformed
-
+    private void connect_db(){
+        
+    }
     private void StaffID_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StaffID_textActionPerformed
         // TODO add your handling code here:
         
