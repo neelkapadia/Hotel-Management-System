@@ -5,6 +5,9 @@
  */
 package form;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author saurabhshanbhag
@@ -29,6 +32,7 @@ public class ServiceRecords extends javax.swing.JFrame {
 
         wolfInn1 = new wolfinn.WolfInn();
         wolfInn2 = new wolfinn.WolfInn();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         addServiceRecord = new javax.swing.JRadioButton();
         updateServiceRecord = new javax.swing.JRadioButton();
         deleteServiceRecord = new javax.swing.JRadioButton();
@@ -37,12 +41,16 @@ public class ServiceRecords extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        buttonGroup1.add(addServiceRecord);
         addServiceRecord.setText("Add Service Record");
 
+        buttonGroup1.add(updateServiceRecord);
         updateServiceRecord.setText("Update Service Record");
 
+        buttonGroup1.add(deleteServiceRecord);
         deleteServiceRecord.setText("Delete Service Record");
 
+        buttonGroup1.add(viewServiceRecord);
         viewServiceRecord.setText("View Service Records");
 
         submitServiceRecord.setText("Submit");
@@ -90,6 +98,29 @@ public class ServiceRecords extends javax.swing.JFrame {
 
     private void submitServiceRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitServiceRecordActionPerformed
         // TODO add your handling code here:
+        if(addServiceRecord.isSelected()){
+            //open add record form
+            AddRecord ar = new AddRecord();
+            ar.setVisible(true);
+            
+        } else if(updateServiceRecord.isSelected()){
+            //open update record form
+            UpdateRecord ur = new UpdateRecord();
+            ur.setVisible(true);
+            
+        } else if(deleteServiceRecord.isSelected()){
+            //open delete record form
+            DeleteRecord dr = new DeleteRecord();
+            dr.setVisible(true);
+        } else if(viewServiceRecord.isSelected()){
+            //view list of records
+            ViewRecord vr = new ViewRecord();
+            vr.setVisible(true);
+        } else {
+            JFrame jf = new JFrame();
+            JOptionPane.showMessageDialog(jf,"Please Select an option","ERROR",JOptionPane.ERROR_MESSAGE);
+            //throw error
+        }
     }//GEN-LAST:event_submitServiceRecordActionPerformed
 
     /**
@@ -129,6 +160,7 @@ public class ServiceRecords extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton addServiceRecord;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton deleteServiceRecord;
     private javax.swing.JButton submitServiceRecord;
     private javax.swing.JRadioButton updateServiceRecord;

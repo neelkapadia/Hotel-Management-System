@@ -5,22 +5,19 @@
  */
 package form;
 
-import form.Manager;
-import form.FrontDesk;
-//import form.ServiceRecords;
 import javax.swing.JOptionPane;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.*;
+import javax.swing.JFrame;
+
 /**
  *
  * @author saurabhshanbhag
  */
 public class Login extends javax.swing.JFrame {
 
-     
     /**
      * Creates new form WolfInnApp
      */
@@ -39,36 +36,26 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         Login_button = new javax.swing.JButton();
-        StaffID_label = new javax.swing.JLabel();
-        StaffID_text = new javax.swing.JTextField();
-        Password_label = new javax.swing.JLabel();
-        password = new javax.swing.JPasswordField();
+        id = new javax.swing.JLabel();
+        staffid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel1.setText("Wolf Inns");
 
-        Login_button.setText("Login");
+        Login_button.setText("Submit");
         Login_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Login_buttonActionPerformed(evt);
+                Submit(evt);
             }
         });
 
-        StaffID_label.setText("Staff ID");
+        id.setText("Staff ID");
 
-        StaffID_text.addActionListener(new java.awt.event.ActionListener() {
+        staffid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StaffID_textActionPerformed(evt);
-            }
-        });
-
-        Password_label.setText("Password");
-
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
+                staffidActionPerformed(evt);
             }
         });
 
@@ -77,24 +64,20 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(233, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(231, 231, 231))
-            .addGroup(layout.createSequentialGroup()
+                .addGap(216, 216, 216)
+                .addComponent(id)
+                .addGap(24, 24, 24)
+                .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(198, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(253, 253, 253)
-                        .addComponent(Login_button))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Password_label)
-                            .addComponent(StaffID_label))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                            .addComponent(StaffID_text))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(231, 231, 231))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Login_button)
+                        .addGap(246, 246, 246))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,80 +86,73 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(StaffID_label)
-                    .addComponent(StaffID_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(id)
+                    .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Password_label)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
                 .addComponent(Login_button)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_buttonActionPerformed
+    private void Submit(java.awt.event.ActionEvent evt) {                        
         // TODO add your handling code here:
         //JFrame jf = new JFrame();
-        
-        //check the kind of staff the user id belongs to
-        Manager mng = new Manager();
-        FrontDesk fd = new FrontDesk();
-        //ServiceRecords sr = new ServiceRecords();
-        try {
-            connect_db();
-        } catch(Exception e){
-            e.printStackTrace();
-            System.out.println("Failed");
-        }
-        
-        String pwd = password.getText();
-        String sid = StaffID_text.getText();
-        
-        if(sid.equals("100") && pwd.equals("mary123")){
-            sysExit();
-            //if sid belongs to manager)
-                mng.setVisible(true);
-            //if sid belongs to front desk
-                fd.setVisible(true);
-            //if sid belongs to others
-                //sr.setVisible(true);
-        }
-        
-        else if(sid.equals("106") && pwd.equals("olivia123")){
-            sysExit();
-            fd.setVisible(true);
-        } 
-        else{
-            JOptionPane.showMessageDialog(null,"INVALID LOGIN DETAILS","LOGIN ERROR",JOptionPane.ERROR_MESSAGE);
-            password.setText(null);
-            StaffID_text.setText(null);
-            
-        }
-    }//GEN-LAST:event_Login_buttonActionPerformed
-    private void connect_db() throws Exception {
-        String user = "root";
-        String pass = "";
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wolfinn",user, pass);
-        System.out.println("Connected");
-        Statement stmt = con.createStatement();
-        ResultSet r = stmt.executeQuery("select * from staff");
-        while(r.next()){
-            System.out.println(r.getString(1));
-        }
-        
-        //System.out.println(con.getClass());
-    }
-    private void StaffID_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StaffID_textActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_StaffID_textActionPerformed
 
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        db_connection db = new db_connection();
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+        try {
+
+            String sid = staffid.getText();
+            int id = Integer.parseInt(sid);
+            conn = db.connect_db();
+            stmt = conn.createStatement();
+            boolean s,f,mr;
+            s = f = mr = false;
+            rs = stmt.executeQuery("select * from cateringstaff where staffid = " + id);
+            if (rs.first()) {    
+                ServiceRecords sr = new ServiceRecords();
+                sr.setVisible(true);
+                s = true;
+            }
+            rs = null;
+            rs = stmt.executeQuery("select * from roomservicestaff where staffid = " + id);
+            if (s == false && rs.first()) {    
+                ServiceRecords sr = new ServiceRecords();
+                sr.setVisible(true);
+                s = true;
+            }
+            rs = null;
+            rs = stmt.executeQuery("select * from frontdeskstaff where staffid = " + id);
+            if (s == false && rs.first()) {    
+                FrontDesk fd = new FrontDesk();
+                fd.setVisible(true);
+                f = true;
+            }
+            rs = null;
+            rs = stmt.executeQuery("select * from manager where staffid = " + id);
+            if (s == false && f == false && rs.first()) {    
+                Manager m = new Manager();
+                m.setVisible(true);
+                mr = true;
+            }
+            if(s == false && f == false && mr == false){
+                JFrame jf = new JFrame();
+                JOptionPane.showMessageDialog(jf,"INVALID LOGIN DETAILS","LOGIN ERROR",JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println("Cannot connect to database");
+        }
+    }                                            
+
+    private void staffidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
+
+    }//GEN-LAST:event_staffidActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,17 +190,15 @@ public class Login extends javax.swing.JFrame {
         });
     }
     
-    private void sysExit(){
+    public void sysExit(){
         WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Login_button;
-    private javax.swing.JLabel Password_label;
-    private javax.swing.JLabel StaffID_label;
-    private javax.swing.JTextField StaffID_text;
+    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField password;
+    private javax.swing.JTextField staffid;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,8 @@
     </Component>
     <Component class="wolfinn.WolfInn" name="wolfInn2">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -67,21 +69,33 @@
   <SubComponents>
     <Component class="javax.swing.JRadioButton" name="addServiceRecord">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Add Service Record"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="updateServiceRecord">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Update Service Record"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="deleteServiceRecord">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Delete Service Record"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="viewServiceRecord">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="View Service Records"/>
       </Properties>
     </Component>

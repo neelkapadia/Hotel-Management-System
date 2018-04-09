@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -66,7 +66,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="Customer">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Customer"/>
+        <Property name="text" type="java.lang.String" value="Manage Customers"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CustomerActionPerformed"/>
@@ -76,11 +76,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="View Service Records"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewSRActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Invoice">
       <Properties>
         <Property name="text" type="java.lang.String" value="Generate Invoice"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InvoiceActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
