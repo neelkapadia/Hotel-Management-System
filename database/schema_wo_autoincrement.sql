@@ -46,21 +46,12 @@ DROP TABLE IF EXISTS `BookingInfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `BookingInfo` (
-  `bookingId` int(11) NOT NULL,
-  `custId` int(11) NOT NULL,
-  `hotelId` int(11) NOT NULL,
-  `roomNum` int(11) NOT NULL,
-  `numGuests` int(10) NOT NULL,
-  `serviceType` varchar(50) NOT NULL,
+  `BookingID` int(11) NOT NULL,
   `checkin` time NOT NULL,
   `checkout` time DEFAULT NULL,
   `startdate` date NOT NULL,
   `enddate` date DEFAULT NULL,
-  PRIMARY KEY (`bookingId`),
-  KEY `cust_in_booking` (`custId`),
-  KEY `hotel_in_booking` (`hotelId`),
-  CONSTRAINT `cust_in_booking` FOREIGN KEY (`custId`) REFERENCES `Customer` (`custId`),
-  CONSTRAINT `hotel_in_booking` FOREIGN KEY (`hotelId`) REFERENCES `Hotel` (`HotelId`)
+  PRIMARY KEY (`BookingID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -104,12 +95,12 @@ DROP TABLE IF EXISTS `Customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Customer` (
-  `custId` int(11) NOT NULL,
+  `CustID` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `dob` date DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `phoneNum` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`custId`)
+  PRIMARY KEY (`CustID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -206,11 +197,11 @@ DROP TABLE IF EXISTS `Invoice`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Invoice` (
-  `InvoiceID` int(11) NOT NULL AUTO_INCREMENT,
+  `InvoiceID` int(11) NOT NULL,
   `InvoiceDate` date NOT NULL,
   `totalAmt` int(11) NOT NULL,
   PRIMARY KEY (`InvoiceID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -295,9 +286,8 @@ CREATE TABLE `Room` (
 --
 
 LOCK TABLES `Room` WRITE;
-/*!40000 ALTER TABLE `Staff` DISABLE KEYS */;
-INSERT INTO `Room` VALUES (0001, 01, 'Economy', 1, 1);
-/*!40000 ALTER TABLE `Staff` ENABLE KEYS */;
+/*!40000 ALTER TABLE `Room` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Room` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -377,11 +367,11 @@ DROP TABLE IF EXISTS `ServiceRecord`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ServiceRecord` (
-  `ServiceId` int(11) NOT NULL AUTO_INCREMENT,
+  `ServiceId` int(11) NOT NULL,
   `Time` time NOT NULL,
   `serviceType` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ServiceId`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -402,17 +392,14 @@ DROP TABLE IF EXISTS `Staff`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Staff` (
   `StaffId` int(11) NOT NULL,
-  `age` int(5) NOT NULL,
   `name` varchar(50) NOT NULL,
   `jobTitle` varchar(50) NOT NULL,
   `phoneNum` varchar(15) NOT NULL,
-  `hotelServing` int(11) NOT NULL,
+  `age` int(5) NOT NULL,
   `avail` tinyint(1) NOT NULL DEFAULT 1,
   `address` varchar(75) DEFAULT NULL,
-  `department` varchar(50) NOT NULL,
-  PRIMARY KEY (`StaffId`),
-  KEY `hotelServing_in_hotel` (`hotelServing`),
-  CONSTRAINT `hotelServing_in_hotel` FOREIGN KEY (`hotelServing`) REFERENCES `Hotel` (`HotelId`) ON DELETE CASCADE ON UPDATE CASCADE
+  `department` varchar(20) NOT NULL,
+  PRIMARY KEY (`StaffId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -422,7 +409,6 @@ CREATE TABLE `Staff` (
 
 LOCK TABLES `Staff` WRITE;
 /*!40000 ALTER TABLE `Staff` DISABLE KEYS */;
-INSERT INTO `Staff` VALUES (101,45,'John','Manager','564',2,1,'798 XYZ St , Rochester NY 54','Management'),(102,55,'Carol','Manager','546',3,1,'351 MH St , Greensboro NC 27','Management'),(103,55,'Emma','Front Desk Staff','546',1,1,'49 ABC St , Raleigh NC 27','Management'),(104,55,'Ava','Catering Staff','777',1,1,'425 RG St , Raleigh NC 27','Catering'),(105,52,'Peter','Manager','724',4,1,'475 RG St , Raleigh NC 27','Management'),(106,27,'Olivia','Front Desk Staff','799',4,1,'325 PD St , Raleigh NC 27','Management');
 /*!40000 ALTER TABLE `Staff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -623,32 +609,6 @@ LOCK TABLES `linkService` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `manages`
---
-
-DROP TABLE IF EXISTS `manages`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `manages` (
-  `HotelId` int(11) NOT NULL,
-  `StaffId` int(11) NOT NULL,
-  PRIMARY KEY (`HotelId`,`StaffId`),
-  KEY `staff_id_in_manages` (`StaffId`),
-  CONSTRAINT `hotel_id_in_manages` FOREIGN KEY (`HotelId`) REFERENCES `Hotel` (`HotelId`) ON DELETE CASCADE,
-  CONSTRAINT `staff_id_in_manages` FOREIGN KEY (`StaffId`) REFERENCES `Staff` (`StaffId`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `manages`
---
-
-LOCK TABLES `manages` WRITE;
-/*!40000 ALTER TABLE `manages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `manages` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `updates`
 --
 
@@ -711,4 +671,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-08 17:35:17
+-- Dump completed on 2018-04-08 21:21:28
