@@ -148,7 +148,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(jf,"INVALID LOGIN DETAILS","LOGIN ERROR",JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Cannot connect to database");
         }
     }//GEN-LAST:event_Submit
