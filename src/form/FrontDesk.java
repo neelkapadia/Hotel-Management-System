@@ -33,9 +33,9 @@ public class FrontDesk extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        Customer.setText("Add Customer");
+        Customer.setText("Manage Customers");
         Customer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CustomerActionPerformed(evt);
@@ -43,8 +43,18 @@ public class FrontDesk extends javax.swing.JFrame {
         });
 
         ViewSR.setText("View Service Records");
+        ViewSR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewSRActionPerformed(evt);
+            }
+        });
 
         Invoice.setText("Generate Invoice");
+        Invoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InvoiceActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel1.setText("Wolf Inns");
@@ -91,7 +101,17 @@ public class FrontDesk extends javax.swing.JFrame {
 
     private void CustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomerActionPerformed
         // TODO add your handling code here:
+        Customer c = new Customer();
+        c.setVisible(true);
     }//GEN-LAST:event_CustomerActionPerformed
+
+    private void ViewSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ViewSRActionPerformed
+
+    private void InvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InvoiceActionPerformed
 
     /**
      * @param args the command line arguments

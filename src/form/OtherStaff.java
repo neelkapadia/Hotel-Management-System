@@ -130,10 +130,13 @@ public class OtherStaff extends javax.swing.JFrame {
         String deleteRecord = DeleteRecord.getText();
         String viewRecord = ViewRecord.getText();
         System.out.print(addRecord + " " + updateRecord + " " + deleteRecord + " " + viewRecord);
+        
         if(AddRecord.isSelected()){
             //open add record form
+            
         } else if(UpdateRecord.isSelected()){
             //open update record form
+            
         } else if(DeleteRecord.isSelected()){
             //open delete record form
         } else if(ViewRecord.isSelected()){
@@ -141,7 +144,7 @@ public class OtherStaff extends javax.swing.JFrame {
         } else {
             //throw error
         }
-        JOptionPane.showMessageDialog(frame, "Hello World");
+        //JOptionPane.showMessageDialog(frame, "Hello World");
         
     }//GEN-LAST:event_SubmitActionPerformed
 

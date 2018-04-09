@@ -101,7 +101,7 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Submit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit
+    private void Submit(java.awt.event.ActionEvent evt) {                        
         // TODO add your handling code here:
         //JFrame jf = new JFrame();
 
@@ -110,6 +110,7 @@ public class Login extends javax.swing.JFrame {
         Statement stmt;
         ResultSet rs;
         try {
+
             String sid = staffid.getText();
             int id = Integer.parseInt(sid);
             conn = db.connect_db();
@@ -151,7 +152,37 @@ public class Login extends javax.swing.JFrame {
             //e.printStackTrace();
             System.out.println("Cannot connect to database");
         }
-    }//GEN-LAST:event_Submit
+
+//            connect_db();
+//        } catch(Exception e){
+//            e.printStackTrace();
+//            System.out.println("Failed");
+//        }
+//        
+//        String pwd = password.getText();
+//        String sid = StaffID_text.getText();
+//        
+//        if(sid.equals("100") && pwd.equals("mary123")){
+//            sysExit();
+//            //if sid belongs to manager)
+//                //mng.setVisible(true);
+//            //if sid belongs to front desk
+//               fd.setVisible(true);
+//            //if sid belongs to others
+//                //sr.setVisible(true);
+//        }
+//        
+//        else if(sid.equals("106") && pwd.equals("olivia123")){
+//            sysExit();
+//            fd.setVisible(true);
+//        } 
+//        else{
+//            JOptionPane.showMessageDialog(null,"INVALID LOGIN DETAILS","LOGIN ERROR",JOptionPane.ERROR_MESSAGE);
+//            password.setText(null);
+//            StaffID_text.setText(null);
+//            
+//        }
+    }                                            
 
     private void staffidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffidActionPerformed
         // TODO add your handling code here:
@@ -193,9 +224,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-
-    private void sysExit() {
-        WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+    
+    public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }
 
