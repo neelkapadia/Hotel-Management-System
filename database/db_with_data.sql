@@ -36,9 +36,8 @@ CREATE TABLE `BillInfo` (
 --
 
 LOCK TABLES `BillInfo` WRITE;
-INSERT INTO `BillInfo` VALUES ('593-9846','credit','980 TRT St , Raleigh NC',1052),('777-8352','hotel credit','7720 MHT St , Greensboro NC',3020),('858-9430','credit','231 DRY St , Rochester NY 78',2497);
-INSERT INTO `BillInfo` (`SSN`,`payType`,`billingAddress`) VALUES ('440-9328','cash','24 BST Dr , Dallas TX 14');
 /*!40000 ALTER TABLE `BillInfo` DISABLE KEYS */;
+INSERT INTO `BillInfo` VALUES ('440-9328','cash','24 BST Dr , Dallas TX 14',NULL),('593-9846','credit','980 TRT St , Raleigh NC',1052),('777-8352','hotel credit','7720 MHT St , Greensboro NC',3020),('858-9430','credit','231 DRY St , Rochester NY 78',2497);
 /*!40000 ALTER TABLE `BillInfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,8 +63,8 @@ CREATE TABLE `BookingInfo` (
 --
 
 LOCK TABLES `BookingInfo` WRITE;
-INSERT INTO `BookingInfo` VALUES (201,'15:17:00','10:22:00','2017-05-10','2017-05-13'),(202,'16:11:00','09:27:00','2017-05-10','2017-05-13'),(203,'15:45:00','11:10:00','2017-05-10','2017-05-14'),(204,'14:30:00','10:00:00','2017-05-10','2017-05-12');
 /*!40000 ALTER TABLE `BookingInfo` DISABLE KEYS */;
+INSERT INTO `BookingInfo` VALUES (201,'15:17:00','10:22:00','2017-05-10','2017-05-13'),(202,'16:11:00','09:27:00','2017-05-10','2017-05-13'),(203,'15:45:00','11:10:00','2017-05-10','2017-05-14'),(204,'14:30:00','10:00:00','2017-05-10','2017-05-12');
 /*!40000 ALTER TABLE `BookingInfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,8 +87,8 @@ CREATE TABLE `CateringStaff` (
 --
 
 LOCK TABLES `CateringStaff` WRITE;
-INSERT INTO `CateringStaff` VALUES (104);
 /*!40000 ALTER TABLE `CateringStaff` DISABLE KEYS */;
+INSERT INTO `CateringStaff` VALUES (104);
 /*!40000 ALTER TABLE `CateringStaff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,8 +114,8 @@ CREATE TABLE `Customer` (
 --
 
 LOCK TABLES `Customer` WRITE;
-INSERT INTO `Customer` VALUES (1001,'David','1980-01-30','david@gmail.com',123),(1002,'Sarah','1971-01-30','sarah@gmail.com',456),(1003,'Josep','1987-01-30','joseph@gmail.com',789),(1004,'Lucy','1985-01-30','lucy@gmail.com',213),(2001,'Brandon','1985-02-24','bran@gmail.com',214),(2002,'Candy','1988-12-15','can@gmail.com',215),(2003,'Alpar','1981-11-25','apl@gmail.com',216),(2004,'Jennifer','1984-07-18','jenn@gmail.com',217),(2005,'Scarlet','1990-05-20','scar@gmail.com',218),(2006,'Abhi','1991-02-07','abhi@gmail.com',219);
 /*!40000 ALTER TABLE `Customer` DISABLE KEYS */;
+INSERT INTO `Customer` VALUES (1001,'David','1980-01-30','david@gmail.com','123'),(1002,'Sarah','1971-01-30','sarah@gmail.com','456'),(1003,'Josep','1987-01-30','joseph@gmail.com','789'),(1004,'Lucy','1985-01-30','lucy@gmail.com','213'),(2001,'Brandon','1985-02-24','bran@gmail.com','214'),(2002,'Candy','1988-12-15','can@gmail.com','215'),(2003,'Alpar','1981-11-25','apl@gmail.com','216'),(2004,'Jennifer','1984-07-18','jenn@gmail.com','217'),(2005,'Scarlet','1990-05-20','scar@gmail.com','218'),(2006,'Abhi','1991-02-07','abhi@gmail.com','219');
 /*!40000 ALTER TABLE `Customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,8 +138,8 @@ CREATE TABLE `FrontDeskStaff` (
 --
 
 LOCK TABLES `FrontDeskStaff` WRITE;
-INSERT INTO `FrontDeskStaff` VALUES (103),(106);
 /*!40000 ALTER TABLE `FrontDeskStaff` DISABLE KEYS */;
+INSERT INTO `FrontDeskStaff` VALUES (103),(106);
 /*!40000 ALTER TABLE `FrontDeskStaff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,8 +168,8 @@ CREATE TABLE `Hotel` (
 --
 
 LOCK TABLES `Hotel` WRITE;
-INSERT INTO `Hotel` VALUES (0001,'Hotel A','21 ABC St , Raleigh NC 27','919',100),(0002,'Hotel B','25 XYZ St , Rochester NY 54','718',101),(0003,'Hotel C','29 PQR St , Greensboro NC 27','984',102),(0004,'Hotel D','28 GHW St , Raleigh NC 32','920',105);
 /*!40000 ALTER TABLE `Hotel` DISABLE KEYS */;
+INSERT INTO `Hotel` VALUES (1,'Hotel A','21 ABC St , Raleigh NC 27','919',100),(2,'Hotel B','25 XYZ St , Rochester NY 54','718',101),(3,'Hotel C','29 PQR St , Greensboro NC 27','984',102),(4,'Hotel D','28 GHW St , Raleigh NC 32','920',105);
 /*!40000 ALTER TABLE `Hotel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,8 +193,8 @@ CREATE TABLE `HotelCity` (
 --
 
 LOCK TABLES `HotelCity` WRITE;
-INSERT INTO `HotelCity` VALUES ('21 ABC St , Raleigh NC 27','Raleigh'),('25 XYZ St , Rochester NY 54','Rochester'),('29 PQR St , Greensboro NC 27','Greensboro'),('28 GHW St , Raleigh NC 32','Raleigh');
 /*!40000 ALTER TABLE `HotelCity` DISABLE KEYS */;
+INSERT INTO `HotelCity` VALUES ('21 ABC St , Raleigh NC 27','Raleigh'),('25 XYZ St , Rochester NY 54','Rochester'),('28 GHW St , Raleigh NC 32','Raleigh'),('29 PQR St , Greensboro NC 27','Greensboro');
 /*!40000 ALTER TABLE `HotelCity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,8 +241,8 @@ CREATE TABLE `Manager` (
 --
 
 LOCK TABLES `Manager` WRITE;
-INSERT INTO `Manager` VALUES (100),(101),(102),(105);
 /*!40000 ALTER TABLE `Manager` DISABLE KEYS */;
+INSERT INTO `Manager` VALUES (100),(101),(102),(105);
 /*!40000 ALTER TABLE `Manager` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -269,8 +268,8 @@ CREATE TABLE `PresidentialSuite` (
 --
 
 LOCK TABLES `PresidentialSuite` WRITE;
-INSERT INTO `PresidentialSuite` VALUES (0004,01);
 /*!40000 ALTER TABLE `PresidentialSuite` DISABLE KEYS */;
+INSERT INTO `PresidentialSuite` VALUES (4,1);
 /*!40000 ALTER TABLE `PresidentialSuite` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,8 +297,8 @@ CREATE TABLE `Room` (
 --
 
 LOCK TABLES `Room` WRITE;
-INSERT INTO `Room` VALUES (0001,01,'Economy',1,1),(0001,02,'Deluxe',1,2),(0002,03,'Economy',1,1),(0003,02,'Executive',0,3),(0004,01,'Presidential',1,4),(0001,05,'Deluxe',1,2);
 /*!40000 ALTER TABLE `Room` DISABLE KEYS */;
+INSERT INTO `Room` VALUES (1,1,'Economy',1,1),(4,1,'Presidential',1,4),(1,2,'Deluxe',1,2),(3,2,'Executive',0,3),(2,3,'Economy',1,1),(1,5,'Deluxe',1,2);
 /*!40000 ALTER TABLE `Room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,8 +321,8 @@ CREATE TABLE `RoomPrice` (
 --
 
 LOCK TABLES `RoomPrice` WRITE;
-INSERT INTO `RoomPrice` VALUES ('Economy',100),('Deluxe',200),('Executive',1000),('Presidential',5000);
 /*!40000 ALTER TABLE `RoomPrice` DISABLE KEYS */;
+INSERT INTO `RoomPrice` VALUES ('Deluxe',200),('Economy',100),('Executive',1000),('Presidential',5000);
 /*!40000 ALTER TABLE `RoomPrice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,8 +368,8 @@ CREATE TABLE `ServiceCost` (
 --
 
 LOCK TABLES `ServiceCost` WRITE;
-INSERT INTO `ServiceCost` VALUES ('phone bills',5),('dry cleaning',16),('gyms',15),('room service',10),('special requests',20);
 /*!40000 ALTER TABLE `ServiceCost` DISABLE KEYS */;
+INSERT INTO `ServiceCost` VALUES ('dry cleaning',16),('gyms',15),('phone bills',5),('room service',10),('special requests',20);
 /*!40000 ALTER TABLE `ServiceCost` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -395,8 +394,8 @@ CREATE TABLE `ServiceRecord` (
 --
 
 LOCK TABLES `ServiceRecord` WRITE;
-INSERT INTO `ServiceRecord` VALUES (1,'2017-05-10','16:17:00','dry cleaning'),(2,'2017-05-10','17:17:00','gyms'),(3,'2017-05-10','17:17:00','gyms'),(4,'2017-05-11','6:17:00','room service'),(5,'2017-05-10','16:17:00','phone bills');
 /*!40000 ALTER TABLE `ServiceRecord` DISABLE KEYS */;
+INSERT INTO `ServiceRecord` VALUES (1,'2017-05-10','16:17:00','dry cleaning'),(2,'2017-05-10','17:17:00','gyms'),(3,'2017-05-10','17:17:00','gyms'),(4,'2017-05-11','06:17:00','room service'),(5,'2017-05-10','16:17:00','phone bills');
 /*!40000 ALTER TABLE `ServiceRecord` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -425,16 +424,8 @@ CREATE TABLE `Staff` (
 --
 
 LOCK TABLES `Staff` WRITE;
-INSERT INTO `Staff` VALUES
-(100,'Mary','Manager','654',40,1,'90 ABC St , Raleigh NC 27','Management'),
-(101,'John','Manager','564',45,1,'798 XYZ St , Rochester NY 54','Management'),
-(102,'Carol','Manager','546',55,1,'351 MH St , Greensboro NC 27','Management'),
-(103,'Emma','Front Desk Staff','546',55,1,'49 ABC St , Raleigh NC 27','Management'),
-(104,'Ava','Catering Staff','777',55,1,'425 RG St , Raleigh NC 27','Catering'),
-(105,'Peter','Manager','724',52,1,'475 RG St , Raleigh NC 27','Management'),
-(106,'Olivia','Front Desk Staff','799',27,1,'325 PD St , Raleigh NC 27','Management'),
-(107,'Ashley','Room Service Staff','749',25,1,'125 PD St , Asheville NC 37','Management');
 /*!40000 ALTER TABLE `Staff` DISABLE KEYS */;
+INSERT INTO `Staff` VALUES (100,'Mary','Manager','654',40,1,'90 ABC St , Raleigh NC 27','Management'),(101,'John','Manager','564',45,1,'798 XYZ St , Rochester NY 54','Management'),(102,'Carol','Manager','546',55,1,'351 MH St , Greensboro NC 27','Management'),(103,'Emma','Front Desk Staff','546',55,1,'49 ABC St , Raleigh NC 27','Management'),(104,'Ava','Catering Staff','777',55,1,'425 RG St , Raleigh NC 27','Catering'),(105,'Peter','Manager','724',52,1,'475 RG St , Raleigh NC 27','Management'),(106,'Olivia','Front Desk Staff','799',27,1,'325 PD St , Raleigh NC 27','Management'),(107,'Ashley','Room Service Staff','749',25,1,'125 PD St , Asheville NC 37','Management');
 /*!40000 ALTER TABLE `Staff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -487,9 +478,8 @@ CREATE TABLE `gets` (
 --
 
 LOCK TABLES `gets` WRITE;
-INSERT INTO `gets` VALUES (1001,201),(1002,202),(1003,201),(2001,202),(1004,204),(2002,204);
-
 /*!40000 ALTER TABLE `gets` DISABLE KEYS */;
+INSERT INTO `gets` VALUES (1001,201),(1002,202),(1003,201),(1004,204),(2001,202),(2002,204);
 /*!40000 ALTER TABLE `gets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -546,8 +536,8 @@ CREATE TABLE `isAssigned` (
 --
 
 LOCK TABLES `isAssigned` WRITE;
-INSERT INTO `isAssigned` VALUES (201,0001,01),(202,0001,02),(203,0002,03),(204,0003,02);
 /*!40000 ALTER TABLE `isAssigned` DISABLE KEYS */;
+INSERT INTO `isAssigned` VALUES (201,1,1),(202,1,2),(203,2,3),(204,3,2);
 /*!40000 ALTER TABLE `isAssigned` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -610,7 +600,7 @@ LOCK TABLES `isAssignedRoomService` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for describeService`
+-- Table structure for table `linkService`
 --
 
 DROP TABLE IF EXISTS `linkService`;
@@ -633,8 +623,8 @@ CREATE TABLE `linkService` (
 --
 
 LOCK TABLES `linkService` WRITE;
-INSERT INTO `linkService` VALUES (201,1),(201,2),(202,3),(203,4),(204,5);
 /*!40000 ALTER TABLE `linkService` DISABLE KEYS */;
+INSERT INTO `linkService` VALUES (201,1),(201,2),(202,3),(203,4),(204,5);
 /*!40000 ALTER TABLE `linkService` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -660,8 +650,8 @@ CREATE TABLE `updates` (
 --
 
 LOCK TABLES `updates` WRITE;
-INSERT INTO `updates` VALUES (107,1),(107,2),(107,3),(107,4),(106,5);
 /*!40000 ALTER TABLE `updates` DISABLE KEYS */;
+INSERT INTO `updates` VALUES (106,5),(107,1),(107,2),(107,3),(107,4);
 /*!40000 ALTER TABLE `updates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -689,8 +679,8 @@ CREATE TABLE `worksFor` (
 --
 
 LOCK TABLES `worksFor` WRITE;
-INSERT INTO `worksFor` VALUES (100,0001),(101,0002),(102,0003),(103,0001),(104,0001),(105,0004),(106,0004);
 /*!40000 ALTER TABLE `worksFor` DISABLE KEYS */;
+INSERT INTO `worksFor` VALUES (100,1),(101,2),(102,3),(103,1),(104,1),(105,4),(106,4);
 /*!40000 ALTER TABLE `worksFor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -703,4 +693,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-09  1:26:27
+-- Dump completed on 2018-04-09  2:21:27
