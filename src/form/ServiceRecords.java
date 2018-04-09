@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wolfinn;
+package form;
 
 /**
  *
@@ -38,18 +38,8 @@ public class ServiceRecords extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         addServiceRecord.setText("Add Service Record");
-        addServiceRecord.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addServiceRecordActionPerformed(evt);
-            }
-        });
 
         updateServiceRecord.setText("Update Service Record");
-        updateServiceRecord.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateServiceRecordActionPerformed(evt);
-            }
-        });
 
         deleteServiceRecord.setText("Delete Service Record");
 
@@ -97,14 +87,6 @@ public class ServiceRecords extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void addServiceRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addServiceRecordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addServiceRecordActionPerformed
-
-    private void updateServiceRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateServiceRecordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateServiceRecordActionPerformed
 
     private void submitServiceRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitServiceRecordActionPerformed
         // TODO add your handling code here:

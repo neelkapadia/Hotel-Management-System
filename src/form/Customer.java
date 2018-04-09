@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wolfinn;
+package form;
 
 /**
  *
@@ -35,9 +35,11 @@ public class Customer extends javax.swing.JFrame {
         viewCustomer = new javax.swing.JRadioButton();
         submitCustomer = new javax.swing.JButton();
         checkIn = new javax.swing.JButton();
+        Home = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        buttonGroup1.add(addCustomer);
         addCustomer.setText("Add Customer");
         addCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,6 +47,7 @@ public class Customer extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(updateCustomer);
         updateCustomer.setText("Update Customer");
         updateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,13 +55,32 @@ public class Customer extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(deleteCustomer);
         deleteCustomer.setText("Delete Customer");
 
+        buttonGroup1.add(viewCustomer);
         viewCustomer.setText("View Customers");
 
         submitCustomer.setText("Submit");
+        submitCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitCustomerActionPerformed(evt);
+            }
+        });
 
         checkIn.setText("Check In");
+        checkIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkInActionPerformed(evt);
+            }
+        });
+
+        Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,13 +99,14 @@ public class Customer extends javax.swing.JFrame {
                         .addGap(213, 213, 213)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(checkIn)
-                            .addComponent(submitCustomer))))
+                            .addComponent(submitCustomer)
+                            .addComponent(Home))))
                 .addContainerGap(198, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(47, 47, 47)
                 .addComponent(addCustomer)
                 .addGap(18, 18, 18)
                 .addComponent(updateCustomer)
@@ -95,19 +118,53 @@ public class Customer extends javax.swing.JFrame {
                 .addComponent(submitCustomer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(checkIn)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Home)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerActionPerformed
-        // TODO add your handling code here:
+        AddCustomer adc = new AddCustomer();
+        adc.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_addCustomerActionPerformed
 
     private void updateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCustomerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_updateCustomerActionPerformed
+
+    private void submitCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCustomerActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_submitCustomerActionPerformed
+
+    private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
+        // TODO add your handling code here:
+        if(addCustomer.isSelected()){
+            //open add record form
+            AddCustomer adc = new AddCustomer();
+            adc.setVisible(true);
+            
+        } else if(updateCustomer.isSelected()){
+            //open update record form
+            UpdateCustomer upc = new UpdateCustomer();
+            upc.setVisible(true);
+        } else if(deleteCustomer.isSelected()){
+            //open delete record form
+        } else if(viewCustomer.isSelected()){
+            //view list of records
+        } else {
+            //throw error
+        }   
+    }//GEN-LAST:event_checkInActionPerformed
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        FrontDesk fd = new FrontDesk();
+            fd.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,6 +202,7 @@ public class Customer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home;
     private javax.swing.JRadioButton addCustomer;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;

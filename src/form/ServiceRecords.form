@@ -69,17 +69,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Service Record"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addServiceRecordActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="updateServiceRecord">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update Service Record"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateServiceRecordActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="deleteServiceRecord">
       <Properties>
