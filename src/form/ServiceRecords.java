@@ -100,22 +100,22 @@ public class ServiceRecords extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(addServiceRecord.isSelected()){
             //open add record form
-//            AddRecord ar = new AddRecord();
-//            ar.setVisible(true);
+            AddRecord ar = new AddRecord();
+            ar.setVisible(true);
             
         } else if(updateServiceRecord.isSelected()){
             //open update record form
-            //UpdateRecord ur = new UpdateRecord();
-            //ur.setVisible(true);
+            UpdateRecord ur = new UpdateRecord();
+            ur.setVisible(true);
             
         } else if(deleteServiceRecord.isSelected()){
             //open delete record form
-//            DeleteRecord dr = new DeleteRecord();
-//            dr.setVisible(true);
+            DeleteRecord dr = new DeleteRecord();
+            dr.setVisible(true);
         } else if(viewServiceRecord.isSelected()){
             //view list of records
-//            ViewRecord u=vr = new ViewRecord();
-//            vr.setVisible(true);
+            ViewRecord vr = new ViewRecord();
+            vr.setVisible(true);
         } else {
             JFrame jf = new JFrame();
             JOptionPane.showMessageDialog(jf,"Please Select an option","ERROR",JOptionPane.ERROR_MESSAGE);
