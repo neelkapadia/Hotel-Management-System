@@ -5,15 +5,10 @@
  */
 package form;
 
-import form.db_connection;
-import form.Manager;
-import form.FrontDesk;
-import form.ServiceRecords;
 import javax.swing.JOptionPane;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.*;
 import javax.swing.JFrame;
 
@@ -152,36 +147,6 @@ public class Login extends javax.swing.JFrame {
             //e.printStackTrace();
             System.out.println("Cannot connect to database");
         }
-
-//            connect_db();
-//        } catch(Exception e){
-//            e.printStackTrace();
-//            System.out.println("Failed");
-//        }
-//        
-//        String pwd = password.getText();
-//        String sid = StaffID_text.getText();
-//        
-//        if(sid.equals("100") && pwd.equals("mary123")){
-//            sysExit();
-//            //if sid belongs to manager)
-//                //mng.setVisible(true);
-//            //if sid belongs to front desk
-//               fd.setVisible(true);
-//            //if sid belongs to others
-//                //sr.setVisible(true);
-//        }
-//        
-//        else if(sid.equals("106") && pwd.equals("olivia123")){
-//            sysExit();
-//            fd.setVisible(true);
-//        } 
-//        else{
-//            JOptionPane.showMessageDialog(null,"INVALID LOGIN DETAILS","LOGIN ERROR",JOptionPane.ERROR_MESSAGE);
-//            password.setText(null);
-//            StaffID_text.setText(null);
-//            
-//        }
     }                                            
 
     private void staffidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffidActionPerformed
