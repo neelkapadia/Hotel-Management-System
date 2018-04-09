@@ -138,9 +138,9 @@ public class Login extends javax.swing.JFrame {
         if(sid.equals("100") && pwd.equals("mary123")){
             sysExit();
             //if sid belongs to manager)
-                mng.setVisible(true);
+                //mng.setVisible(true);
             //if sid belongs to front desk
-                fd.setVisible(true);
+               fd.setVisible(true);
             //if sid belongs to others
                 //sr.setVisible(true);
         }
@@ -214,7 +214,7 @@ public class Login extends javax.swing.JFrame {
         });
     }
     
-    private void sysExit(){
+    public void sysExit(){
         WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }

@@ -9,12 +9,12 @@ package form;
  *
  * @author saurabhshanbhag
  */
-public class AddCustomer extends javax.swing.JFrame {
+public class UpdateCustomer extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddCustomer
+     * Creates new form UpdateCustomer
      */
-    public AddCustomer() {
+    public UpdateCustomer() {
         initComponents();
     }
 
@@ -27,29 +27,38 @@ public class AddCustomer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        customerID = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        customerName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         customerDOB = new javax.swing.JTextField();
+        Home = new javax.swing.JButton();
+        SubmitCustomer = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         customerPhno = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         customerEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        SubmitCustomer = new javax.swing.JButton();
-        CheckIn = new javax.swing.JButton();
-        Home = new javax.swing.JButton();
+        customerID = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        customerName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Customer ID");
-
-        jLabel2.setText("Name");
-
         jLabel3.setText("Date of Birth");
+
+        Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
+        SubmitCustomer.setText("Update");
+        SubmitCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitCustomerActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Phone Number");
 
@@ -58,23 +67,11 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel6.setText("Wolf Inns");
 
-        jLabel7.setText("Add Customer");
+        jLabel1.setText("Customer ID");
 
-        SubmitCustomer.setText("Add");
-        SubmitCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitCustomerActionPerformed(evt);
-            }
-        });
+        jLabel7.setText("Update Customer");
 
-        CheckIn.setText("Check In");
-
-        Home.setText("Home");
-        Home.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HomeActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,23 +97,20 @@ public class AddCustomer extends javax.swing.JFrame {
                             .addComponent(SubmitCustomer))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
+                                .addGap(143, 143, 143)
+                                .addComponent(Home)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(94, 94, 94)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(customerEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(customerPhno)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(CheckIn)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(Home)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(customerPhno))))))
                 .addGap(182, 182, 182))
             .addGroup(layout.createSequentialGroup()
                 .addGap(271, 271, 271)
-                .addComponent(jLabel6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -149,23 +143,22 @@ public class AddCustomer extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SubmitCustomer)
-                    .addComponent(CheckIn)
                     .addComponent(Home))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        FrontDesk fd = new FrontDesk();
+        fd.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
+
     private void SubmitCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitCustomerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SubmitCustomerActionPerformed
-
-    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        // TODO add your handling code here:
-            FrontDesk fd = new FrontDesk();
-            fd.setVisible(true);
-    }//GEN-LAST:event_HomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,27 +177,25 @@ public class AddCustomer extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddCustomer().setVisible(true);
+                new UpdateCustomer().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CheckIn;
     private javax.swing.JButton Home;
     private javax.swing.JButton SubmitCustomer;
     private javax.swing.JTextField customerDOB;
