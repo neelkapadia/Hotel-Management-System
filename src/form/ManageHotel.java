@@ -33,6 +33,7 @@ public class ManageHotel extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        Logout = new javax.swing.JButton();
         addHotel = new javax.swing.JRadioButton();
         updateHotel = new javax.swing.JRadioButton();
         deleteHotel = new javax.swing.JRadioButton();
@@ -41,6 +42,14 @@ public class ManageHotel extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Home = new javax.swing.JButton();
         submitHotel = new javax.swing.JButton();
+        Logout1 = new javax.swing.JButton();
+
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -85,31 +94,41 @@ public class ManageHotel extends javax.swing.JFrame {
             }
         });
 
+        Logout1.setText("Logout");
+        Logout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Home)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Logout1)
+                .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
                 .addGap(202, 202, 202)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewHotel)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(deleteHotel)
                     .addComponent(updateHotel)
                     .addComponent(addHotel)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(submitHotel)
-                        .addComponent(viewHotel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(submitHotel)))
                 .addContainerGap(220, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Home)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
@@ -117,15 +136,17 @@ public class ManageHotel extends javax.swing.JFrame {
                 .addComponent(addHotel)
                 .addGap(18, 18, 18)
                 .addComponent(updateHotel)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(deleteHotel)
                 .addGap(18, 18, 18)
                 .addComponent(viewHotel)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(submitHotel)
-                .addGap(25, 25, 25)
-                .addComponent(Home)
-                .addGap(10, 10, 10))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home)
+                    .addComponent(Logout1))
+                .addContainerGap())
         );
 
         pack();
@@ -143,6 +164,7 @@ public class ManageHotel extends javax.swing.JFrame {
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
         Manager mng = new Manager();
+        sysExit();
         mng.setVisible(true);
     }//GEN-LAST:event_HomeActionPerformed
 
@@ -179,6 +201,20 @@ public class ManageHotel extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(jf,"PLEASE CHOOSE","ERROR",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_submitHotelActionPerformed
+
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_LogoutActionPerformed
+
+    private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_Logout1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,6 +258,8 @@ public class ManageHotel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;
+    private javax.swing.JButton Logout;
+    private javax.swing.JButton Logout1;
     private javax.swing.JRadioButton addHotel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton deleteHotel;

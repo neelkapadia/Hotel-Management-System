@@ -90,7 +90,7 @@ public class CheckIn extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(259, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -141,14 +141,14 @@ public class CheckIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFrame jf = new JFrame();
         JOptionPane.showMessageDialog(jf,"BOOKING CONFIRMED","",JOptionPane.INFORMATION_MESSAGE);
-        
-        
+
+
         //commit rooms
         FrontDesk fd = new FrontDesk();
         sysExit();
         fd.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_ConfirmActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
@@ -169,7 +169,7 @@ public class CheckIn extends javax.swing.JFrame {
         WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }
-    
+
     public void getRooms(){
         db_connection db = new db_connection();
         Connection conn = null;
@@ -194,7 +194,7 @@ public class CheckIn extends javax.swing.JFrame {
 //                sr.setVisible(true);
 //                staff = true;
             }
-            
+
 //            if(staff == false && frontDesk == false && manager == false){
 //                JFrame jf = new JFrame();
 //                JOptionPane.showMessageDialog(jf,"INVALID LOGIN DETAILS","LOGIN ERROR",JOptionPane.ERROR_MESSAGE);
@@ -222,7 +222,7 @@ public class CheckIn extends javax.swing.JFrame {
 
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -230,7 +230,7 @@ public class CheckIn extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

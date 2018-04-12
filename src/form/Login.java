@@ -121,7 +121,6 @@ public class Login extends javax.swing.JFrame {
                 sr.setVisible(true);
                 s = true;
             }
-            rs = null;
             rs = stmt.executeQuery("select staffid from roomservicestaff where staffid = " + id);
             if (s == false && rs.first()) {
                 ServiceRecords sr = new ServiceRecords();
@@ -129,7 +128,6 @@ public class Login extends javax.swing.JFrame {
                 sr.setVisible(true);
                 s = true;
             }
-            rs = null;
             rs = stmt.executeQuery("select staffid from frontdeskstaff where staffid = " + id);
             if (s == false && rs.first()) {
                 Intermediate.addItem("1", id);
@@ -139,7 +137,6 @@ public class Login extends javax.swing.JFrame {
                 fd.setVisible(true);
                 f = true;
             }
-            rs = null;
             rs = stmt.executeQuery("select staffid from manager where staffid = " + id);
             if (s == false && f == false && rs.first()) {
                 Manager m = new Manager();
@@ -163,15 +160,11 @@ public class Login extends javax.swing.JFrame {
                     Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            try {
+            db.close_db(conn);
+            } catch(Exception e){
+                e.printStackTrace();
             }
-
         }
 
     }

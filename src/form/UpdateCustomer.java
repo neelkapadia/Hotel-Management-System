@@ -7,6 +7,14 @@ package form;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,8 +27,21 @@ public class UpdateCustomer extends javax.swing.JFrame {
      */
     public UpdateCustomer() {
         initComponents();
+        toggleVisibility(false);
     }
-
+    
+    public void toggleVisibility(boolean isVisible) {
+        customerDOB.setVisible(isVisible);
+        customerEmail.setVisible(isVisible);
+        customerName.setVisible(isVisible);
+        customerPhno.setVisible(isVisible);
+        jLabel2.setVisible(isVisible);
+        jLabel3.setVisible(isVisible);
+        jLabel4.setVisible(isVisible);
+        jLabel5.setVisible(isVisible);
+        updateDetails.setVisible(isVisible);  
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +55,7 @@ public class UpdateCustomer extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         customerDOB = new javax.swing.JTextField();
         Home = new javax.swing.JButton();
-        SubmitCustomer = new javax.swing.JButton();
+        getDetails = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         customerPhno = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -46,6 +67,7 @@ public class UpdateCustomer extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         customerName = new javax.swing.JTextField();
         Logout1 = new javax.swing.JButton();
+        updateDetails = new javax.swing.JButton();
 
         Logout.setText("Logout");
         Logout.addActionListener(new java.awt.event.ActionListener() {
@@ -65,10 +87,10 @@ public class UpdateCustomer extends javax.swing.JFrame {
             }
         });
 
-        SubmitCustomer.setText("Update");
-        SubmitCustomer.addActionListener(new java.awt.event.ActionListener() {
+        getDetails.setText("Get Details");
+        getDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitCustomerActionPerformed(evt);
+                getDetailsActionPerformed(evt);
             }
         });
 
@@ -85,10 +107,23 @@ public class UpdateCustomer extends javax.swing.JFrame {
 
         jLabel2.setText("Name");
 
+        customerName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerNameActionPerformed(evt);
+            }
+        });
+
         Logout1.setText("Logout");
         Logout1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Logout1ActionPerformed(evt);
+            }
+        });
+
+        updateDetails.setText("Update Details");
+        updateDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateDetailsActionPerformed(evt);
             }
         });
 
@@ -97,15 +132,17 @@ public class UpdateCustomer extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
+                .addGap(132, 132, 132)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(getDetails)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Home)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -116,30 +153,28 @@ public class UpdateCustomer extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel1))
-                                        .addGap(56, 56, 56)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(1, 1, 1)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel3)
+                                                    .addComponent(jLabel2)
+                                                    .addComponent(jLabel1)
+                                                    .addComponent(jLabel4)))
+                                            .addComponent(jLabel5))
+                                        .addGap(43, 43, 43)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(customerPhno)
                                             .addComponent(customerEmail)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(updateDetails)
                                                     .addComponent(customerName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(customerID, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(customerDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                                .addGap(58, 58, 58))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(Home)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGap(58, 58, 58)))
                         .addComponent(Logout1)
                         .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(SubmitCustomer)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +204,9 @@ public class UpdateCustomer extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(customerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SubmitCustomer)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(getDetails)
+                    .addComponent(updateDetails))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Home)
@@ -186,11 +223,61 @@ public class UpdateCustomer extends javax.swing.JFrame {
         fd.setVisible(true);
     }//GEN-LAST:event_HomeActionPerformed
 
-    private void SubmitCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitCustomerActionPerformed
+    private void getDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getDetailsActionPerformed
         // TODO add your handling code here:
         
-        //update values
-    }//GEN-LAST:event_SubmitCustomerActionPerformed
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs;
+        
+        try {
+
+            conn = db.connect_db();
+            stmt = conn.createStatement();
+            
+            rs = stmt.executeQuery("select * from customer where custid = " + customerID.getText());
+            if (rs.first()) { 
+                toggleVisibility(true);
+                customerName.setText(rs.getString("name"));
+                customerDOB.setText(rs.getString("dob"));
+                customerPhno.setText(rs.getString("phoneNum"));
+                customerEmail.setText(rs.getString("email"));
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "No customer found! Try again.");
+                toggleVisibility(false);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+
+        
+  
+        
+        
+    }//GEN-LAST:event_getDetailsActionPerformed
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
         // TODO add your handling code here:
@@ -205,6 +292,84 @@ public class UpdateCustomer extends javax.swing.JFrame {
         sysExit();
         l.setVisible(true);
     }//GEN-LAST:event_Logout1ActionPerformed
+
+    private void customerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customerNameActionPerformed
+
+    private void updateDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDetailsActionPerformed
+        // TODO add your handling code here:
+                
+        //update values
+        
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt = null;
+        
+        ResultSet rs;
+        try {
+
+            conn = db.connect_db();
+            stmt = conn.createStatement();
+            
+            String updateQry = "update customer set";
+            boolean first = true;
+            
+            if(customerName != null) {
+                updateQry += " `name` = '" + customerName.getText()+"'";
+                first = false;
+            }
+            if(customerDOB != null) {
+                if (!first) {
+                    updateQry += ",";
+                }
+                updateQry += " `dob` = '" + customerDOB.getText()+"'";
+                first = false;
+            }
+            if(customerPhno != null) {
+                if (!first) {
+                    updateQry += ",";
+                }
+                updateQry += " `phoneNum` = " + Integer.parseInt(customerPhno.getText());
+                first = false;
+            }
+            if(customerEmail != null) {
+                if (!first) {
+                    updateQry += ",";
+                }
+                updateQry += " `email` = '" + customerEmail.getText()+"'";
+            }
+            updateQry += " where `custid` = " + Integer.parseInt(customerID.getText());
+            
+            stmt.executeUpdate(updateQry);
+            JOptionPane.showMessageDialog(null, "Customer updated!");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+
+        
+    }//GEN-LAST:event_updateDetailsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,12 +415,12 @@ public class UpdateCustomer extends javax.swing.JFrame {
     private javax.swing.JButton Home;
     private javax.swing.JButton Logout;
     private javax.swing.JButton Logout1;
-    private javax.swing.JButton SubmitCustomer;
     private javax.swing.JTextField customerDOB;
     private javax.swing.JTextField customerEmail;
     private javax.swing.JTextField customerID;
     private javax.swing.JTextField customerName;
     private javax.swing.JTextField customerPhno;
+    private javax.swing.JButton getDetails;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -263,5 +428,6 @@ public class UpdateCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton updateDetails;
     // End of variables declaration//GEN-END:variables
 }
