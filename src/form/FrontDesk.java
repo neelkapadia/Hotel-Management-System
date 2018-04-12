@@ -66,6 +66,11 @@ public class FrontDesk extends javax.swing.JFrame {
         jLabel2.setText("Please Choose Task:");
 
         Logout1.setText("Logout");
+        Logout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,6 +133,14 @@ public class FrontDesk extends javax.swing.JFrame {
         sysExit();
         in.setVisible(true);
     }//GEN-LAST:event_InvoiceActionPerformed
+
+    private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
+        // TODO add your handling code here:
+                Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+        
+    }//GEN-LAST:event_Logout1ActionPerformed
 
     /**
      * @param args the command line arguments
