@@ -112,7 +112,7 @@ public class Login extends javax.swing.JFrame {
             stmt = conn.createStatement();
             boolean s,f,mr;
             s = f = mr = false;
-            rs = stmt.executeQuery("select * from cateringstaff where staffid = " + id);
+            rs = stmt.executeQuery("select staffid from cateringstaff where staffid = " + id);
             if (rs.first()) {    
                 ServiceRecords sr = new ServiceRecords();
                 sysExit();
@@ -120,7 +120,7 @@ public class Login extends javax.swing.JFrame {
                 s = true;
             }
             rs = null;
-            rs = stmt.executeQuery("select * from roomservicestaff where staffid = " + id);
+            rs = stmt.executeQuery("select staffid from roomservicestaff where staffid = " + id);
             if (s == false && rs.first()) {    
                 ServiceRecords sr = new ServiceRecords();
                 sysExit();
@@ -128,7 +128,7 @@ public class Login extends javax.swing.JFrame {
                 s = true;
             }
             rs = null;
-            rs = stmt.executeQuery("select * from frontdeskstaff where staffid = " + id);
+            rs = stmt.executeQuery("select staffid from frontdeskstaff where staffid = " + id);
             if (s == false && rs.first()) {    
                 FrontDesk fd = new FrontDesk();
                 sysExit();
@@ -136,7 +136,7 @@ public class Login extends javax.swing.JFrame {
                 f = true;
             }
             rs = null;
-            rs = stmt.executeQuery("select * from manager where staffid = " + id);
+            rs = stmt.executeQuery("select staffid from manager where staffid = " + id);
             if (s == false && f == false && rs.first()) {    
                 Manager m = new Manager();
                 sysExit();
