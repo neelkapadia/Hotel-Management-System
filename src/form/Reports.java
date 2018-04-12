@@ -4,10 +4,16 @@
  * and open the template in the editor.
  */
 package form;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -130,12 +136,20 @@ public class Reports extends javax.swing.JFrame {
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
+        ResultSet rs;
+        String query;
         try {
             conn = db.connect_db();
             stmt = conn.createStatement();
-
             if (Occupancy.isSelected()) {
-
+                query = "SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM (SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid;";
+                rs = stmt.executeQuery(query);
+                ReportOccupancyByHotel report = new ReportOccupancyByHotel();
+                sysExit();
+                //JTable table = new JTable(report.Report);
+                DefaultTableModel model = (DefaultTableModel) report.Report.getModel();
+                model.addRow(new Object[]{"1", "6", "14"});
+                report.setVisible(true);
             } else if (TotalOccupancy.isSelected()) {
 
             } else if (StaffInfo.isSelected()) {
@@ -156,7 +170,10 @@ public class Reports extends javax.swing.JFrame {
     private void TotalOccupancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalOccupancyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TotalOccupancyActionPerformed
-
+    public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
     /**
      * @param args the command line arguments
      */
