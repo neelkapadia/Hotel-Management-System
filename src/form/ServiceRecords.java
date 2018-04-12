@@ -44,12 +44,27 @@ public class ServiceRecords extends javax.swing.JFrame {
 
         buttonGroup1.add(updateServiceRecord);
         updateServiceRecord.setText("Update Service Record");
+        updateServiceRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateServiceRecordActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(deleteServiceRecord);
         deleteServiceRecord.setText("Delete Service Record");
+        deleteServiceRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteServiceRecordActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(viewServiceRecord);
         viewServiceRecord.setText("View Service Records");
+        viewServiceRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewServiceRecordActionPerformed(evt);
+            }
+        });
 
         submitServiceRecord.setText("Submit");
         submitServiceRecord.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +135,18 @@ public class ServiceRecords extends javax.swing.JFrame {
             //throw error
         }
     }//GEN-LAST:event_submitServiceRecordActionPerformed
+
+    private void viewServiceRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewServiceRecordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewServiceRecordActionPerformed
+
+    private void updateServiceRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateServiceRecordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateServiceRecordActionPerformed
+
+    private void deleteServiceRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteServiceRecordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteServiceRecordActionPerformed
 
     /**
      * @param args the command line arguments

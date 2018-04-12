@@ -78,6 +78,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Update Service Record"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateServiceRecordActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="deleteServiceRecord">
       <Properties>
@@ -86,6 +89,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Delete Service Record"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteServiceRecordActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="viewServiceRecord">
       <Properties>
@@ -94,6 +100,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="View Service Records"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewServiceRecordActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="submitServiceRecord">
       <Properties>
