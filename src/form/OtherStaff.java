@@ -5,6 +5,8 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -42,6 +44,7 @@ public class OtherStaff extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         ViewRecord = new javax.swing.JRadioButton();
         Submit = new javax.swing.JButton();
+        Logout = new javax.swing.JButton();
 
         GenerateInvoice.setText("Generate Invoice");
 
@@ -77,6 +80,13 @@ public class OtherStaff extends javax.swing.JFrame {
             }
         });
 
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,6 +108,9 @@ public class OtherStaff extends javax.swing.JFrame {
                         .addGap(141, 141, 141)
                         .addComponent(Submit)))
                 .addContainerGap(86, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Logout))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +129,8 @@ public class OtherStaff extends javax.swing.JFrame {
                 .addComponent(ViewRecord)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Submit)
-                .addGap(36, 36, 36))
+                .addGap(7, 7, 7)
+                .addComponent(Logout))
         );
 
         pack();
@@ -148,6 +162,18 @@ public class OtherStaff extends javax.swing.JFrame {
         
     }//GEN-LAST:event_SubmitActionPerformed
 
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_LogoutActionPerformed
+
+    
+       public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
     /**
      * @param args the command line arguments
      */
@@ -188,6 +214,7 @@ public class OtherStaff extends javax.swing.JFrame {
     private javax.swing.JRadioButton DeleteRecord;
     private javax.swing.JRadioButton GenerateInvoice;
     private javax.swing.JRadioButton GetAmount;
+    private javax.swing.JButton Logout;
     private javax.swing.JButton Submit;
     private javax.swing.JRadioButton UpdateInvoice;
     private javax.swing.JRadioButton UpdateRecord;

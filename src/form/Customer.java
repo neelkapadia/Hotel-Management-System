@@ -5,6 +5,11 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author saurabhshanbhag
@@ -36,6 +41,7 @@ public class Customer extends javax.swing.JFrame {
         submitCustomer = new javax.swing.JButton();
         checkIn = new javax.swing.JButton();
         Home = new javax.swing.JButton();
+        Logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -82,26 +88,34 @@ public class Customer extends javax.swing.JFrame {
             }
         });
 
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(190, 190, 190)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(viewCustomer)
-                            .addComponent(deleteCustomer)
-                            .addComponent(updateCustomer)
-                            .addComponent(addCustomer)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkIn)
-                            .addComponent(submitCustomer)
-                            .addComponent(Home))))
+                    .addComponent(viewCustomer)
+                    .addComponent(deleteCustomer)
+                    .addComponent(updateCustomer)
+                    .addComponent(addCustomer))
                 .addContainerGap(198, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkIn)
+                    .addComponent(submitCustomer)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Home)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Logout))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,6 +135,9 @@ public class Customer extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Home)
                 .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Logout))
         );
 
         pack();
@@ -145,29 +162,46 @@ public class Customer extends javax.swing.JFrame {
         if(addCustomer.isSelected()){
             //open add record form
             AddCustomer adc = new AddCustomer();
+            sysExit();
             adc.setVisible(true);
             
         } else if(updateCustomer.isSelected()){
             //open update record form
             UpdateCustomer upc = new UpdateCustomer();
+            sysExit();
             upc.setVisible(true);
         } else if(deleteCustomer.isSelected()){
             
             DeleteCustomer dlc = new DeleteCustomer();
+            sysExit();
             dlc.setVisible(true);
             //open delete record form
         } else if(viewCustomer.isSelected()){
             //view list of records
+            ViewCustomers vc = new ViewCustomers();
+            sysExit();
+            vc.setVisible(true);
         } else {
-            //throw error
+            //throw erro
+            JFrame jf = new JFrame();
+            JOptionPane.showMessageDialog(jf,"PLEASE CHOOSE AN OPTION","ERROR",JOptionPane.ERROR_MESSAGE);
+            
         }   
     }//GEN-LAST:event_checkInActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
         FrontDesk fd = new FrontDesk();
+        sysExit();
             fd.setVisible(true);
     }//GEN-LAST:event_HomeActionPerformed
+
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_LogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,9 +237,15 @@ public class Customer extends javax.swing.JFrame {
             }
         });
     }
+    
+        public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;
+    private javax.swing.JButton Logout;
     private javax.swing.JRadioButton addCustomer;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
