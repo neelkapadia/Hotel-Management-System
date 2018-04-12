@@ -440,7 +440,6 @@ CREATE TABLE `generateInvoice` (
   `InvoiceID` int(11) NOT NULL,
   `BookingId` int(11) NOT NULL,
   PRIMARY KEY (`BookingId`,`InvoiceID`),
-  UNIQUE KEY `BookingId` (`BookingId`),
   KEY `invoice_id_in_invoice` (`InvoiceID`),
   CONSTRAINT `booking_id_in_invoice` FOREIGN KEY (`BookingId`) REFERENCES `BookingInfo` (`BookingID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `invoice_id_in_invoice` FOREIGN KEY (`InvoiceID`) REFERENCES `Invoice` (`InvoiceID`) ON DELETE CASCADE ON UPDATE CASCADE
