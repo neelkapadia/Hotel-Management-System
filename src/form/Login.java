@@ -10,6 +10,8 @@ import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -101,8 +103,8 @@ public class Login extends javax.swing.JFrame {
         //JFrame jf = new JFrame();
 
         db_connection db = new db_connection();
-        Connection conn;
-        Statement stmt;
+        Connection conn = null;
+        Statement stmt = null;
         ResultSet rs;
         try {
 
@@ -148,9 +150,29 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(jf,"INVALID LOGIN DETAILS","LOGIN ERROR",JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
-            System.out.println("Cannot connect to database");
+            e.printStackTrace();
+
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
         }
+
+        
     }                                            
 
     private void staffidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffidActionPerformed
