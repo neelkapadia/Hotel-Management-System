@@ -6,7 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -37,10 +37,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ViewList" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="DeleteRoom" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="UpdateRoom" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="AddRoom" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Executive" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Presidential" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Economy" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Deluxe" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -63,13 +63,13 @@
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="AddRoom" min="-2" max="-2" attributes="0"/>
+              <Component id="Deluxe" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="UpdateRoom" min="-2" max="-2" attributes="0"/>
+              <Component id="Economy" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="DeleteRoom" min="-2" max="-2" attributes="0"/>
+              <Component id="Presidential" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="ViewList" min="-2" max="-2" attributes="0"/>
+              <Component id="Executive" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Submit" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -81,7 +81,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JRadioButton" name="ViewList">
+    <Component class="javax.swing.JRadioButton" name="Executive">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
@@ -89,13 +89,16 @@
         <Property name="text" type="java.lang.String" value="Executive"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewListActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExecutiveActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Submit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Room"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SubmitActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -110,7 +113,7 @@
         <Property name="text" type="java.lang.String" value="Select room type:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="AddRoom">
+    <Component class="javax.swing.JRadioButton" name="Deluxe">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
@@ -118,7 +121,7 @@
         <Property name="text" type="java.lang.String" value="Deluxe"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="UpdateRoom">
+    <Component class="javax.swing.JRadioButton" name="Economy">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
@@ -126,10 +129,10 @@
         <Property name="text" type="java.lang.String" value="Economy"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UpdateRoomActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EconomyActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="DeleteRoom">
+    <Component class="javax.swing.JRadioButton" name="Presidential">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
@@ -137,7 +140,7 @@
         <Property name="text" type="java.lang.String" value="Presidential Suite"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteRoomActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PresidentialActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Confrim">

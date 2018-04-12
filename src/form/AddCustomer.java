@@ -202,7 +202,9 @@ public class AddCustomer extends javax.swing.JFrame {
 
     private void CheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInActionPerformed
         // TODO add your handling code here:
-        
+        CheckIn ci = new CheckIn();
+        sysExit();
+        ci.setVisible(true);
         
         //commit insertions
     }//GEN-LAST:event_CheckInActionPerformed

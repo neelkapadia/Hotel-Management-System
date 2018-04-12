@@ -139,7 +139,38 @@ public class Customer extends javax.swing.JFrame {
     }//GEN-LAST:event_updateCustomerActionPerformed
 
     private void submitCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCustomerActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:\
+        
+         if(addCustomer.isSelected()){
+            //open add record form
+            AddCustomer adh = new AddCustomer();
+            sysExit();
+            adh.setVisible(true);
+
+        } else if(updateCustomer.isSelected()){
+            //open update record form
+            UpdateCustomer uc = new UpdateCustomer();
+             sysExit();
+            uc.setVisible(true);
+            
+        } else if(deleteCustomer.isSelected()){
+
+            DeleteCustomer dc = new DeleteCustomer();
+            sysExit();
+            dc.setVisible(true);
+            //open delete record form
+        } else if(viewCustomer.isSelected()){
+            
+            ViewCustomers vc = new ViewCustomers();
+            sysExit();
+            vc.setVisible(true);
+            //view list of records
+        } else {
+            //throw error
+            
+                            JFrame jf = new JFrame();
+                JOptionPane.showMessageDialog(jf,"PLEASE CHOOSE","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
         
     }//GEN-LAST:event_submitCustomerActionPerformed
 

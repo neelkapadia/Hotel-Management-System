@@ -5,6 +5,9 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author neelkapadia
@@ -34,6 +37,9 @@ public class Invoice extends javax.swing.JFrame {
         UpdateInvoice = new javax.swing.JRadioButton();
         GetAmount = new javax.swing.JRadioButton();
         Submit = new javax.swing.JButton();
+        amt = new javax.swing.JTextField();
+        Home = new javax.swing.JButton();
+        Logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,31 +55,59 @@ public class Invoice extends javax.swing.JFrame {
         UpdateInvoice.setText("Update Invoice");
 
         buttonGroup1.add(GetAmount);
-        GetAmount.setText("Get total amount owed");
+        GetAmount.setText("Get total amount owed     $");
 
         Submit.setText("Submit");
+        Submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitActionPerformed(evt);
+            }
+        });
+
+        Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(91, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(GetAmount)
-                        .addComponent(UpdateInvoice)
-                        .addComponent(GenerateInvoice)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(81, 81, 81)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(131, 131, 131))))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addComponent(Submit)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(81, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(131, 131, 131))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(GenerateInvoice)
+                                .addComponent(jLabel1)
+                                .addComponent(UpdateInvoice))
+                            .addGap(91, 91, 91))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(GetAmount)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(amt, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap()))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Home)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Logout))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,14 +121,53 @@ public class Invoice extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(UpdateInvoice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(GetAmount)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(GetAmount)
+                    .addComponent(amt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Submit)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Logout)
+                    .addComponent(Home)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+        // TODO add your handling code here:
+        
+        
+         if(GenerateInvoice.isSelected()){
+            //open add record form
+           
+            //code to get pdf invoice
+
+        } else if(UpdateInvoice.isSelected()){
+            //open update record form
+           
+            
+        } else if(GetAmount.isSelected()){
+
+            //print amt
+            //open delete record form
+        } 
+    }//GEN-LAST:event_SubmitActionPerformed
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        FrontDesk fd = new FrontDesk();
+        sysExit();
+        fd.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
+
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_LogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,12 +203,20 @@ public class Invoice extends javax.swing.JFrame {
             }
         });
     }
+    
+            public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton GenerateInvoice;
     private javax.swing.JRadioButton GetAmount;
+    private javax.swing.JButton Home;
+    private javax.swing.JButton Logout;
     private javax.swing.JButton Submit;
     private javax.swing.JRadioButton UpdateInvoice;
+    private javax.swing.JTextField amt;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
