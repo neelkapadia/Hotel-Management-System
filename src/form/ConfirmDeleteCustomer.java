@@ -5,19 +5,16 @@
  */
 package form;
 
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
-
 /**
  *
  * @author saurabhshanbhag
  */
-public class DeleteCustomer extends javax.swing.JFrame {
+public class ConfirmDeleteCustomer extends javax.swing.JFrame {
 
     /**
-     * Creates new form DeleteCustomer
+     * Creates new form ConfirmDeleteCustomer
      */
-    public DeleteCustomer() {
+    public ConfirmDeleteCustomer() {
         initComponents();
     }
 
@@ -31,66 +28,62 @@ public class DeleteCustomer extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        customerID = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Customer ID");
+        jLabel1.setText("Are you sure you want ");
 
-        customerID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customerIDActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Delete");
+        jButton1.setText("Yes");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setText("No");
+
+        jLabel2.setText("to delete this entry?");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(42, 42, 42)
-                        .addComponent(customerID, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton1)))
-                .addContainerGap(183, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2))
+                    .addComponent(jLabel1))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(customerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addGap(43, 43, 43))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void customerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_customerIDActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ConfirmDeleteCustomer cdc =  new ConfirmDeleteCustomer();
-        
-        cdc.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -110,33 +103,28 @@ public class DeleteCustomer extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfirmDeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfirmDeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfirmDeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfirmDeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteCustomer().setVisible(true);
+                new ConfirmDeleteCustomer().setVisible(true);
             }
         });
     }
 
-    
-            public void sysExit(){
-        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField customerID;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

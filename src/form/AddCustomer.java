@@ -5,6 +5,9 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author saurabhshanbhag
@@ -68,6 +71,11 @@ public class AddCustomer extends javax.swing.JFrame {
         });
 
         CheckIn.setText("Check In");
+        CheckIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckInActionPerformed(evt);
+            }
+        });
 
         Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
@@ -159,16 +167,35 @@ public class AddCustomer extends javax.swing.JFrame {
 
     private void AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCustomerActionPerformed
         // TODO add your handling code here:
+        //start transaction
+        //*****insert into database*****
         
-        //insert into database
+        customerDOB.setText("");
+        customerEmail.setText("");
+        customerID.setText("");
+        customerName.setText("");
+        customerPhno.setText("");
     }//GEN-LAST:event_AddCustomerActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
             FrontDesk fd = new FrontDesk();
+            sysExit();
             fd.setVisible(true);
     }//GEN-LAST:event_HomeActionPerformed
 
+    private void CheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInActionPerformed
+        // TODO add your handling code here:
+        
+        
+        //commit insertions
+    }//GEN-LAST:event_CheckInActionPerformed
+
+    
+            public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
     /**
      * @param args the command line arguments
      */
@@ -204,6 +231,8 @@ public class AddCustomer extends javax.swing.JFrame {
             }
         });
     }
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCustomer;
