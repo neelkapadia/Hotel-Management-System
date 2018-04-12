@@ -155,7 +155,7 @@ public class FrontDesk extends javax.swing.JFrame {
 
     private void CheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInActionPerformed
         // TODO add your handling code here:
-        CheckIn ci = new CheckIn();
+        CheckInNew ci = new CheckInNew();
         sysExit();
         ci.setVisible(true);
 
@@ -197,7 +197,7 @@ public class FrontDesk extends javax.swing.JFrame {
         });
     }
     
-        public void sysExit(){
+    public void sysExit(){
         WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }

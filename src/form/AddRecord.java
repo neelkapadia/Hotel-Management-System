@@ -106,7 +106,7 @@ public class AddRecord extends javax.swing.JFrame {
                             .addComponent(serviceTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(92, 92, 92)
+                        .addGap(76, 76, 76)
                         .addComponent(serviceType)))
                 .addGap(230, 230, 230))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()

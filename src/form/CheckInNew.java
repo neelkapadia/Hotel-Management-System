@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package form;
 
 import java.awt.Toolkit;
@@ -20,16 +15,21 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 /**
  *
- * @author saurabhshanbhag
+ * @author neelkapadia
  */
-public class CheckIn extends javax.swing.JFrame {
+public class CheckInNew extends javax.swing.JFrame {
 
     /**
-     * Creates new form CheckIn
+     * Creates new form CheckInNew
      */
-    public CheckIn() {
+    public CheckInNew() {
         initComponents();
         getRooms();
     }
@@ -43,31 +43,16 @@ public class CheckIn extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        Confrim = new javax.swing.JButton();
         Home = new javax.swing.JButton();
-        Logout = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        Customer = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        Logout1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         Room = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Customer = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        Submit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
-        jLabel1.setText("Wolf Inns");
-
-        jLabel2.setText("Select customers:");
-
-        Confrim.setText("Confirm");
-        Confrim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConfirmActionPerformed(evt);
-            }
-        });
 
         Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
@@ -76,14 +61,22 @@ public class CheckIn extends javax.swing.JFrame {
             }
         });
 
-        Logout.setText("Logout");
-        Logout.addActionListener(new java.awt.event.ActionListener() {
+        Logout1.setText("Logout");
+        Logout1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogoutActionPerformed(evt);
+                Logout1ActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Select room:");
+        Room.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "RoomNum", "Category", "Capacity", "Price"
+            }
+        ));
+        jScrollPane1.setViewportView(Room);
 
         Customer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,71 +86,75 @@ public class CheckIn extends javax.swing.JFrame {
                 "Cust ID", "Name", "Email"
             }
         ));
-        jScrollPane3.setViewportView(Customer);
+        jScrollPane2.setViewportView(Customer);
 
-        Room.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jLabel4.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
+        jLabel4.setText("Wolf Inns");
 
-            },
-            new String [] {
-                "Room Num", "Category", "Capacity", "Price"
+        Submit.setText("Confirm");
+        Submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitActionPerformed(evt);
             }
-        ));
-        Room.setUpdateSelectionOnSort(false);
-        jScrollPane4.setViewportView(Room);
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(378, 378, 378)
-                        .addComponent(Confrim)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Submit)
+                        .addGap(131, 131, 131)
                         .addComponent(Home)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Logout))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(86, 86, 86))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(370, 370, 370)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Logout1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(280, 280, 280))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(44, 44, 44)
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Confrim)
                     .addComponent(Home)
-                    .addComponent(Logout)))
+                    .addComponent(Logout1)
+                    .addComponent(Submit))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        Manager mng = new Manager();
+        sysExit();
+        mng.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
+
+    private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_Logout1ActionPerformed
+
+    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
         JFrame jf = new JFrame();
         JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
@@ -165,26 +162,7 @@ public class CheckIn extends javax.swing.JFrame {
         FrontDesk fd = new FrontDesk();
         sysExit();
         fd.setVisible(true);
-    }//GEN-LAST:event_ConfirmActionPerformed
-
-    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        // TODO add your handling code here:
-        FrontDesk fd = new FrontDesk();
-        sysExit();
-        fd.setVisible(true);
-    }//GEN-LAST:event_HomeActionPerformed
-
-    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
-        // TODO add your handling code here:
-        Login l = new Login();
-        sysExit();
-        l.setVisible(true);
-    }//GEN-LAST:event_LogoutActionPerformed
-
-    public void sysExit() {
-        WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
-    }
+    }//GEN-LAST:event_SubmitActionPerformed
 
     public void getRooms() {
         db_connection db = new db_connection();
@@ -227,7 +205,7 @@ public class CheckIn extends javax.swing.JFrame {
             while (rs.next()) {
                 modelCust.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3)});
             }
-            
+
             Customer.setRowSelectionAllowed(true);
             ListSelectionModel lsCust = Customer.getSelectionModel();
             lsCust.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -246,7 +224,7 @@ public class CheckIn extends javax.swing.JFrame {
                     //System.out.println("Selected: " + selectedData);
                 }
             });
-            
+
 //            if(staff == false && frontDesk == false && manager == false){
 //                JFrame jf = new JFrame();
 //                JOptionPane.showMessageDialog(jf,"INVALID LOGIN DETAILS","LOGIN ERROR",JOptionPane.ERROR_MESSAGE);
@@ -275,6 +253,11 @@ public class CheckIn extends javax.swing.JFrame {
         }
     }
 
+    public void sysExit() {
+        WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -282,7 +265,7 @@ public class CheckIn extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -292,35 +275,32 @@ public class CheckIn extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CheckIn().setVisible(true);
+                new CheckInNew().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Confrim;
     private javax.swing.JTable Customer;
     private javax.swing.JButton Home;
-    private javax.swing.JButton Logout;
+    private javax.swing.JButton Logout1;
     private javax.swing.JTable Room;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JButton Submit;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
