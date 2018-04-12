@@ -43,16 +43,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="SubmitCustomer" min="-2" max="-2" attributes="0"/>
+                          <Component id="AddCustomer" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="customerEmail" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="customerPhno" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -64,6 +57,13 @@
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="customerEmail" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="customerPhno" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -111,7 +111,7 @@
               </Group>
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="SubmitCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="AddCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CheckIn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Home" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -169,18 +169,21 @@
         <Property name="text" type="java.lang.String" value="Add Customer"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="SubmitCustomer">
+    <Component class="javax.swing.JButton" name="AddCustomer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SubmitCustomerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddCustomerActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="CheckIn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Check In"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckInActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Home">
       <Properties>

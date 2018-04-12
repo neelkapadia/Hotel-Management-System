@@ -5,6 +5,9 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author saurabhshanbhag
@@ -39,7 +42,7 @@ public class AddCustomer extends javax.swing.JFrame {
         customerEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        SubmitCustomer = new javax.swing.JButton();
+        AddCustomer = new javax.swing.JButton();
         CheckIn = new javax.swing.JButton();
         Home = new javax.swing.JButton();
 
@@ -60,14 +63,19 @@ public class AddCustomer extends javax.swing.JFrame {
 
         jLabel7.setText("Add Customer");
 
-        SubmitCustomer.setText("Add");
-        SubmitCustomer.addActionListener(new java.awt.event.ActionListener() {
+        AddCustomer.setText("Add");
+        AddCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitCustomerActionPerformed(evt);
+                AddCustomerActionPerformed(evt);
             }
         });
 
         CheckIn.setText("Check In");
+        CheckIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckInActionPerformed(evt);
+            }
+        });
 
         Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
@@ -97,13 +105,8 @@ public class AddCustomer extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addComponent(SubmitCustomer))
+                            .addComponent(AddCustomer))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(customerEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(customerPhno)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +115,12 @@ public class AddCustomer extends javax.swing.JFrame {
                                         .addComponent(CheckIn)
                                         .addGap(30, 30, 30)
                                         .addComponent(Home)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(94, 94, 94)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(customerEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(customerPhno))))))
                 .addGap(182, 182, 182))
             .addGroup(layout.createSequentialGroup()
                 .addGap(271, 271, 271)
@@ -148,7 +156,7 @@ public class AddCustomer extends javax.swing.JFrame {
                     .addComponent(customerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SubmitCustomer)
+                    .addComponent(AddCustomer)
                     .addComponent(CheckIn)
                     .addComponent(Home))
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -157,16 +165,37 @@ public class AddCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SubmitCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitCustomerActionPerformed
+    private void AddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCustomerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SubmitCustomerActionPerformed
+        //start transaction
+        //*****insert into database*****
+        
+        customerDOB.setText("");
+        customerEmail.setText("");
+        customerID.setText("");
+        customerName.setText("");
+        customerPhno.setText("");
+    }//GEN-LAST:event_AddCustomerActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
             FrontDesk fd = new FrontDesk();
+            sysExit();
             fd.setVisible(true);
     }//GEN-LAST:event_HomeActionPerformed
 
+    private void CheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInActionPerformed
+        // TODO add your handling code here:
+        
+        
+        //commit insertions
+    }//GEN-LAST:event_CheckInActionPerformed
+
+    
+            public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
     /**
      * @param args the command line arguments
      */
@@ -202,11 +231,13 @@ public class AddCustomer extends javax.swing.JFrame {
             }
         });
     }
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddCustomer;
     private javax.swing.JButton CheckIn;
     private javax.swing.JButton Home;
-    private javax.swing.JButton SubmitCustomer;
     private javax.swing.JTextField customerDOB;
     private javax.swing.JTextField customerEmail;
     private javax.swing.JTextField customerID;
