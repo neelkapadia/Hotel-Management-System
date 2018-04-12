@@ -39,7 +39,6 @@ public class Customer extends javax.swing.JFrame {
         deleteCustomer = new javax.swing.JRadioButton();
         viewCustomer = new javax.swing.JRadioButton();
         submitCustomer = new javax.swing.JButton();
-        checkIn = new javax.swing.JButton();
         Home = new javax.swing.JButton();
         Logout = new javax.swing.JButton();
 
@@ -74,13 +73,6 @@ public class Customer extends javax.swing.JFrame {
             }
         });
 
-        checkIn.setText("Check In");
-        checkIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkInActionPerformed(evt);
-            }
-        });
-
         Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,28 +92,26 @@ public class Customer extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(190, 190, 190)
+                .addContainerGap(354, Short.MAX_VALUE)
+                .addComponent(Home)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Logout))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(189, 189, 189)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(viewCustomer)
                     .addComponent(deleteCustomer)
                     .addComponent(updateCustomer)
-                    .addComponent(addCustomer))
-                .addContainerGap(198, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkIn)
-                    .addComponent(submitCustomer)
+                    .addComponent(addCustomer)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Home)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Logout))))
+                        .addGap(23, 23, 23)
+                        .addComponent(submitCustomer)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(64, 64, 64)
                 .addComponent(addCustomer)
                 .addGap(18, 18, 18)
                 .addComponent(updateCustomer)
@@ -131,11 +121,7 @@ public class Customer extends javax.swing.JFrame {
                 .addComponent(viewCustomer)
                 .addGap(18, 18, 18)
                 .addComponent(submitCustomer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(checkIn)
-                .addContainerGap(69, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Logout)
                     .addComponent(Home)))
@@ -156,38 +142,6 @@ public class Customer extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_submitCustomerActionPerformed
-
-    private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
-        // TODO add your handling code here:
-        if(addCustomer.isSelected()){
-            //open add record form
-            AddCustomer adc = new AddCustomer();
-            sysExit();
-            adc.setVisible(true);
-            
-        } else if(updateCustomer.isSelected()){
-            //open update record form
-            UpdateCustomer upc = new UpdateCustomer();
-            sysExit();
-            upc.setVisible(true);
-        } else if(deleteCustomer.isSelected()){
-            
-            DeleteCustomer dlc = new DeleteCustomer();
-            sysExit();
-            dlc.setVisible(true);
-            //open delete record form
-        } else if(viewCustomer.isSelected()){
-            //view list of records
-            ViewCustomers vc = new ViewCustomers();
-            sysExit();
-            vc.setVisible(true);
-        } else {
-            //throw erro
-            JFrame jf = new JFrame();
-            JOptionPane.showMessageDialog(jf,"PLEASE CHOOSE AN OPTION","ERROR",JOptionPane.ERROR_MESSAGE);
-            
-        }   
-    }//GEN-LAST:event_checkInActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
@@ -249,7 +203,6 @@ public class Customer extends javax.swing.JFrame {
     private javax.swing.JRadioButton addCustomer;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton checkIn;
     private javax.swing.JRadioButton deleteCustomer;
     private javax.swing.JButton submitCustomer;
     private javax.swing.JRadioButton updateCustomer;
