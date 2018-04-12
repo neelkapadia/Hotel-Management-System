@@ -14,13 +14,17 @@ import java.util.Map;
  */
 public class Intermediate {
     
-    Map<String, Object> items;
+    static Map<String, Object> items = new HashMap<>();;
     
-    public Intermediate() {
-        items = new HashMap<>();
+    private Intermediate() {
+        
     }
     
-    public Object getItem(String key) {
+    public static void addItem(String key, Object value){
+        items.put(key, value);
+    }
+    
+    public static Object getItem(String key) {
         if (items.containsKey(key)) {
             return items.get(key);
         }
@@ -30,13 +34,13 @@ public class Intermediate {
         }
     }
     
-    public void removeItem(String key) {
+    public static void removeItem(String key) {
         if (items.containsKey(key)) {
             items.remove(key);
         }
     }
     
-    public void clearItems() {
+    public static void clearItems() {
         items.clear();
     }
 }

@@ -9,7 +9,6 @@ import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -271,11 +270,6 @@ public class UpdateCustomer extends javax.swing.JFrame {
             }
 
         }
-
-
-        
-  
-        
         
     }//GEN-LAST:event_getDetailsActionPerformed
 

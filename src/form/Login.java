@@ -98,7 +98,7 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Submit(java.awt.event.ActionEvent evt) {                        
+    private void Submit(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         //JFrame jf = new JFrame();
 
@@ -112,39 +112,41 @@ public class Login extends javax.swing.JFrame {
             int id = Integer.parseInt(sid);
             conn = db.connect_db();
             stmt = conn.createStatement();
-            boolean s,f,mr;
+            boolean s, f, mr;
             s = f = mr = false;
             rs = stmt.executeQuery("select staffid from cateringstaff where staffid = " + id);
-            if (rs.first()) {    
+            if (rs.first()) {
                 ServiceRecords sr = new ServiceRecords();
                 sysExit();
                 sr.setVisible(true);
                 s = true;
             }
             rs = stmt.executeQuery("select staffid from roomservicestaff where staffid = " + id);
-            if (s == false && rs.first()) {    
+            if (s == false && rs.first()) {
                 ServiceRecords sr = new ServiceRecords();
                 sysExit();
                 sr.setVisible(true);
                 s = true;
             }
             rs = stmt.executeQuery("select staffid from frontdeskstaff where staffid = " + id);
-            if (s == false && rs.first()) {    
+            if (s == false && rs.first()) {
+                Intermediate.addItem("1", id);
+                System.out.println(Intermediate.getItem("1"));
                 FrontDesk fd = new FrontDesk();
                 sysExit();
                 fd.setVisible(true);
                 f = true;
             }
             rs = stmt.executeQuery("select staffid from manager where staffid = " + id);
-            if (s == false && f == false && rs.first()) {    
+            if (s == false && f == false && rs.first()) {
                 Manager m = new Manager();
                 sysExit();
                 m.setVisible(true);
                 mr = true;
             }
-            if(s == false && f == false && mr == false){
+            if (s == false && f == false && mr == false) {
                 JFrame jf = new JFrame();
-                JOptionPane.showMessageDialog(jf,"INVALID LOGIN DETAILS","LOGIN ERROR",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(jf, "INVALID LOGIN DETAILS", "LOGIN ERROR", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -165,8 +167,7 @@ public class Login extends javax.swing.JFrame {
             }
         }
 
-        
-    }                                            
+    }
 
     private void staffidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffidActionPerformed
         // TODO add your handling code here:
@@ -208,9 +209,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void sysExit(){
-        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+
+    public void sysExit() {
+        WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }
 

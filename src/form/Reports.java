@@ -4,10 +4,18 @@
  * and open the template in the editor.
  */
 package form;
+
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -41,7 +49,7 @@ public class Reports extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Submit.setText("Submit");
         Submit.addActionListener(new java.awt.event.ActionListener() {
@@ -130,12 +138,28 @@ public class Reports extends javax.swing.JFrame {
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
+        ResultSet rs;
+        String query;
         try {
             conn = db.connect_db();
             stmt = conn.createStatement();
-
             if (Occupancy.isSelected()) {
-
+                query = "SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM (SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid;";
+                ReportOccupancyByHotel report = new ReportOccupancyByHotel();
+                //sysExit();
+                //JTable table = new JTable(report.Report);
+                DefaultTableModel model = (DefaultTableModel) report.Report1.getModel();
+                try {
+                    rs = stmt.executeQuery(query);
+                    while (rs.next()) {
+                        System.out.println("In while");
+                        model.addRow(new Object[]{rs.getString("hotelid"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
+                    }
+                    report.setVisible(true);
+                } catch (SQLException e) {
+                    JFrame jf = new JFrame();
+                    JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
             } else if (TotalOccupancy.isSelected()) {
 
             } else if (StaffInfo.isSelected()) {
@@ -148,7 +172,7 @@ public class Reports extends javax.swing.JFrame {
                 JFrame jf = new JFrame();
                 JOptionPane.showMessageDialog(jf, "INVALID INPUT", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_SubmitActionPerformed
@@ -156,6 +180,10 @@ public class Reports extends javax.swing.JFrame {
     private void TotalOccupancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalOccupancyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TotalOccupancyActionPerformed
+    public void sysExit() {
+        WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
 
     /**
      * @param args the command line arguments

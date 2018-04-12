@@ -133,9 +133,9 @@ public class FrontDesk extends javax.swing.JFrame {
 
     private void ViewSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSRActionPerformed
         // TODO add your handling code here:
-        ViewRecord vr = new ViewRecord();
+        ServiceRecords sr = new ServiceRecords();
         sysExit();
-        vr.setVisible(true);
+        sr.setVisible(true);
     }//GEN-LAST:event_ViewSRActionPerformed
 
     private void InvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvoiceActionPerformed
