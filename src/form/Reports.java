@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package form;
+import java.sql.Connection;
+import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -123,6 +127,30 @@ public class Reports extends javax.swing.JFrame {
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = db.connect_db();
+            stmt = conn.createStatement();
+
+            if (Occupancy.isSelected()) {
+
+            } else if (TotalOccupancy.isSelected()) {
+
+            } else if (StaffInfo.isSelected()) {
+
+            } else if (Revenue.isSelected()) {
+
+            } else if (PercentageOccupancy.isSelected()) {
+
+            } else {
+                JFrame jf = new JFrame();
+                JOptionPane.showMessageDialog(jf, "INVALID INPUT", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void TotalOccupancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalOccupancyActionPerformed

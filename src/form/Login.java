@@ -158,15 +158,11 @@ public class Login extends javax.swing.JFrame {
                     Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            try {
+            db.close_db(conn);
+            } catch(Exception e){
+                e.printStackTrace();
             }
-
         }
 
         

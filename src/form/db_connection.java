@@ -8,7 +8,10 @@ package form;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,5 +30,15 @@ public class db_connection {
 //        }
         //System.out.println(con.getClass());
         return conn;
+    }
+    
+    void close_db(Connection conn) throws Exception {
+        if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
     }
 }
