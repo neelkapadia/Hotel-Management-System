@@ -32,6 +32,7 @@ public class ManageHotel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         addHotel = new javax.swing.JRadioButton();
         updateHotel = new javax.swing.JRadioButton();
         deleteHotel = new javax.swing.JRadioButton();
@@ -43,6 +44,7 @@ public class ManageHotel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        buttonGroup1.add(addHotel);
         addHotel.setText("Add Hotel");
         addHotel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,6 +52,7 @@ public class ManageHotel extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(updateHotel);
         updateHotel.setText("Update Hotel");
         updateHotel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,8 +60,10 @@ public class ManageHotel extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(deleteHotel);
         deleteHotel.setText("Delete Hotel");
 
+        buttonGroup1.add(viewHotel);
         viewHotel.setText("View Hotels");
 
         jLabel4.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
@@ -146,22 +151,32 @@ public class ManageHotel extends javax.swing.JFrame {
 
         if(addHotel.isSelected()){
             //open add record form
-            AddHotel adh = new AddCustomer();
+            AddHotel adh = new AddHotel();
+            sysExit();
             adh.setVisible(true);
 
         } else if(updateHotel.isSelected()){
             //open update record form
-            UpdateHotel uph = new UpdateCustomer();
+            UpdateHotel uph = new UpdateHotel();
+            sysExit();
             uph.setVisible(true);
         } else if(deleteHotel.isSelected()){
 
-            DeleteHotel dlh = new DeleteCustomer();
+            DeleteHotel dlh = new DeleteHotel();
+            sysExit();
             dlh.setVisible(true);
             //open delete record form
         } else if(viewHotel.isSelected()){
             //view list of records
+            
+            ViewHotels vh = new ViewHotels();
+            sysExit();
+            vh.setVisible(true);
         } else {
             //throw error
+            
+                                        JFrame jf = new JFrame();
+                JOptionPane.showMessageDialog(jf,"PLEASE CHOOSE","ERROR",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_submitHotelActionPerformed
 
@@ -208,6 +223,7 @@ public class ManageHotel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;
     private javax.swing.JRadioButton addHotel;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton deleteHotel;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
