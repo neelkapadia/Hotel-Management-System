@@ -30,8 +30,6 @@ public class ServiceRecords extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        wolfInn1 = new wolfinn.WolfInn();
-        wolfInn2 = new wolfinn.WolfInn();
         buttonGroup1 = new javax.swing.ButtonGroup();
         addServiceRecord = new javax.swing.JRadioButton();
         updateServiceRecord = new javax.swing.JRadioButton();
@@ -165,7 +163,5 @@ public class ServiceRecords extends javax.swing.JFrame {
     private javax.swing.JButton submitServiceRecord;
     private javax.swing.JRadioButton updateServiceRecord;
     private javax.swing.JRadioButton viewServiceRecord;
-    private wolfinn.WolfInn wolfInn1;
-    private wolfinn.WolfInn wolfInn2;
     // End of variables declaration//GEN-END:variables
 }
