@@ -7,6 +7,12 @@ package form;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -94,21 +100,51 @@ public class ConfirmDeleteCustomer extends javax.swing.JFrame {
 
     private void YesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesActionPerformed
         // TODO add your handling code here:
-        
+        javax.swing.JTextField custID = (javax.swing.JTextField)Intermediate.getItem("Cust");
         //delete
-                             JFrame jf = new JFrame();
-                JOptionPane.showMessageDialog(jf,"SUCCESSFULLY DELETED","",JOptionPane.INFORMATION_MESSAGE); 
-        sysExit();
-
         
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs;
+        
+        try {
+
+            conn = db.connect_db();
+            stmt = conn.createStatement();
+            
+            stmt.executeUpdate("delete from customer where custid = " + custID.getText());
+            
+            JOptionPane.showMessageDialog(null,"SUCCESSFULLY DELETED"); 
+            custID.setText("");
+            sysExit();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }//GEN-LAST:event_YesActionPerformed
 
     private void NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoActionPerformed
         // TODO add your handling code here:
-  
-        sysExit();
-       
-       
+        sysExit(); 
     }//GEN-LAST:event_NoActionPerformed
 
     /**
@@ -147,7 +183,7 @@ public class ConfirmDeleteCustomer extends javax.swing.JFrame {
     }
     
     
-                public void sysExit(){
+    public void sysExit(){
         WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }

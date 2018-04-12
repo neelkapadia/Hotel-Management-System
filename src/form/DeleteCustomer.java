@@ -136,7 +136,7 @@ public class DeleteCustomer extends javax.swing.JFrame {
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // TODO add your handling code here:
         ConfirmDeleteCustomer cdc =  new ConfirmDeleteCustomer();
-        
+        Intermediate.addItem("Cust", customerID);
         cdc.setVisible(true);
     }//GEN-LAST:event_DeleteActionPerformed
 
