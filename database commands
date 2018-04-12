@@ -1,0 +1,120 @@
+# Empty the database
+DELETE FROM BillInfo;
+DELETE FROM BookingInfo;
+DELETE FROM CateringStaff;
+DELETE FROM Customer;
+DELETE FROM FrontDeskStaff;
+DELETE FROM FrontDeskStaff;
+DELETE FROM Hotel;
+DELETE FROM HotelCity;
+DELETE FROM Invoice;
+DELETE FROM Manager;
+DELETE FROM PresidentialSuite;
+DELETE FROM Room;
+DELETE FROM RoomPrice;
+DELETE FROM RoomServiceStaff;
+DELETE FROM ServiceCost;
+DELETE FROM ServiceRecord;
+DELETE FROM Staff;
+DELETE FROM generateInvoice;
+DELETE FROM gets;
+DELETE FROM has;
+DELETE FROM isAssigned;
+DELETE FROM isAssignedCaterer;
+DELETE FROM isAssignedRoomService;
+DELETE FROM linkService;
+DELETE FROM manages;
+DELETE FROM updates;
+DELETE FROM worksFor;
+
+# To remove auto increment
+ALTER TABLE Staff CHANGE StaffId StaffId int(11) NOT NULL;
+
+# To remove a column
+ALTER TABLE Staff DROP dob;
+
+# To add a column at a particular position
+ALTER TABLE Staff ADD COLUMN age int(5) NOT NULL AFTER phoneNum;
+
+# Checking to see auto-increments
+describe BillInfo;
+describe BookingInfo;
+describe CateringStaff;
+describe Customer;
+describe FrontDeskStaff;
+describe FrontDeskStaff;
+describe Hotel;
+describe HotelCity;
+describe Invoice;
+describe Manager;
+describe PresidentialSuite;
+describe Room;
+describe RoomPrice;
+describe RoomServiceStaff;
+describe ServiceCost;
+describe ServiceRecord;
+describe Staff;
+describe generateInvoice;
+describe gets;
+describe has;
+describe isAssigned;
+describe isAssignedCaterer;
+describe isAssignedRoomService;
+describe linkService;
+describe manages;
+describe updates;
+describe worksFor;
+
+# All Inserts
+INSERT INTO `Customer` VALUES (1001,'David','1980-01-30','david@gmail.com',123),(1002,'Sarah','1971-01-30','sarah@gmail.com',456),(1003,'Josep','1987-01-30','joseph@gmail.com',789),(1004,'Lucy','1985-01-30','lucy@gmail.com',213),(2001,'Brandon','1985-02-24','bran@gmail.com',214),(2002,'Candy','1988-12-15','can@gmail.com',215),(2003,'Alpar','1981-11-25','apl@gmail.com',216),(2004,'Jennifer','1984-07-18','jenn@gmail.com',217),(2005,'Scarlet','1990-05-20','scar@gmail.com',218),(2006,'Abhi','1991-02-07','abhi@gmail.com',219);
+
+INSERT INTO `Hotel` VALUES (0001,'Hotel A','21 ABC St , Raleigh NC 27','919',100),(0002,'Hotel B','25 XYZ St , Rochester NY 54','718',101),(0003,'Hotel C','29 PQR St , Greensboro NC 27','984',102),(0004,'Hotel D','28 GHW St , Raleigh NC 32','920',105);
+
+INSERT INTO `HotelCity` VALUES ('21 ABC St , Raleigh NC 27','Raleigh'),('25 XYZ St , Rochester NY 54','Rochester'),('29 PQR St , Greensboro NC 27','Greensboro'),('28 GHW St , Raleigh NC 32','Raleigh');
+
+INSERT INTO `ServiceCost` VALUES ('phone bills',5),('dry cleaning',16),('gyms',15),('room service',10),('special requests',20);
+
+INSERT INTO `Room` VALUES (0001,01,'Economy',1,1),(0001,02,'Deluxe',1,2),(0002,03,'Economy',1,1),(0003,02,'Executive',0,3),(0004,01,'Presidential',1,4),(0001,05,'Deluxe',1,2);
+
+INSERT INTO `RoomPrice` VALUES ('Economy',100),('Deluxe',200),('Executive',1000),('Presidential',5000);
+
+INSERT INTO `PresidentialSuite` VALUES (0004,01);
+
+INSERT INTO `Staff` VALUES
+(100,'Mary','Manager','654',40,1,'90 ABC St , Raleigh NC 27','Management'),
+(101,'John','Manager','564',45,1,'798 XYZ St , Rochester NY 54','Management'),
+(102,'Carol','Manager','546',55,1,'351 MH St , Greensboro NC 27','Management'),
+(103,'Emma','Front Desk Staff','546',55,1,'49 ABC St , Raleigh NC 27','Management'),
+(104,'Ava','Catering Staff','777',55,1,'425 RG St , Raleigh NC 27','Catering'),
+(105,'Peter','Manager','724',52,1,'475 RG St , Raleigh NC 27','Management'),
+(106,'Olivia','Front Desk Staff','799',27,1,'325 PD St , Raleigh NC 27','Management'),
+(107,'Ashley','Room Service Staff','749',25,1,'125 PD St , Asheville NC 37','Management');
+
+INSERT INTO `worksFor` VALUES (100,0001),(101,0002),(102,0003),(103,0001),(104,0001),(105,0004),(106,0004);
+
+INSERT INTO `CateringStaff` VALUES (104);
+
+INSERT INTO `FrontDeskStaff` VALUES (103),(106);
+
+INSERT INTO `Manager` VALUES (100),(101),(102),(105);
+
+INSERT INTO `BillInfo` VALUES ('593-9846','credit','980 TRT St , Raleigh NC',1052),('777-8352','hotel credit','7720 MHT St , Greensboro NC',3020),('858-9430','credit','231 DRY St , Rochester NY 78',2497);
+
+INSERT INTO `BillInfo` ('SSN','payType','billingAddress') VALUES ('440-9328','cash','24 BST Dr , Dallas TX 14');
+
+
+# checkin / checkout
+INSERT INTO `BookingInfo` VALUES (201,'15:17:00','10:22:00','2017-05-10','2017-05-13');
+INSERT INTO `ServiceRecord` VALUES (1,'2017-05-10','16:17:00','dry cleaning');
+INSERT INTO `ServiceRecord` VALUES (2,'2017-05-10','17:17:00','gyms');
+INSERT INTO `linkService` VALUES (201,1),(201,2);
+INSERT INTO `updates` VALUES (107,1),(107,2);
+INSERT INTO `isAssigned` VALUES (201,0001,01);
+INSERT INTO `gets` VALUES (1001,201);
+
+INSERT INTO `BookingInfo` VALUES (202,'16:11:00','09:27:00','2017-05-10','2017-05-13'),(203,'15:45:00','11:10:00','2017-05-10','2017-05-14'),(204,'14:30:00','10:00:00','2017-05-10','2017-05-12');
+INSERT INTO `ServiceRecord` VALUES (3,'2017-05-10','17:17:00','gyms'),(4,'2017-05-11','6:17:00','room service'),(5,'2017-05-10','16:17:00','phone bills');
+INSERT INTO `linkService` VALUES (202,3),(203,4),(204,5);
+INSERT INTO `updates` VALUES (107,3),(107,4),(106,5);
+INSERT INTO `isAssigned` VALUES (202,0001,02),(203,0002,03),(204,0003,02);
+INSERT INTO `gets` VALUES (1002,202),(1003,201),(2001,202),(1004,204),(2002,204);
