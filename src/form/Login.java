@@ -44,7 +44,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel1.setText("Wolf Inns");
 
-        Login_button.setText("Submit");
+        Login_button.setText("Enter");
         Login_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Submit(evt);
@@ -64,33 +64,33 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(216, 216, 216)
-                .addComponent(id)
-                .addGap(24, 24, 24)
-                .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(231, 231, 231))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Login_button)
-                        .addGap(246, 246, 246))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(id)
+                        .addGap(24, 24, 24)
+                        .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(jLabel1)))
+                .addGap(0, 197, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(221, 221, 221)
+                .addComponent(Login_button)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(95, 95, 95)
                 .addComponent(jLabel1)
-                .addGap(24, 24, 24)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(id)
                     .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(Login_button)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,6 +115,7 @@ public class Login extends javax.swing.JFrame {
             rs = stmt.executeQuery("select * from cateringstaff where staffid = " + id);
             if (rs.first()) {    
                 ServiceRecords sr = new ServiceRecords();
+                sysExit();
                 sr.setVisible(true);
                 s = true;
             }
@@ -122,6 +123,7 @@ public class Login extends javax.swing.JFrame {
             rs = stmt.executeQuery("select * from roomservicestaff where staffid = " + id);
             if (s == false && rs.first()) {    
                 ServiceRecords sr = new ServiceRecords();
+                sysExit();
                 sr.setVisible(true);
                 s = true;
             }
@@ -129,6 +131,7 @@ public class Login extends javax.swing.JFrame {
             rs = stmt.executeQuery("select * from frontdeskstaff where staffid = " + id);
             if (s == false && rs.first()) {    
                 FrontDesk fd = new FrontDesk();
+                sysExit();
                 fd.setVisible(true);
                 f = true;
             }
@@ -136,6 +139,7 @@ public class Login extends javax.swing.JFrame {
             rs = stmt.executeQuery("select * from manager where staffid = " + id);
             if (s == false && f == false && rs.first()) {    
                 Manager m = new Manager();
+                sysExit();
                 m.setVisible(true);
                 mr = true;
             }

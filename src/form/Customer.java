@@ -152,6 +152,9 @@ public class Customer extends javax.swing.JFrame {
             UpdateCustomer upc = new UpdateCustomer();
             upc.setVisible(true);
         } else if(deleteCustomer.isSelected()){
+            
+            DeleteCustomer dlc = new DeleteCustomer();
+            dlc.setVisible(true);
             //open delete record form
         } else if(viewCustomer.isSelected()){
             //view list of records

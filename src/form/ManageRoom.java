@@ -5,6 +5,11 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author neelkapadia
@@ -27,21 +32,152 @@ public class ManageRoom extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        Home = new javax.swing.JButton();
+        deleteRoom = new javax.swing.JRadioButton();
+        viewRoom = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        addRoom = new javax.swing.JRadioButton();
+        updateRoom = new javax.swing.JRadioButton();
+        Home1 = new javax.swing.JButton();
+        submitRoom = new javax.swing.JButton();
+
+        Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        deleteRoom.setText("Delete Room");
+
+        viewRoom.setText("View Room");
+
+        jLabel4.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
+        jLabel4.setText("Wolf Inns");
+
+        jLabel3.setText("Please Choose Task:");
+
+        addRoom.setText("Add Room");
+        addRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addRoomActionPerformed(evt);
+            }
+        });
+
+        updateRoom.setText("Update Room");
+        updateRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateRoomActionPerformed(evt);
+            }
+        });
+
+        Home1.setText("Home");
+        Home1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Home1ActionPerformed(evt);
+            }
+        });
+
+        submitRoom.setText("Submit");
+        submitRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitRoomActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(updateRoom)
+                    .addComponent(addRoom)
+                    .addComponent(viewRoom)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(submitRoom)
+                        .addComponent(deleteRoom)))
+                .addContainerGap(220, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Home1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(22, 22, 22)
+                .addComponent(addRoom)
+                .addGap(18, 18, 18)
+                .addComponent(updateRoom)
+                .addGap(18, 18, 18)
+                .addComponent(deleteRoom)
+                .addGap(18, 18, 18)
+                .addComponent(viewRoom)
+                .addGap(28, 28, 28)
+                .addComponent(submitRoom)
+                .addGap(19, 19, 19)
+                .addComponent(Home1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_addRoomActionPerformed
+
+    private void updateRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateRoomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateRoomActionPerformed
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        Manager mng = new Manager();
+        mng.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
+
+    private void Home1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home1ActionPerformed
+        // TODO add your handling code here:
+        Manager mng = new Manager();
+        mng.setVisible(true);
+    }//GEN-LAST:event_Home1ActionPerformed
+
+    private void submitRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitRoomActionPerformed
+        // TODO add your handling code here:
+
+        if(addRoom.isSelected()){
+            //open add record form
+            AddCustomer adc = new AddCustomer();
+            adc.setVisible(true);
+
+        } else if(updateRoom.isSelected()){
+            //open update record form
+            UpdateCustomer upc = new UpdateCustomer();
+            upc.setVisible(true);
+        } else if(deleteRoom.isSelected()){
+
+            DeleteCustomer dlc = new DeleteCustomer();
+            dlc.setVisible(true);
+            //open delete record form
+        } else if(viewRoom.isSelected()){
+            //view list of records
+        } else {
+            //throw error
+        }
+
+    }//GEN-LAST:event_submitRoomActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,7 +213,21 @@ public class ManageRoom extends javax.swing.JFrame {
             }
         });
     }
+    
+       public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home;
+    private javax.swing.JButton Home1;
+    private javax.swing.JRadioButton addRoom;
+    private javax.swing.JRadioButton deleteRoom;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton submitRoom;
+    private javax.swing.JRadioButton updateRoom;
+    private javax.swing.JRadioButton viewRoom;
     // End of variables declaration//GEN-END:variables
 }
