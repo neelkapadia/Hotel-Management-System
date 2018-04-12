@@ -20,12 +20,12 @@ import javax.swing.JOptionPane;
  *
  * @author saurabhshanbhag
  */
-public class ConfirmDeleteCustomer extends javax.swing.JFrame {
+public class ConfirmDeleteRecord extends javax.swing.JFrame {
 
     /**
      * Creates new form ConfirmDeleteCustomer
      */
-    public ConfirmDeleteCustomer() {
+    public ConfirmDeleteRecord() {
         initComponents();
     }
 
@@ -100,7 +100,7 @@ public class ConfirmDeleteCustomer extends javax.swing.JFrame {
 
     private void YesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesActionPerformed
         // TODO add your handling code here:
-        javax.swing.JTextField custID = (javax.swing.JTextField)Intermediate.getItem("Cust");
+        javax.swing.JTextField recordID = (javax.swing.JTextField)Intermediate.getItem("Record");
         //delete
         
         db_connection db = new db_connection();
@@ -113,11 +113,11 @@ public class ConfirmDeleteCustomer extends javax.swing.JFrame {
             conn = db.connect_db();
             stmt = conn.createStatement();
             
-            stmt.executeUpdate("delete from customer where custid = " + custID.getText());
+            stmt.executeUpdate("delete from servicerecord where serviceid = " + recordID.getText());
             
             JOptionPane.showMessageDialog(null,"SUCCESSFULLY DELETED"); 
-            custID.setText("");
-            Intermediate.removeItem("Cust");
+            recordID.setText("");
+            Intermediate.removeItem("Record");
             sysExit();
             
         } catch (Exception e) {
@@ -165,20 +165,21 @@ public class ConfirmDeleteCustomer extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConfirmDeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfirmDeleteRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConfirmDeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfirmDeleteRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConfirmDeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfirmDeleteRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConfirmDeleteCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfirmDeleteRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConfirmDeleteCustomer().setVisible(true);
+                new ConfirmDeleteRecord().setVisible(true);
             }
         });
     }
