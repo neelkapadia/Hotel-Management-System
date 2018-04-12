@@ -188,7 +188,7 @@ public class Manager extends javax.swing.JFrame {
     private void generateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportActionPerformed
         // TODO add your handling code here:
 
-        GenerateReport gr = new GenerateReport();
+        Reports gr = new Reports();
         sysExit();
             gr.setVisible(true);
     }//GEN-LAST:event_generateReportActionPerformed
