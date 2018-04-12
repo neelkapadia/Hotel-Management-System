@@ -50,6 +50,10 @@ public class AddRecord extends javax.swing.JFrame {
         Home = new javax.swing.JButton();
         serviceDate = new javax.swing.JTextField();
         Logout = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        hotelID = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        roomID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,45 +91,50 @@ public class AddRecord extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Hotel ID (INT)");
+
+        jLabel8.setText("Room ID (INT)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(375, 375, 375)
+                .addComponent(AddRecord)
+                .addGap(117, 117, 117)
+                .addComponent(Home)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Logout)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(229, 229, 229)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(serviceID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(serviceDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(serviceTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(76, 76, 76)
-                        .addComponent(serviceType)))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(serviceType)
+                    .addComponent(serviceDate, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(serviceTime, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                 .addGap(230, 230, 230))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(229, 229, 229)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Home)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Logout)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(AddRecord)
-                        .addGap(298, 298, 298))))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel8))
+                .addGap(102, 102, 102)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(serviceID, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(hotelID, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(roomID)))
             .addGroup(layout.createSequentialGroup()
                 .addGap(271, 271, 271)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel6)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +147,15 @@ public class AddRecord extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(serviceID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(roomID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(serviceDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -151,11 +168,11 @@ public class AddRecord extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(serviceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(AddRecord)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Logout)
-                    .addComponent(Home)))
+                    .addComponent(AddRecord)
+                    .addComponent(Home)
+                    .addComponent(Logout))
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -175,14 +192,27 @@ public class AddRecord extends javax.swing.JFrame {
 
             conn = db.connect_db();
             stmt = conn.createStatement();
+            stmt.executeUpdate("insert into servicerecord values ("+Integer.parseInt(serviceID.getText())+",'"+serviceDate.getText()+"','"+serviceTime.getText()+"','"+serviceType.getText()+"')");
+            int bookingID;
+            
+            rs = stmt.executeQuery("select bookingid from isAssigned where hotelId = " + Integer.parseInt(hotelID.getText()) + " AND roomnum = " + Integer.parseInt(roomID.getText()));
+            if (rs.first()) {
+                bookingID = Integer.parseInt(rs.getString("bookingid"));
+                stmt.executeUpdate("insert into linkService values ("+bookingID+","+Integer.parseInt(serviceID.getText())+")");
+                stmt.executeUpdate("insert into updates values ("+(Integer)Intermediate.getItem("id")+","+Integer.parseInt(serviceID.getText())+")");
+                JOptionPane.showMessageDialog(null, "Service Record added!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Booking id not found for given hotel id: "+hotelID.getText()+" and room num: "+roomID.getText());
+                sysExit();
+            }
 
-            int n = stmt.executeUpdate("insert into servicerecord values ("+serviceID.getText()+",'"+serviceDate.getText()+"','"+serviceTime.getText()+"','"+serviceType.getText()+"')");
-            JOptionPane.showMessageDialog(null, "Service Record added!");
             serviceID.setText("");
             serviceDate.setText("");
             serviceTime.setText("");
             serviceType.setText("");
-
+            hotelID.setText("");
+            roomID.setText("");
+            
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Please try again!");
@@ -265,12 +295,16 @@ public class AddRecord extends javax.swing.JFrame {
     private javax.swing.JButton AddRecord;
     private javax.swing.JButton Home;
     private javax.swing.JButton Logout;
+    private javax.swing.JTextField hotelID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField roomID;
     private javax.swing.JTextField serviceDate;
     private javax.swing.JTextField serviceID;
     private javax.swing.JTextField serviceTime;
