@@ -7,6 +7,13 @@ package form;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,7 +59,7 @@ public class AddStaff extends javax.swing.JFrame {
         Department = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         AddCustomer.setText("Add");
         AddCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -215,6 +222,69 @@ public class AddStaff extends javax.swing.JFrame {
         // TODO add your handling code here:
         //start transaction
         //*****insert into database*****
+        
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt = null;
+        
+        ResultSet rs;
+        try {
+
+            conn = db.connect_db();
+            stmt = conn.createStatement();
+        
+            System.out.println("insert into staff values ("+staffID.getText()+",'"+name.getText()+"','"+title.getText()+"','"+phno.getText()+"','"+age.getText()+"','"+avail.getText()+"','"+add.getText()+"','"+Department.getText()+"')");
+            
+            
+            stmt.executeUpdate("insert into staff values ("+staffID.getText()+",'"+name.getText()+"','"+title.getText()+"','"+phno.getText()+"','"+age.getText()+"','"+avail.getText()+"','"+add.getText()+"','"+Department.getText()+"')");
+            
+            if(title.getText().toLowerCase().equals("manager")){
+                 stmt.executeUpdate("insert into manager values ("+staffID.getText()+")");
+            }
+            else if(title.getText().toLowerCase().equals("front desk staff")){
+                 stmt.executeUpdate("insert into frontdeskstaff values ("+staffID.getText()+")");
+            }
+            else if(title.getText().toLowerCase().equals("catering staff")){
+                 stmt.executeUpdate("insert into cateringstaff values ("+staffID.getText()+")");
+            }
+            else if(title.getText().toLowerCase().equals("room service staff")){
+                 stmt.executeUpdate("insert into roomservicestaff values ("+staffID.getText()+")");
+            }
+     
+            
+            JOptionPane.showMessageDialog(null, "Staff added!");
+            staffID.setText("");
+            name.setText("");
+            age.setText("");
+            title.setText("");
+            phno.setText("");
+            avail.setText("");
+            add.setText("");
+            Department.setText("");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
 
     }//GEN-LAST:event_AddCustomerActionPerformed
 
