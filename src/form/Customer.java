@@ -5,6 +5,11 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author saurabhshanbhag
@@ -34,8 +39,8 @@ public class Customer extends javax.swing.JFrame {
         deleteCustomer = new javax.swing.JRadioButton();
         viewCustomer = new javax.swing.JRadioButton();
         submitCustomer = new javax.swing.JButton();
-        checkIn = new javax.swing.JButton();
         Home = new javax.swing.JButton();
+        Logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,17 +73,17 @@ public class Customer extends javax.swing.JFrame {
             }
         });
 
-        checkIn.setText("Check In");
-        checkIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkInActionPerformed(evt);
-            }
-        });
-
         Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HomeActionPerformed(evt);
+            }
+        });
+
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
             }
         });
 
@@ -87,26 +92,26 @@ public class Customer extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(354, Short.MAX_VALUE)
+                .addComponent(Home)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Logout))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(189, 189, 189)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewCustomer)
+                    .addComponent(deleteCustomer)
+                    .addComponent(updateCustomer)
+                    .addComponent(addCustomer)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(viewCustomer)
-                            .addComponent(deleteCustomer)
-                            .addComponent(updateCustomer)
-                            .addComponent(addCustomer)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkIn)
-                            .addComponent(submitCustomer)
-                            .addComponent(Home))))
-                .addContainerGap(198, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addComponent(submitCustomer)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(64, 64, 64)
                 .addComponent(addCustomer)
                 .addGap(18, 18, 18)
                 .addComponent(updateCustomer)
@@ -116,19 +121,17 @@ public class Customer extends javax.swing.JFrame {
                 .addComponent(viewCustomer)
                 .addGap(18, 18, 18)
                 .addComponent(submitCustomer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(checkIn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Home)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Logout)
+                    .addComponent(Home)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerActionPerformed
-        AddCustomer adc = new AddCustomer();
-        adc.setVisible(true);        // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_addCustomerActionPerformed
 
     private void updateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCustomerActionPerformed
@@ -136,35 +139,54 @@ public class Customer extends javax.swing.JFrame {
     }//GEN-LAST:event_updateCustomerActionPerformed
 
     private void submitCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCustomerActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:\
         
-    }//GEN-LAST:event_submitCustomerActionPerformed
-
-    private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
-        // TODO add your handling code here:
-        if(addCustomer.isSelected()){
+         if(addCustomer.isSelected()){
             //open add record form
-            AddCustomer adc = new AddCustomer();
-            adc.setVisible(true);
-            
+            AddCustomer adh = new AddCustomer();
+            sysExit();
+            adh.setVisible(true);
+
         } else if(updateCustomer.isSelected()){
             //open update record form
-            UpdateCustomer upc = new UpdateCustomer();
-            upc.setVisible(true);
+            UpdateCustomer uc = new UpdateCustomer();
+             sysExit();
+            uc.setVisible(true);
+            
         } else if(deleteCustomer.isSelected()){
+
+            DeleteCustomer dc = new DeleteCustomer();
+            sysExit();
+            dc.setVisible(true);
             //open delete record form
         } else if(viewCustomer.isSelected()){
+            
+            ViewCustomers vc = new ViewCustomers();
+            sysExit();
+            vc.setVisible(true);
             //view list of records
         } else {
             //throw error
-        }   
-    }//GEN-LAST:event_checkInActionPerformed
+            
+                            JFrame jf = new JFrame();
+                JOptionPane.showMessageDialog(jf,"PLEASE CHOOSE","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_submitCustomerActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
         FrontDesk fd = new FrontDesk();
+        sysExit();
             fd.setVisible(true);
     }//GEN-LAST:event_HomeActionPerformed
+
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_LogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,13 +222,18 @@ public class Customer extends javax.swing.JFrame {
             }
         });
     }
+    
+        public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;
+    private javax.swing.JButton Logout;
     private javax.swing.JRadioButton addCustomer;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton checkIn;
     private javax.swing.JRadioButton deleteCustomer;
     private javax.swing.JButton submitCustomer;
     private javax.swing.JRadioButton updateCustomer;

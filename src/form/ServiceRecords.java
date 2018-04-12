@@ -52,6 +52,11 @@ public class ServiceRecords extends javax.swing.JFrame {
 
         buttonGroup1.add(viewServiceRecord);
         viewServiceRecord.setText("View Service Records");
+        viewServiceRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewServiceRecordActionPerformed(evt);
+            }
+        });
 
         submitServiceRecord.setText("Submit");
         submitServiceRecord.addActionListener(new java.awt.event.ActionListener() {
@@ -122,6 +127,10 @@ public class ServiceRecords extends javax.swing.JFrame {
             //throw error
         }
     }//GEN-LAST:event_submitServiceRecordActionPerformed
+
+    private void viewServiceRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewServiceRecordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewServiceRecordActionPerformed
 
     /**
      * @param args the command line arguments

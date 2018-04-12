@@ -10,6 +10,8 @@ import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -44,7 +46,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel1.setText("Wolf Inns");
 
-        Login_button.setText("Submit");
+        Login_button.setText("Enter");
         Login_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Submit(evt);
@@ -64,45 +66,45 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(216, 216, 216)
-                .addComponent(id)
-                .addGap(24, 24, 24)
-                .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(231, 231, 231))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Login_button)
-                        .addGap(246, 246, 246))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(id)
+                        .addGap(24, 24, 24)
+                        .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(jLabel1)))
+                .addGap(0, 197, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(221, 221, 221)
+                .addComponent(Login_button)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(95, 95, 95)
                 .addComponent(jLabel1)
-                .addGap(24, 24, 24)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(id)
                     .addComponent(staffid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(Login_button)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Submit(java.awt.event.ActionEvent evt) {                        
+    private void Submit(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         //JFrame jf = new JFrame();
 
         db_connection db = new db_connection();
-        Connection conn;
-        Statement stmt;
+        Connection conn = null;
+        Statement stmt = null;
         ResultSet rs;
         try {
 
@@ -110,44 +112,62 @@ public class Login extends javax.swing.JFrame {
             int id = Integer.parseInt(sid);
             conn = db.connect_db();
             stmt = conn.createStatement();
-            boolean s,f,mr;
+            boolean s, f, mr;
             s = f = mr = false;
-            rs = stmt.executeQuery("select * from cateringstaff where staffid = " + id);
-            if (rs.first()) {    
+            rs = stmt.executeQuery("select staffid from cateringstaff where staffid = " + id);
+            if (rs.first()) {
                 ServiceRecords sr = new ServiceRecords();
+                sysExit();
                 sr.setVisible(true);
                 s = true;
             }
-            rs = null;
-            rs = stmt.executeQuery("select * from roomservicestaff where staffid = " + id);
-            if (s == false && rs.first()) {    
+            rs = stmt.executeQuery("select staffid from roomservicestaff where staffid = " + id);
+            if (s == false && rs.first()) {
                 ServiceRecords sr = new ServiceRecords();
+                sysExit();
                 sr.setVisible(true);
                 s = true;
             }
-            rs = null;
-            rs = stmt.executeQuery("select * from frontdeskstaff where staffid = " + id);
-            if (s == false && rs.first()) {    
+            rs = stmt.executeQuery("select staffid from frontdeskstaff where staffid = " + id);
+            if (s == false && rs.first()) {
+                Intermediate.addItem("1", id);
+                System.out.println(Intermediate.getItem("1"));
                 FrontDesk fd = new FrontDesk();
+                sysExit();
                 fd.setVisible(true);
                 f = true;
             }
-            rs = null;
-            rs = stmt.executeQuery("select * from manager where staffid = " + id);
-            if (s == false && f == false && rs.first()) {    
+            rs = stmt.executeQuery("select staffid from manager where staffid = " + id);
+            if (s == false && f == false && rs.first()) {
                 Manager m = new Manager();
+                sysExit();
                 m.setVisible(true);
                 mr = true;
             }
-            if(s == false && f == false && mr == false){
+            if (s == false && f == false && mr == false) {
                 JFrame jf = new JFrame();
-                JOptionPane.showMessageDialog(jf,"INVALID LOGIN DETAILS","LOGIN ERROR",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(jf, "INVALID LOGIN DETAILS", "LOGIN ERROR", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            //e.printStackTrace();
-            System.out.println("Cannot connect to database");
+            e.printStackTrace();
+
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            try {
+            db.close_db(conn);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
         }
-    }                                            
+
+    }
 
     private void staffidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffidActionPerformed
         // TODO add your handling code here:
@@ -189,9 +209,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void sysExit(){
-        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+
+    public void sysExit() {
+        WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }
 

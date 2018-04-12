@@ -91,7 +91,7 @@ public class Hotel extends javax.swing.JFrame {
                     .addComponent(UpdateHotel)
                     .addComponent(AddHotel)
                     .addComponent(jLabel1))
-                .addGap(0, 142, Short.MAX_VALUE))
+                .addGap(0, 187, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(200, 200, 200)
                 .addComponent(Submit)
@@ -114,7 +114,7 @@ public class Hotel extends javax.swing.JFrame {
                 .addComponent(ViewList)
                 .addGap(18, 18, 18)
                 .addComponent(Submit)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();

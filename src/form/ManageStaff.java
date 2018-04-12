@@ -5,6 +5,11 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author neelkapadia
@@ -27,21 +32,214 @@ public class ManageStaff extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Home1 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        Logout = new javax.swing.JButton();
+        deleteStaff = new javax.swing.JRadioButton();
+        viewStaff = new javax.swing.JRadioButton();
+        submitStaff = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        addStaff = new javax.swing.JRadioButton();
+        updateStaff = new javax.swing.JRadioButton();
+        Home2 = new javax.swing.JButton();
+        Logout1 = new javax.swing.JButton();
+
+        Home1.setText("Home");
+        Home1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Home1ActionPerformed(evt);
+            }
+        });
+
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        buttonGroup1.add(deleteStaff);
+        deleteStaff.setText("Delete Staff");
+
+        buttonGroup1.add(viewStaff);
+        viewStaff.setText("View Staff");
+
+        submitStaff.setText("Submit");
+        submitStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitStaffActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
+        jLabel4.setText("Wolf Inns");
+
+        jLabel3.setText("Please Choose Task:");
+
+        buttonGroup1.add(addStaff);
+        addStaff.setText("Add Staff");
+        addStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addStaffActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(updateStaff);
+        updateStaff.setText("Update Staff");
+        updateStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateStaffActionPerformed(evt);
+            }
+        });
+
+        Home2.setText("Home");
+        Home2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Home2ActionPerformed(evt);
+            }
+        });
+
+        Logout1.setText("Logout");
+        Logout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(deleteStaff)
+                            .addComponent(updateStaff)
+                            .addComponent(addStaff))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(submitStaff)
+                            .addComponent(viewStaff))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(93, 93, 93))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Home2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Logout1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addGap(22, 22, 22)
+                        .addComponent(addStaff)
+                        .addGap(18, 18, 18)
+                        .addComponent(updateStaff)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteStaff)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewStaff)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(submitStaff)
+                        .addGap(37, 37, 37)
+                        .addComponent(Logout1)
+                        .addGap(4, 4, 4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Home2)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void submitStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitStaffActionPerformed
+        // TODO add your handling code here:
+        
+        if(addStaff.isSelected()){
+            //open add record form
+            AddStaff adc = new AddStaff();
+            sysExit();
+            adc.setVisible(true);
+            
+        } else if(updateStaff.isSelected()){
+            //open update record form
+            UpdateStaff upc = new UpdateStaff();
+            sysExit();
+            upc.setVisible(true);
+        } else if(deleteStaff.isSelected()){
+            
+            DeleteStaff dlc = new DeleteStaff();
+            sysExit();
+            
+            dlc.setVisible(true);
+            //open delete record form
+        } else if(viewStaff.isSelected()){
+            ViewStaff vc = new ViewStaff();
+            sysExit();
+            
+            vc.setVisible(true);
+            
+            //view list of records
+        } 
+        
+
+    }//GEN-LAST:event_submitStaffActionPerformed
+
+    private void addStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStaffActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addStaffActionPerformed
+
+    private void updateStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStaffActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateStaffActionPerformed
+
+    private void Home1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home1ActionPerformed
+        // TODO add your handling code here:
+        Manager mng = new Manager();
+        mng.setVisible(true);
+    }//GEN-LAST:event_Home1ActionPerformed
+
+    private void Home2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home2ActionPerformed
+        // TODO add your handling code here:
+        Manager mng = new Manager();
+        mng.setVisible(true);
+    }//GEN-LAST:event_Home2ActionPerformed
+
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_LogoutActionPerformed
+
+    private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_Logout1ActionPerformed
+
+    
+    
+    
+            public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
 
     /**
      * @param args the command line arguments
@@ -79,5 +277,17 @@ public class ManageStaff extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home1;
+    private javax.swing.JButton Home2;
+    private javax.swing.JButton Logout;
+    private javax.swing.JButton Logout1;
+    private javax.swing.JRadioButton addStaff;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton deleteStaff;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton submitStaff;
+    private javax.swing.JRadioButton updateStaff;
+    private javax.swing.JRadioButton viewStaff;
     // End of variables declaration//GEN-END:variables
 }

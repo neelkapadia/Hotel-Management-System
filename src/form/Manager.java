@@ -6,6 +6,8 @@
 
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -38,13 +40,15 @@ public class Manager extends javax.swing.JFrame {
         generateReport = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        Home = new javax.swing.JButton();
+        Logout = new javax.swing.JButton();
 
         jLabel2.setText("Please Choose Task:");
 
         jLabel1.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel1.setText("Wolf Inns");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         manageHotel.setText("Manage Hotels");
         buttonGroup1.add(manageHotel);
@@ -56,17 +60,46 @@ public class Manager extends javax.swing.JFrame {
 
         manageStaff.setText("Manage Staff");
         buttonGroup1.add(manageStaff);
+        manageStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageStaffActionPerformed(evt);
+            }
+        });
 
         manageRooms.setText("Manage Rooms");
         buttonGroup1.add(manageRooms);
+        manageRooms.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageRoomsActionPerformed(evt);
+            }
+        });
 
         generateReport.setText("Generate Report");
         buttonGroup1.add(generateReport);
+        generateReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateReportActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Please Choose Task:");
 
         jLabel4.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel4.setText("Wolf Inns");
+
+        Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,7 +110,7 @@ public class Manager extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(manageHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(manageRooms, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(manageStaff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(generateReport, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
@@ -85,18 +118,25 @@ public class Manager extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(207, 207, 207))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(207, 207, 207))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Home)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Logout)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel3)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(manageStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(manageHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -104,7 +144,11 @@ public class Manager extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(manageRooms, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(generateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home)
+                    .addComponent(Logout))
+                .addContainerGap())
         );
 
         pack();
@@ -112,30 +156,55 @@ public class Manager extends javax.swing.JFrame {
 
     private void manageHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageHotelActionPerformed
         // TODO add your handling code here:
-        if(manageHotel.isSelected()){
+       
             //open add record form
             ManageHotel mh = new ManageHotel();
+            sysExit();
             mh.setVisible(true);
-            
-        } else if(manageStaff.isSelected()){
+      
             //open update record form
+            
+       
+            //open delete record form
+            
+      
+    }//GEN-LAST:event_manageHotelActionPerformed
+
+    private void manageStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageStaffActionPerformed
+        // TODO add your handling code here:
             ManageStaff ms = new ManageStaff();
+            sysExit();
             ms.setVisible(true);
             
-        } else if(manageRooms.isSelected()){
-            //open delete record form
+    }//GEN-LAST:event_manageStaffActionPerformed
+
+    private void manageRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageRoomsActionPerformed
+        // TODO add your handling code here:
             ManageRoom mr = new ManageRoom();
+            sysExit();
             mr.setVisible(true);
-        } else if(generateReport.isSelected()){
-            //view list of records
-            GenerateReport gr = new GenerateReport();
+    }//GEN-LAST:event_manageRoomsActionPerformed
+
+    private void generateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportActionPerformed
+        // TODO add your handling code here:
+
+        Reports gr = new Reports();
+        sysExit();
             gr.setVisible(true);
-        } else {
-            JFrame jf = new JFrame();
-            JOptionPane.showMessageDialog(jf,"Please Select an option","ERROR",JOptionPane.ERROR_MESSAGE);
-            //throw error
-        }
-    }//GEN-LAST:event_manageHotelActionPerformed
+    }//GEN-LAST:event_generateReportActionPerformed
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        Manager mng = new Manager();
+        mng.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
+
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_LogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,8 +240,18 @@ public class Manager extends javax.swing.JFrame {
             }
         });
     }
+    
+                                    
+
+    
+    public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home;
+    private javax.swing.JButton Logout;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton generateReport;
     private javax.swing.JLabel jLabel1;
