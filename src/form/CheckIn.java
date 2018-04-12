@@ -5,6 +5,11 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author saurabhshanbhag
@@ -28,48 +33,55 @@ public class CheckIn extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        ViewList = new javax.swing.JRadioButton();
+        Executive = new javax.swing.JRadioButton();
         Submit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        AddRoom = new javax.swing.JRadioButton();
-        UpdateRoom = new javax.swing.JRadioButton();
-        DeleteRoom = new javax.swing.JRadioButton();
+        Deluxe = new javax.swing.JRadioButton();
+        Economy = new javax.swing.JRadioButton();
+        Presidential = new javax.swing.JRadioButton();
         Confrim = new javax.swing.JButton();
+        Home = new javax.swing.JButton();
+        Logout = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        buttonGroup1.add(ViewList);
-        ViewList.setText("Executive");
-        ViewList.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Executive);
+        Executive.setText("Executive");
+        Executive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewListActionPerformed(evt);
+                ExecutiveActionPerformed(evt);
             }
         });
 
         Submit.setText("Add Room");
+        Submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel1.setText("Wolf Inns");
 
         jLabel2.setText("Select room type:");
 
-        buttonGroup1.add(AddRoom);
-        AddRoom.setText("Deluxe");
+        buttonGroup1.add(Deluxe);
+        Deluxe.setText("Deluxe");
 
-        buttonGroup1.add(UpdateRoom);
-        UpdateRoom.setText("Economy");
-        UpdateRoom.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Economy);
+        Economy.setText("Economy");
+        Economy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateRoomActionPerformed(evt);
+                EconomyActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(DeleteRoom);
-        DeleteRoom.setText("Presidential Suite");
-        DeleteRoom.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Presidential);
+        Presidential.setText("Presidential Suite");
+        Presidential.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteRoomActionPerformed(evt);
+                PresidentialActionPerformed(evt);
             }
         });
 
@@ -80,30 +92,47 @@ public class CheckIn extends javax.swing.JFrame {
             }
         });
 
+        Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(242, 242, 242))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ViewList)
-                            .addComponent(DeleteRoom)
-                            .addComponent(UpdateRoom)
-                            .addComponent(AddRoom)
-                            .addComponent(jLabel2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Executive)
+                    .addComponent(Presidential)
+                    .addComponent(Economy)
+                    .addComponent(Deluxe)
+                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Submit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
-                        .addComponent(Confrim)
-                        .addGap(129, 129, 129))))
+                        .addGap(148, 148, 148)
+                        .addComponent(Confrim)))
+                .addContainerGap(193, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(242, 242, 242))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Home)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Logout))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,41 +142,94 @@ public class CheckIn extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(AddRoom)
+                .addComponent(Deluxe)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(UpdateRoom)
+                .addComponent(Economy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DeleteRoom)
+                .addComponent(Presidential)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ViewList)
+                .addComponent(Executive)
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Submit)
                     .addComponent(Confrim))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Logout)
+                    .addComponent(Home)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ViewListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewListActionPerformed
+    private void ExecutiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExecutiveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ViewListActionPerformed
+    }//GEN-LAST:event_ExecutiveActionPerformed
 
-    private void UpdateRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateRoomActionPerformed
+    private void EconomyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EconomyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_UpdateRoomActionPerformed
+    }//GEN-LAST:event_EconomyActionPerformed
 
-    private void DeleteRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteRoomActionPerformed
+    private void PresidentialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PresidentialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DeleteRoomActionPerformed
+    }//GEN-LAST:event_PresidentialActionPerformed
 
     private void ConfrimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfrimActionPerformed
         // TODO add your handling code here:
+                    JFrame jf = new JFrame();
+                JOptionPane.showMessageDialog(jf,"BOOKING CONFIRMED","",JOptionPane.INFORMATION_MESSAGE);
+        
+        
+        //commit rooms
         FrontDesk fd = new FrontDesk();
+        sysExit();
         fd.setVisible(true);
+        
+        
     }//GEN-LAST:event_ConfrimActionPerformed
 
+    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+        // TODO add your handling code here:
+        
+        
+         if(Deluxe.isSelected()){
+            //open add record form
+ 
+
+        } else if(Executive.isSelected()){
+            //open update record form
+            
+        } else if(Presidential.isSelected()){
+
+            
+            //open delete record form
+        } else if(Economy.isSelected()){
+            //view list of records
+        } else {
+            //throw error    
+                            JFrame jf = new JFrame();
+                JOptionPane.showMessageDialog(jf,"PLEASE CHOOSE","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_SubmitActionPerformed
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        FrontDesk fd = new FrontDesk();
+        sysExit();
+        fd.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
+
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_LogoutActionPerformed
+
+    public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
     /**
      * @param args the command line arguments
      */
@@ -184,12 +266,14 @@ public class CheckIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton AddRoom;
     private javax.swing.JButton Confrim;
-    private javax.swing.JRadioButton DeleteRoom;
+    private javax.swing.JRadioButton Deluxe;
+    private javax.swing.JRadioButton Economy;
+    private javax.swing.JRadioButton Executive;
+    private javax.swing.JButton Home;
+    private javax.swing.JButton Logout;
+    private javax.swing.JRadioButton Presidential;
     private javax.swing.JButton Submit;
-    private javax.swing.JRadioButton UpdateRoom;
-    private javax.swing.JRadioButton ViewList;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
