@@ -5,6 +5,8 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -31,6 +33,8 @@ public class ManageStaff extends javax.swing.JFrame {
     private void initComponents() {
 
         Home1 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        Logout = new javax.swing.JButton();
         deleteStaff = new javax.swing.JRadioButton();
         viewStaff = new javax.swing.JRadioButton();
         submitStaff = new javax.swing.JButton();
@@ -39,6 +43,7 @@ public class ManageStaff extends javax.swing.JFrame {
         addStaff = new javax.swing.JRadioButton();
         updateStaff = new javax.swing.JRadioButton();
         Home2 = new javax.swing.JButton();
+        Logout1 = new javax.swing.JButton();
 
         Home1.setText("Home");
         Home1.addActionListener(new java.awt.event.ActionListener() {
@@ -47,10 +52,19 @@ public class ManageStaff extends javax.swing.JFrame {
             }
         });
 
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        buttonGroup1.add(deleteStaff);
         deleteStaff.setText("Delete Staff");
 
+        buttonGroup1.add(viewStaff);
         viewStaff.setText("View Staff");
 
         submitStaff.setText("Submit");
@@ -65,6 +79,7 @@ public class ManageStaff extends javax.swing.JFrame {
 
         jLabel3.setText("Please Choose Task:");
 
+        buttonGroup1.add(addStaff);
         addStaff.setText("Add Staff");
         addStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +87,7 @@ public class ManageStaff extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(updateStaff);
         updateStaff.setText("Update Staff");
         updateStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,47 +102,65 @@ public class ManageStaff extends javax.swing.JFrame {
             }
         });
 
+        Logout1.setText("Logout");
+        Logout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(202, 202, 202)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(deleteStaff)
-                    .addComponent(updateStaff)
-                    .addComponent(addStaff)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(submitStaff)
-                        .addComponent(viewStaff)))
-                .addContainerGap(220, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(deleteStaff)
+                            .addComponent(updateStaff)
+                            .addComponent(addStaff))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(submitStaff)
+                            .addComponent(viewStaff))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(93, 93, 93))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Home2)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Logout1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(34, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(22, 22, 22)
-                .addComponent(addStaff)
-                .addGap(18, 18, 18)
-                .addComponent(updateStaff)
-                .addGap(18, 18, 18)
-                .addComponent(deleteStaff)
-                .addGap(18, 18, 18)
-                .addComponent(viewStaff)
-                .addGap(31, 31, 31)
-                .addComponent(submitStaff)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Home2)
-                .addGap(10, 10, 10))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addGap(22, 22, 22)
+                        .addComponent(addStaff)
+                        .addGap(18, 18, 18)
+                        .addComponent(updateStaff)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteStaff)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewStaff)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(submitStaff)
+                        .addGap(37, 37, 37)
+                        .addComponent(Logout1)
+                        .addGap(4, 4, 4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Home2)
+                        .addContainerGap())))
         );
 
         pack();
@@ -137,23 +171,30 @@ public class ManageStaff extends javax.swing.JFrame {
         
         if(addStaff.isSelected()){
             //open add record form
-            AddCustomer adc = new AddCustomer();
+            AddStaff adc = new AddStaff();
+            sysExit();
             adc.setVisible(true);
             
         } else if(updateStaff.isSelected()){
             //open update record form
-            UpdateCustomer upc = new UpdateCustomer();
+            UpdateStaff upc = new UpdateStaff();
+            sysExit();
             upc.setVisible(true);
         } else if(deleteStaff.isSelected()){
             
-            DeleteCustomer dlc = new DeleteCustomer();
+            DeleteStaff dlc = new DeleteStaff();
+            sysExit();
+            
             dlc.setVisible(true);
             //open delete record form
         } else if(viewStaff.isSelected()){
+            ViewStaff vc = new ViewStaff();
+            sysExit();
+            
+            vc.setVisible(true);
+            
             //view list of records
-        } else {
-            //throw error
-        }   
+        } 
         
 
     }//GEN-LAST:event_submitStaffActionPerformed
@@ -177,6 +218,28 @@ public class ManageStaff extends javax.swing.JFrame {
         Manager mng = new Manager();
         mng.setVisible(true);
     }//GEN-LAST:event_Home2ActionPerformed
+
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_LogoutActionPerformed
+
+    private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_Logout1ActionPerformed
+
+    
+    
+    
+            public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
 
     /**
      * @param args the command line arguments
@@ -216,7 +279,10 @@ public class ManageStaff extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home1;
     private javax.swing.JButton Home2;
+    private javax.swing.JButton Logout;
+    private javax.swing.JButton Logout1;
     private javax.swing.JRadioButton addStaff;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton deleteStaff;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
