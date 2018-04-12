@@ -7,6 +7,14 @@ package form;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,11 +56,11 @@ public class AddCustomer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Customer ID");
+        jLabel1.setText("Customer ID (INT)");
 
         jLabel2.setText("Name");
 
-        jLabel3.setText("Date of Birth");
+        jLabel3.setText("Date of Birth (YYYY-MM-DD)");
 
         jLabel4.setText("Phone Number");
 
@@ -169,12 +177,50 @@ public class AddCustomer extends javax.swing.JFrame {
         // TODO add your handling code here:
         //start transaction
         //*****insert into database*****
+
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt = null;
         
-        customerDOB.setText("");
-        customerEmail.setText("");
-        customerID.setText("");
-        customerName.setText("");
-        customerPhno.setText("");
+        ResultSet rs;
+        try {
+
+            conn = db.connect_db();
+            stmt = conn.createStatement();
+        
+            int n = stmt.executeUpdate("insert into customer values ("+customerID.getText()+",'"+customerName.getText()+"','"+customerDOB.getText()+"','"+customerEmail.getText()+"','"+customerPhno.getText()+"')");
+            JOptionPane.showMessageDialog(null, "Customer added!");
+            customerID.setText("");
+            customerName.setText("");
+            customerDOB.setText("");
+            customerEmail.setText("");
+            customerPhno.setText("");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+
+
     }//GEN-LAST:event_AddCustomerActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
