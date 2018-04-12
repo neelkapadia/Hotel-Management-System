@@ -110,6 +110,7 @@ public class Login extends javax.swing.JFrame {
 
             String sid = staffid.getText();
             int id = Integer.parseInt(sid);
+            Intermediate.addItem("id", id);
             conn = db.connect_db();
             stmt = conn.createStatement();
             boolean s, f, mr;

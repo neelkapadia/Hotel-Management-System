@@ -196,7 +196,7 @@ public class Reports extends javax.swing.JFrame {
                 try {
                     rs = stmt.executeQuery(query);
                     while (rs.next()) {
-                        System.out.println("In while");
+                        //System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("hotelid"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
                     }
                     report.setVisible(true);
