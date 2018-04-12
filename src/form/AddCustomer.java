@@ -203,6 +203,7 @@ public class AddCustomer extends javax.swing.JFrame {
             
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Please try again!");
         
         } finally {
 
