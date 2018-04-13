@@ -204,10 +204,22 @@ public class UpdateRecord extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        // TODO add your handling code here:
-        FrontDesk fd = new FrontDesk();
-        sysExit();
-        fd.setVisible(true);
+        
+        if((boolean)Intermediate.getItem("isCateringStaff") || (boolean)Intermediate.getItem("isRoomServiceStaff")) {     
+            ServiceRecords sr = new ServiceRecords();
+            sysExit();
+            sr.setVisible(true);
+        } else {
+            if((boolean)Intermediate.getItem("isFrontDeskStaff")) {     
+                FrontDesk fd = new FrontDesk();
+                sysExit();
+                fd.setVisible(true);
+            } else {
+                Manager m = new Manager();
+                sysExit();
+                m.setVisible(true); 
+            }
+        }   
     }//GEN-LAST:event_HomeActionPerformed
 
     private void recordDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordDateActionPerformed
@@ -240,6 +252,9 @@ public class UpdateRecord extends javax.swing.JFrame {
             rs = stmt.executeQuery("select * from servicerecord where serviceid = " + recordID.getText());
             if (rs.first()) {
                 toggleVisibility(true);
+                recordID.setEditable(false);
+                hotelID.setEditable(false);
+                roomID.setEditable(false);
                 recordDate.setText(rs.getString("date"));
                 recordTime.setText(rs.getString("time"));
                 recordType.setText(rs.getString("serviceType"));
@@ -247,6 +262,9 @@ public class UpdateRecord extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "No service record found! Try again.");
                 toggleVisibility(false);
+                recordID.setEditable(true);
+                hotelID.setEditable(true);
+                roomID.setEditable(true);
             }
 
         } catch (Exception e) {
@@ -275,7 +293,7 @@ public class UpdateRecord extends javax.swing.JFrame {
     }//GEN-LAST:event_getDetailsActionPerformed
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
-        // TODO add your handling code here:
+        
         Login l = new Login();
         sysExit();
         l.setVisible(true);
@@ -295,7 +313,7 @@ public class UpdateRecord extends javax.swing.JFrame {
 
             conn = db.connect_db();
             stmt = conn.createStatement();
-
+            int servcID = Integer.parseInt(recordID.getText());
             String updateQry = "update servicerecord set";
             boolean first = true;
 
@@ -316,11 +334,19 @@ public class UpdateRecord extends javax.swing.JFrame {
                 }
                 updateQry += " `servicetype` = '" + recordType.getText()+"'";
             }
-            updateQry += " where `serviceid` = " + Integer.parseInt(recordID.getText());
+            updateQry += " where `serviceid` = " + servcID;
 
             stmt.executeUpdate(updateQry);
+            
+            
+            int staffID = (Integer)Intermediate.getItem("id");
+            rs = stmt.executeQuery("select * from updates where staffid = " + staffID +" and serviceid="+servcID);
+            if (! rs.next()) {
+                stmt.executeUpdate("insert into updates values ("+staffID+","+servcID+")");
+            }
+            
             JOptionPane.showMessageDialog(null, "Service Record updated!");
-
+            sysExit();
         } catch (Exception e) {
             e.printStackTrace();
 

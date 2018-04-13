@@ -240,10 +240,22 @@ public class AddRecord extends javax.swing.JFrame {
     }//GEN-LAST:event_AddRecordActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        // TODO add your handling code here:
-        FrontDesk fd = new FrontDesk();
-        sysExit();
-        fd.setVisible(true);
+        
+        if((boolean)Intermediate.getItem("isCateringStaff") || (boolean)Intermediate.getItem("isRoomServiceStaff")) {     
+            ServiceRecords sr = new ServiceRecords();
+            sysExit();
+            sr.setVisible(true);
+        } else {
+            if((boolean)Intermediate.getItem("isFrontDeskStaff")) {     
+                FrontDesk fd = new FrontDesk();
+                sysExit();
+                fd.setVisible(true);
+            } else {
+                Manager m = new Manager();
+                sysExit();
+                m.setVisible(true); 
+            }
+        }  
     }//GEN-LAST:event_HomeActionPerformed
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
