@@ -312,6 +312,8 @@ public class UpdateRecord extends javax.swing.JFrame {
         try {
 
             conn = db.connect_db();
+            conn.setAutoCommit(false);
+            
             stmt = conn.createStatement();
             int servcID = Integer.parseInt(recordID.getText());
             String updateQry = "update servicerecord set";
@@ -338,20 +340,24 @@ public class UpdateRecord extends javax.swing.JFrame {
 
             stmt.executeUpdate(updateQry);
             
-            
             int staffID = (Integer)Intermediate.getItem("id");
             rs = stmt.executeQuery("select * from updates where staffid = " + staffID +" and serviceid="+servcID);
             if (! rs.next()) {
                 stmt.executeUpdate("insert into updates values ("+staffID+","+servcID+")");
             }
             
+            conn.commit();
             JOptionPane.showMessageDialog(null, "Service Record updated!");
             sysExit();
         } catch (Exception e) {
             e.printStackTrace();
-
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } finally {
-
+            
             if (stmt != null) {
                 try {
                     stmt.close();
@@ -362,6 +368,7 @@ public class UpdateRecord extends javax.swing.JFrame {
 
             if (conn != null) {
                 try {
+                    conn.setAutoCommit(true);
                     conn.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);

@@ -191,6 +191,10 @@ public class AddRecord extends javax.swing.JFrame {
         try {
 
             conn = db.connect_db();
+            
+            // start transaction
+            conn.setAutoCommit(false);
+            
             stmt = conn.createStatement();
             stmt.executeUpdate("insert into servicerecord values ("+Integer.parseInt(serviceID.getText())+",'"+serviceDate.getText()+"','"+serviceTime.getText()+"','"+serviceType.getText()+"')");
             int bookingID;
@@ -200,10 +204,12 @@ public class AddRecord extends javax.swing.JFrame {
                 bookingID = Integer.parseInt(rs.getString("bookingid"));
                 stmt.executeUpdate("insert into linkService values ("+bookingID+","+Integer.parseInt(serviceID.getText())+")");
                 stmt.executeUpdate("insert into updates values ("+(Integer)Intermediate.getItem("id")+","+Integer.parseInt(serviceID.getText())+")");
+                conn.commit();
                 JOptionPane.showMessageDialog(null, "Service Record added!");
             } else {
                 JOptionPane.showMessageDialog(null, "Booking id not found for given hotel id: "+hotelID.getText()+" and room num: "+roomID.getText());
                 sysExit();
+                conn.rollback();
             }
 
             serviceID.setText("");
@@ -214,11 +220,15 @@ public class AddRecord extends javax.swing.JFrame {
             roomID.setText("");
             
         } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Please try again!");
+            try {
+                e.printStackTrace();
+                conn.rollback();
+                JOptionPane.showMessageDialog(null, "Please try again!");
+            } catch (SQLException ex) {
+                Logger.getLogger(AddRecord.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         } finally {
-
             if (stmt != null) {
                 try {
                     stmt.close();
@@ -228,11 +238,14 @@ public class AddRecord extends javax.swing.JFrame {
             }
 
             if (conn != null) {
+
                 try {
+                    conn.setAutoCommit(true);
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AddRecord.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
             }
 
         }

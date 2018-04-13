@@ -17,16 +17,16 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author nirav
+ * @author saurabhshanbhag
  */
-public class ViewHotels extends javax.swing.JFrame {
+public class ViewRoom extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewHotel
+     * Creates new form ViewRoom
      */
-    public ViewHotels() {
+    public ViewRoom() {
         initComponents();
-        generateHotels();
+        generateRooms();
     }
 
     /**
@@ -40,8 +40,8 @@ public class ViewHotels extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         invoiceFrame = new javax.swing.JTable();
-        Home = new javax.swing.JButton();
-        Logout1 = new javax.swing.JButton();
+        Logout = new javax.swing.JButton();
+        Home1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -50,22 +50,22 @@ public class ViewHotels extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Hotel ID", "Name", "Address", "City", "Phone No", "Manager ID"
+                "Hotel ID", "Room No", "Category", "Available", "Capacity", "Price"
             }
         ));
         jScrollPane1.setViewportView(invoiceFrame);
 
-        Home.setText("Home");
-        Home.addActionListener(new java.awt.event.ActionListener() {
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HomeActionPerformed(evt);
+                LogoutActionPerformed(evt);
             }
         });
 
-        Logout1.setText("Logout");
-        Logout1.addActionListener(new java.awt.event.ActionListener() {
+        Home1.setText("Home");
+        Home1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Logout1ActionPerformed(evt);
+                Home1ActionPerformed(evt);
             }
         });
 
@@ -75,13 +75,14 @@ public class ViewHotels extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Home1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Logout)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Home)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Logout1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,26 +90,24 @@ public class ViewHotels extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Home)
-                    .addComponent(Logout1)))
+                    .addComponent(Home1)
+                    .addComponent(Logout)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        // TODO add your handling code here:
+    private void Home1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home1ActionPerformed
         Manager mng = new Manager();
         sysExit();
         mng.setVisible(true);
-    }//GEN-LAST:event_HomeActionPerformed
+    }//GEN-LAST:event_Home1ActionPerformed
 
-    private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
-        // TODO add your handling code here:
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
         Login l = new Login();
         sysExit();
-        l.setVisible(true);
-    }//GEN-LAST:event_Logout1ActionPerformed
+        l.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_LogoutActionPerformed
     public void sysExit(){
         WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
@@ -130,56 +129,63 @@ public class ViewHotels extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewHotels.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewHotels.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewHotels.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewHotels.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewHotels().setVisible(true);
+                new ViewRoom().setVisible(true);
             }
         });
     }
-   
-    public void generateHotels() {
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home1;
+    private javax.swing.JButton Logout;
+    public javax.swing.JTable invoiceFrame;
+    private javax.swing.JScrollPane jScrollPane1;
+    // End of variables declaration//GEN-END:variables
+
+    public void generateRooms() {
         DefaultTableModel model = (DefaultTableModel) invoiceFrame.getModel();
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt1 = null;
         Statement stmt2 = null;
-        ResultSet hotelsResult; 
-        ResultSet hotelCityResult; 
+        ResultSet roomsResult; 
+        ResultSet roomPriceResult; 
         
         try {
             conn = db.connect_db();
             stmt1 = conn.createStatement();
             stmt2 = conn.createStatement();
             
-            hotelsResult = stmt1.executeQuery("select * from hotel");
+            roomsResult = stmt1.executeQuery("select * from room");
             
-            while (hotelsResult.next()) {
+            while (roomsResult.next()) {
                 
-                int hotelID = hotelsResult.getInt("hotelid");
-                String hotelName = hotelsResult.getString("name");
-                String hotelAdr = hotelsResult.getString("address");
-                String hotelPhn = hotelsResult.getString("phoneNum");
-                int hotelMgrID = hotelsResult.getInt("managerid");
-                String hotelCity = "";
+                int hotelID = roomsResult.getInt("hotelID");
+                int roomNum = roomsResult.getInt("roomNum");
+                String roomCategory = roomsResult.getString("category");
+                int roomAvail = roomsResult.getInt("avail");
+                int roomCapacity = roomsResult.getInt("capacity");
                 
-                hotelCityResult = stmt2.executeQuery("select city from hotelcity where address='"+hotelAdr+"'");
-                if (hotelCityResult.next()) {
-                    hotelCity = hotelCityResult.getString("city");
+                String roomPrice = "";
+                
+                roomPriceResult = stmt2.executeQuery("select price from roomprice where category='"+roomCategory+"'");
+                if (roomPriceResult.next()) {
+                    roomPrice = roomPriceResult.getString("price");
                 }
                 
-                model.addRow(new Object[]{hotelID,hotelName,hotelAdr,hotelCity,hotelPhn,hotelMgrID});
+                model.addRow(new Object[]{hotelID,roomNum,roomCategory,roomAvail,roomCapacity,roomPrice});
                 
             }
             
@@ -212,11 +218,4 @@ public class ViewHotels extends javax.swing.JFrame {
         }
         
     }
-    
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Home;
-    private javax.swing.JButton Logout1;
-    public javax.swing.JTable invoiceFrame;
-    private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration//GEN-END:variables
 }
