@@ -6,7 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -27,20 +27,30 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="157" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="viewServiceRecord" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="deleteServiceRecord" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="updateServiceRecord" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="addServiceRecord" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
               <Component id="submitServiceRecord" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="158" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="viewServiceRecord" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="deleteServiceRecord" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateServiceRecord" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="addServiceRecord" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="Home2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="Logout" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,7 +67,12 @@
               <Component id="viewServiceRecord" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="submitServiceRecord" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="93" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Home2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Logout" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="46" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -110,6 +125,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitServiceRecordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Home2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Home"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Home2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Logout">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Logout"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LogoutActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

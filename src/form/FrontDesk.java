@@ -155,7 +155,7 @@ public class FrontDesk extends javax.swing.JFrame {
 
     private void CheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInActionPerformed
         // TODO add your handling code here:
-        CheckInNew ci = new CheckInNew();
+        CheckIn ci = new CheckIn();
         sysExit();
         ci.setVisible(true);
 

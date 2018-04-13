@@ -38,7 +38,7 @@ public class DeleteRecord extends javax.swing.JFrame {
         Home = new javax.swing.JButton();
         Logout = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         recordID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,10 +145,21 @@ public class DeleteRecord extends javax.swing.JFrame {
     }//GEN-LAST:event_recordIDActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        // TODO add your handling code here:
-        FrontDesk fds = new FrontDesk();
-        sysExit();
-        fds.setVisible(true);
+        if((boolean)Intermediate.getItem("isCateringStaff") || (boolean)Intermediate.getItem("isRoomServiceStaff")) {     
+            ServiceRecords sr = new ServiceRecords();
+            sysExit();
+            sr.setVisible(true);
+        } else {
+            if((boolean)Intermediate.getItem("isFrontDeskStaff")) {     
+                FrontDesk fd = new FrontDesk();
+                sysExit();
+                fd.setVisible(true);
+            } else {
+                Manager m = new Manager();
+                sysExit();
+                m.setVisible(true); 
+            }
+        }  
     }//GEN-LAST:event_HomeActionPerformed
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
