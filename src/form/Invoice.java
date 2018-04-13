@@ -53,7 +53,7 @@ public class Invoice extends javax.swing.JFrame {
         invoiceid = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel2.setText("Wolf Inns");

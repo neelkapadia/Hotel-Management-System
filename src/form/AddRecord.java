@@ -55,7 +55,7 @@ public class AddRecord extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         roomID = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel3.setText("Time (24 hrs, hh:mm:ss)");
 
