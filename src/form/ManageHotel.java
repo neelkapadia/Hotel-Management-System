@@ -74,6 +74,11 @@ public class ManageHotel extends javax.swing.JFrame {
 
         buttonGroup1.add(viewHotel);
         viewHotel.setText("View Hotels");
+        viewHotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewHotelActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel4.setText("Wolf Inns");
@@ -191,7 +196,7 @@ public class ManageHotel extends javax.swing.JFrame {
         } else if(viewHotel.isSelected()){
             //view list of records
             
-            ViewHotel vh = new ViewHotel();
+            ViewHotels vh = new ViewHotels();
             sysExit();
             vh.setVisible(true);
         } else {
@@ -215,6 +220,10 @@ public class ManageHotel extends javax.swing.JFrame {
         sysExit();
         l.setVisible(true);
     }//GEN-LAST:event_Logout1ActionPerformed
+
+    private void viewHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewHotelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewHotelActionPerformed
 
     /**
      * @param args the command line arguments
