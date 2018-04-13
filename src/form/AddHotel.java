@@ -216,7 +216,7 @@ public class AddHotel extends javax.swing.JFrame {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AddHotel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -224,7 +224,7 @@ public class AddHotel extends javax.swing.JFrame {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AddHotel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 

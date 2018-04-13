@@ -178,11 +178,17 @@ public class Invoice extends javax.swing.JFrame {
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
         String cid = custid.getText();
+        String invid = invoiceid.getText();
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs;
-        String query;
+        float totalRoomCost;
+        float totalAmount;
+        String payTypeQuery;
+        String totalAmountQuery;
+        String updateTotalAmount;
+        String getServicesQuery;
         String insertInvoiceQuery;
         String insertGenerateInvoiceQuery;
         String roomCostQuery;
@@ -192,12 +198,8 @@ public class Invoice extends javax.swing.JFrame {
             
             if(GenerateInvoice.isSelected()){
                 //open add record form
-                insertInvoiceQuery = "Insert into Invoice(invoiceID, invoiceDate,totalAmt) values ("+invoiceid.getText()+", (Select enddate from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")), (Select (Select sum(cost) from ServiceCost where ServiceType IN (Select serviceType from ServiceRecord where serviceId IN (Select ServiceID from linkservice where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))+Sum(DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where category= (Select category from Room where HotelId=(select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")) And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))) AS totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId));";
-                
-                //Whenever you add to invoice, you also need to add to generate invoice
-                insertGenerateInvoiceQuery = "Insert into generateInvoice values ("+invoiceid.getText()+",(Select bookingid from gets where custid = "+cid+"))";
-                
-                query = "Select servicetype, cost from (Select serviceid, time, a.servicetype, cost from (select * from servicerecord) a join(select * from servicecost)b on a.servicetype=b.servicetype)x join (select * from linkservice where BookingId = (Select bookingid from gets where custid = "+cid+")) y ON x.serviceid = y.serviceid;";
+                                
+                getServicesQuery = "Select servicetype, cost from (Select serviceid, time, a.servicetype, cost from (select * from servicerecord) a join(select * from servicecost)b on a.servicetype=b.servicetype)x join (select * from linkservice where BookingId = (Select bookingid from gets where custid = "+cid+")) y ON x.serviceid = y.serviceid;";
                 //code to get pdf invoice
             
 //                query = "SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM (SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid;";
@@ -210,6 +212,9 @@ public class Invoice extends javax.swing.JFrame {
                 System.out.println("Before try");
                 
                 try {
+                    insertInvoiceQuery = "Insert into Invoice(invoiceID, invoiceDate,totalAmt) values ("+invid+", (Select enddate from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")), (Select (Select sum(cost) from ServiceCost where ServiceType IN (Select serviceType from ServiceRecord where serviceId IN (Select ServiceID from linkservice where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))+Sum(DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where category= (Select category from Room where HotelId=(select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")) And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))) AS totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId));";
+                    insertGenerateInvoiceQuery = "Insert into generateInvoice values ("+invid+",(Select bookingid from gets where custid = "+cid+"))";
+                    
                     // Add insert query
                     stmt.executeUpdate(insertInvoiceQuery);
                     System.out.println("Invoice insert executed");
@@ -219,18 +224,49 @@ public class Invoice extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(null, "Invoice added!");
                     // Add generate invoice query
-                    rs = stmt.executeQuery(query);
+                    rs = stmt.executeQuery(getServicesQuery);
                     System.out.println("After list of services");
                     while (rs.next()) {
                         System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("serviceType"), rs.getString("cost")});
                     }
                     System.out.println("After while");
-                    roomCostQuery = "Select Sum(DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where category= (Select category from Room where HotelId=(select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")) And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))) AS totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId";
+                    // get category of room from cid, invoiceid (if needed) --> custid-gets-bookingid-isAssigned-hotelid,roomnum-room-category
+                    
+                    roomCostQuery = "Select Sum(DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where category= (Select category from Room where HotelId=(select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = '"+cid+"')) And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))) AS totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId";
                     rs = stmt.executeQuery(roomCostQuery);
                     rs.next();
+//                    //Store value in an integer for convenience
+//                    totalRoomCost = Float.parseFloat(rs.getString("totalRoomPrice"));
                     System.out.println("After room cost query");
                     model.addRow(new Object[]{"Room", rs.getString("totalRoomPrice")});
+                    
+                    totalAmountQuery = "SELECT totalAmt FROM Invoice WHERE invoiceID = '"+invid+"';";
+                    rs = stmt.executeQuery(totalAmountQuery);
+                    rs.next();
+                    model.addRow(new Object[]{"TOTAL", rs.getString("totalAmt")});
+                    // Storing totalAmount for access if payType is hotel credit
+                    totalAmount = Float.parseFloat(rs.getString("totalAmt"));
+                    
+                    // cid-gets-bookingid-has-ssn-billinfo-paytype
+                    payTypeQuery = "Select paytype from billinfo where ssn=(Select ssn from has where bookingid = (select bookingid from gets where custid="+cid+"));";
+                    rs = stmt.executeQuery(payTypeQuery);
+                    rs.next();
+                    
+                    // if hotel credit card
+                    if(rs.getString("paytype").equals("hotel credit")){
+//                        totalRoomCost = totalRoomCost*(float)0.95;
+                        totalAmount = totalAmount*(float)0.95;
+                        model.addRow(new Object[]{"TOTAL AFTER DISCOUNT", String.valueOf(totalAmount)});
+                        updateTotalAmount = "Update Invoice SET totalAmt="+totalAmount+" WHERE invoiceid='"+invid+"';";
+                        stmt.executeUpdate(updateTotalAmount);
+                        System.out.println("Discounted price is - "+totalAmount);
+                    }
+//                    // if other payment method
+//                    else{
+//                        model.addRow(new Object[]{"Room", String.valueOf(totalRoomCost)});
+//                    }
+                    
                     invoice.setVisible(true);
                     System.out.println("Room cost added");
                 } catch (SQLException e) {
@@ -241,11 +277,11 @@ public class Invoice extends javax.swing.JFrame {
             } else if(GetAmount.isSelected()){
                 //print amt
                 // Will not be possible without an existing invoice already present
-                query = "SELECT totalAmt FROM Invoice WHERE invoiceID = '"+invoiceid.getText()+"';";
-                System.out.println(query);
+                totalAmountQuery = "SELECT totalAmt FROM Invoice WHERE invoiceID = '"+invid+"';";
+                System.out.println(totalAmountQuery);
                 try{
                     System.out.println("Before total amount");
-                    rs = stmt.executeQuery(query);
+                    rs = stmt.executeQuery(totalAmountQuery);
                     rs.next();
 //                    System.out.println(rs.getString("totalAmt"));
                     amt.setText(rs.getString("totalAmt"));

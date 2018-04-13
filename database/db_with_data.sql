@@ -208,7 +208,7 @@ DROP TABLE IF EXISTS `Invoice`;
 CREATE TABLE `Invoice` (
   `InvoiceID` int(11) NOT NULL,
   `InvoiceDate` date NOT NULL,
-  `totalAmt` int(11) NOT NULL,
+  `totalAmt` float(11) NOT NULL,
   PRIMARY KEY (`InvoiceID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
