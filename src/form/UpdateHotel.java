@@ -34,12 +34,12 @@ public class UpdateHotel extends javax.swing.JFrame {
         HotelID.setVisible(isVisible);
         HotelName.setVisible(isVisible);
         ManagerID.setVisible(isVisible);
-        customerPhno.setVisible(isVisible);
+//        customerPhno.setVisible(isVisible);
         jLabel2.setVisible(isVisible);
         jLabel3.setVisible(isVisible);
         jLabel4.setVisible(isVisible);
         jLabel5.setVisible(isVisible);
-        updateDetails.setVisible(isVisible);  
+//        updateDetails.setVisible(isVisible);  
     }
 
     /**
