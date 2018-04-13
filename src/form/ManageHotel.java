@@ -191,14 +191,14 @@ public class ManageHotel extends javax.swing.JFrame {
         } else if(viewHotel.isSelected()){
             //view list of records
             
-            ViewHotels vh = new ViewHotels();
+            ViewHotel vh = new ViewHotel();
             sysExit();
             vh.setVisible(true);
         } else {
             //throw error
             
-                                        JFrame jf = new JFrame();
-                JOptionPane.showMessageDialog(jf,"PLEASE CHOOSE","ERROR",JOptionPane.ERROR_MESSAGE);
+        JFrame jf = new JFrame();
+        JOptionPane.showMessageDialog(jf,"PLEASE CHOOSE","ERROR",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_submitHotelActionPerformed
 
