@@ -293,7 +293,7 @@ public class UpdateRecord extends javax.swing.JFrame {
     }//GEN-LAST:event_getDetailsActionPerformed
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
-        // TODO add your handling code here:
+        
         Login l = new Login();
         sysExit();
         l.setVisible(true);
@@ -337,6 +337,13 @@ public class UpdateRecord extends javax.swing.JFrame {
             updateQry += " where `serviceid` = " + servcID;
 
             stmt.executeUpdate(updateQry);
+            
+            
+            int staffID = (Integer)Intermediate.getItem("id");
+            rs = stmt.executeQuery("select * from updates where staffid = " + staffID +" and serviceid="+servcID);
+            if (! rs.next()) {
+                stmt.executeUpdate("insert into updates values ("+staffID+","+servcID+")");
+            }
             
             JOptionPane.showMessageDialog(null, "Service Record updated!");
             sysExit();
