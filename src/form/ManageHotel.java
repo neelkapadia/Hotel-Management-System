@@ -251,7 +251,7 @@ public class ManageHotel extends javax.swing.JFrame {
         });
     }
     
-       public void sysExit(){
+    public void sysExit(){
         WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }
