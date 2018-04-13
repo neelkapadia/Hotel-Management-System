@@ -229,13 +229,6 @@ public class AddRecord extends javax.swing.JFrame {
             }
 
         } finally {
-
-            try {
-                conn.setAutoCommit(true);
-            } catch (SQLException ex) {
-                Logger.getLogger(AddRecord.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                    
             if (stmt != null) {
                 try {
                     stmt.close();
@@ -245,11 +238,14 @@ public class AddRecord extends javax.swing.JFrame {
             }
 
             if (conn != null) {
+
                 try {
+                    conn.setAutoCommit(true);
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AddRecord.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
             }
 
         }
