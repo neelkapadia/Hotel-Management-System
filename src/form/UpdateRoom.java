@@ -199,6 +199,8 @@ public class UpdateRoom extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private String cat;
+    
     private void getDetails1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getDetails1ActionPerformed
         // TODO add your handling code here:
 
@@ -206,16 +208,26 @@ public class UpdateRoom extends javax.swing.JFrame {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs;
-
+        ResultSet rs2;
+        
+        
+        
+        
+        
         try {
 
             conn = db.connect_db();
             stmt = conn.createStatement();
-
+            
+            
+            //System.out.println(cat);
+            //rs2 = stmt.executeQuery("select  from room where hotelid = " + HotelID.getText() + " and roomnum = "+RoomNum.getText());
             rs = stmt.executeQuery("select * from room where hotelid = " + HotelID.getText() + " and roomnum = "+RoomNum.getText());
+            
+            
             if (rs.first()) {
                 toggleVisibility(true);
-                
+                cat = rs.getString("category");
                 category.setText(rs.getString("category"));
                 availability.setText(rs.getString("avail"));
                 capacity.setText(rs.getString("capacity"));
@@ -258,6 +270,7 @@ public class UpdateRoom extends javax.swing.JFrame {
         Connection conn = null;
         Statement stmt = null;
 
+        
         ResultSet rs;
          ResultSet rs1;
         try {
@@ -301,6 +314,15 @@ public class UpdateRoom extends javax.swing.JFrame {
             if(category.getText().equals("Presidential") && g){
                 stmt.executeUpdate("insert into PresidentialSuite values ("+HotelID.getText()+","+RoomNum.getText()+")");
             }
+            //System.out.println("category.getText(): "+category.getText());
+            //System.out.println("cat: "+cat);
+            if(cat.equals("Presidential") && !category.getText().equals(cat)){
+                stmt.executeUpdate("delete from PresidentialSuite where hotelid = "+HotelID.getText()+" and roomNum = "+RoomNum.getText());
+                
+            }
+            
+            //System.out.println(cat);
+            
             
             JOptionPane.showMessageDialog(null, "Room updated!");
 

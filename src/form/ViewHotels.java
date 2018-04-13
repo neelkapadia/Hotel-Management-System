@@ -5,6 +5,16 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel; 
+
 /**
  *
  * @author saurabhshanbhag
@@ -16,8 +26,107 @@ public class ViewHotels extends javax.swing.JFrame {
      */
     public ViewHotels() {
         initComponents();
+         viewhots();
     }
+    
+    
+        public void viewhots() {
+        DefaultTableModel model = (DefaultTableModel) invoiceFrame.getModel();
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt1 = null;
 
+        ResultSet rs;
+  
+        
+        try {
+            conn = db.connect_db();
+            stmt1 = conn.createStatement();
+  
+            
+            rs= stmt1.executeQuery("select * from hotel");
+            
+            
+            while (rs.next()) {
+                String HotelName = "";
+                int HotelID = -1;
+                String managerID = "";
+                String Num = "";
+                HotelID = servicesResult.getInt("serviceid");
+                servcID = servicesResult.getInt("serviceid");
+                serviceType = servicesResult.getString("serviceType");
+                serviceCostResult = stmt2.executeQuery("select cost from servicecost where servicetype='"+serviceType+"'");
+                if (serviceCostResult.next()) {
+                    serviceCost = serviceCostResult.getInt("cost")+"";
+                }
+                updatedByResult = stmt3.executeQuery("select staffid from updates where serviceid="+servcID);
+                String updatedByStaff = "";
+                while(updatedByResult.next()) {
+                    updatedByStaff += updatedByResult.getInt("staffid")+",";
+                }
+                int index = updatedByStaff.lastIndexOf(',');
+                if(index != -1) {
+                    updatedByStaff = updatedByStaff.substring(0,index);
+                }
+                linkServiceResult = stmt4.executeQuery("select bookingid from linkservice where serviceid="+servcID);
+                if(linkServiceResult.first()) {
+                    bookingID = linkServiceResult.getInt("bookingid");
+                    linkServiceResult = stmt4.executeQuery("select hotelid, roomnum from isAssigned where bookingid="+bookingID);
+                    if(linkServiceResult.first()) {
+                        hotelID = linkServiceResult.getInt("hotelid")+"";
+                        roomNum = linkServiceResult.getInt("roomnum")+"";
+                    }
+                }
+                
+                model.addRow(new Object[]{servcID,servicesResult.getString("date"),servicesResult.getString("time"),serviceType,serviceCost,updatedByStaff,hotelID,roomNum});
+                
+            }
+            
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+
+            if (stmt1 != null) {
+                try {
+                    stmt1.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (stmt2 != null) {
+                try {
+                    stmt2.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (stmt3 != null) {
+                try {
+                    stmt3.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (stmt4 != null) {
+                try {
+                    stmt4.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            try {
+            db.close_db(conn);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +136,123 @@ public class ViewHotels extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        invoiceFrame = new javax.swing.JTable();
+        Home = new javax.swing.JButton();
+        Logout1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        invoiceFrame1 = new javax.swing.JTable();
+        Home1 = new javax.swing.JButton();
+        Logout2 = new javax.swing.JButton();
+
+        invoiceFrame.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ServiceID", "Date", "Time", "Type", "Cost", "UpdatedBy", "HotelID", "RoomID"
+            }
+        ));
+        jScrollPane1.setViewportView(invoiceFrame);
+
+        Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
+        Logout1.setText("Logout");
+        Logout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout1ActionPerformed(evt);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        invoiceFrame1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ServiceID", "Date", "Time", "Type", "Cost", "UpdatedBy", "HotelID", "RoomID"
+            }
+        ));
+        jScrollPane2.setViewportView(invoiceFrame1);
+
+        Home1.setText("Home");
+        Home1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Home1ActionPerformed(evt);
+            }
+        });
+
+        Logout2.setText("Logout");
+        Logout2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 225, Short.MAX_VALUE)
+                .addComponent(Home1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Logout2))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Logout2)
+                    .addComponent(Home1))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+
+                Manager m = new Manager();
+                sysExit();
+                m.setVisible(true);
+            
+    }//GEN-LAST:event_HomeActionPerformed
+
+    private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_Logout1ActionPerformed
+
+    private void Home1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home1ActionPerformed
+
+    
+                Manager m = new Manager();
+                sysExit();
+                m.setVisible(true);
+     
+    }//GEN-LAST:event_Home1ActionPerformed
+
+    private void Logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout2ActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_Logout2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,7 +288,21 @@ public class ViewHotels extends javax.swing.JFrame {
             }
         });
     }
+    
+            public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home;
+    private javax.swing.JButton Home1;
+    private javax.swing.JButton Logout1;
+    private javax.swing.JButton Logout2;
+    public javax.swing.JTable invoiceFrame;
+    public javax.swing.JTable invoiceFrame1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
