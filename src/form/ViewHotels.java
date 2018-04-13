@@ -26,7 +26,7 @@ public class ViewHotels extends javax.swing.JFrame {
      */
     public ViewHotels() {
         initComponents();
-        generateRecords();
+        generateHotels();
     }
 
     /**
@@ -149,7 +149,7 @@ public class ViewHotels extends javax.swing.JFrame {
         });
     }
    
-    public void generateRecords() {
+    public void generateHotels() {
         DefaultTableModel model = (DefaultTableModel) invoiceFrame.getModel();
         db_connection db = new db_connection();
         Connection conn = null;
