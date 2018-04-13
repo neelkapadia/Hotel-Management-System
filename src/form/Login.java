@@ -102,7 +102,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         //JFrame jf = new JFrame();
 
-        db_connection db = new db_connection();
+    db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs;
@@ -111,6 +111,10 @@ public class Login extends javax.swing.JFrame {
             String sid = staffid.getText();
             int id = Integer.parseInt(sid);
             Intermediate.addItem("id", id);
+            Intermediate.addItem("isCateringStaff", false);
+            Intermediate.addItem("isRoomServiceStaff", false);
+            Intermediate.addItem("isFrontDeskStaff", false);
+            Intermediate.addItem("isManager", false);
             conn = db.connect_db();
             stmt = conn.createStatement();
             boolean s, f, mr;
@@ -120,6 +124,7 @@ public class Login extends javax.swing.JFrame {
                 ServiceRecords sr = new ServiceRecords();
                 sysExit();
                 sr.setVisible(true);
+                Intermediate.addItem("isCateringStaff", true);
                 s = true;
             }
             rs = stmt.executeQuery("select staffid from roomservicestaff where staffid = " + id);
@@ -127,6 +132,7 @@ public class Login extends javax.swing.JFrame {
                 ServiceRecords sr = new ServiceRecords();
                 sysExit();
                 sr.setVisible(true);
+                Intermediate.addItem("isRoomServiceStaff", true);
                 s = true;
             }
             rs = stmt.executeQuery("select staffid from frontdeskstaff where staffid = " + id);
@@ -136,6 +142,7 @@ public class Login extends javax.swing.JFrame {
                 FrontDesk fd = new FrontDesk();
                 sysExit();
                 fd.setVisible(true);
+                Intermediate.addItem("isFrontDeskStaff", true);
                 f = true;
             }
             rs = stmt.executeQuery("select staffid from manager where staffid = " + id);
@@ -143,6 +150,7 @@ public class Login extends javax.swing.JFrame {
                 Manager m = new Manager();
                 sysExit();
                 m.setVisible(true);
+                Intermediate.addItem("isManager", true);
                 mr = true;
             }
             if (s == false && f == false && mr == false) {
