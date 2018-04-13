@@ -116,7 +116,7 @@ public class ManageRoom extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(submitRoom)
                         .addComponent(deleteRoom)))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Home1)
@@ -167,12 +167,14 @@ public class ManageRoom extends javax.swing.JFrame {
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
         Manager mng = new Manager();
+        sysExit();
         mng.setVisible(true);
     }//GEN-LAST:event_HomeActionPerformed
 
     private void Home1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home1ActionPerformed
         // TODO add your handling code here:
         Manager mng = new Manager();
+            sysExit();
         mng.setVisible(true);
     }//GEN-LAST:event_Home1ActionPerformed
 
@@ -194,7 +196,7 @@ public class ManageRoom extends javax.swing.JFrame {
 
             DeleteRoom dlc = new DeleteRoom();
             sysExit();
-            dlc.setVisible(true);
+         dlc.setVisible(true);
             //open delete record form
         } else if(viewRoom.isSelected()){
             

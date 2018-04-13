@@ -196,6 +196,7 @@ public class Manager extends javax.swing.JFrame {
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
         Manager mng = new Manager();
+        sysExit();
         mng.setVisible(true);
     }//GEN-LAST:event_HomeActionPerformed
 

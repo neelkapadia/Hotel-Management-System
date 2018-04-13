@@ -31,20 +31,20 @@ public class DeleteHotel extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        customerID = new javax.swing.JTextField();
+        HotelID = new javax.swing.JTextField();
         Delete = new javax.swing.JButton();
         Home = new javax.swing.JButton();
         Logout = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Customer ID");
+        jLabel1.setText("Hotel ID");
 
-        customerID.addActionListener(new java.awt.event.ActionListener() {
+        HotelID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customerIDActionPerformed(evt);
+                HotelIDActionPerformed(evt);
             }
         });
 
@@ -79,46 +79,46 @@ public class DeleteHotel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(231, Short.MAX_VALUE)
+                .addComponent(Home)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Logout)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Home)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Logout))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(208, 208, 208)
+                                .addGap(43, 43, 43)
                                 .addComponent(jLabel6))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(227, 227, 227)
+                                .addGap(62, 62, 62)
                                 .addComponent(Delete))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(226, 226, 226)
+                                .addGap(61, 61, 61)
                                 .addComponent(jLabel7)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(jLabel1)
-                .addGap(42, 42, 42)
-                .addComponent(customerID, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+                        .addGap(34, 34, 34))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(42, 42, 42)
+                        .addComponent(HotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(55, 55, 55)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(customerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(HotelID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(Delete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Logout)
                     .addComponent(Home))
@@ -128,22 +128,22 @@ public class DeleteHotel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void customerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerIDActionPerformed
+    private void HotelIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HotelIDActionPerformed
         // TODO add your handling code here:
 
         //get customer
-    }//GEN-LAST:event_customerIDActionPerformed
+    }//GEN-LAST:event_HotelIDActionPerformed
 
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // TODO add your handling code here:
-        ConfirmDeleteCustomer cdc =  new ConfirmDeleteCustomer();
-
+        ConfirmDeleteHotel cdc =  new ConfirmDeleteHotel();
+ Intermediate.addItem("HotID", HotelID);
         cdc.setVisible(true);
     }//GEN-LAST:event_DeleteActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        FrontDesk fd = new FrontDesk();
+        Manager fd = new Manager();
         sysExit();
         fd.setVisible(true);
     }//GEN-LAST:event_HomeActionPerformed
@@ -201,8 +201,8 @@ public class DeleteHotel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Delete;
     private javax.swing.JButton Home;
+    private javax.swing.JTextField HotelID;
     private javax.swing.JButton Logout;
-    private javax.swing.JTextField customerID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
