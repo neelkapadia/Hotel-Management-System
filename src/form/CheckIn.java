@@ -51,10 +51,10 @@ public class CheckIn extends javax.swing.JFrame {
         Customer = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         Submit = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        bookingId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        startDate = new javax.swing.JTextField();
+        endDate = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -104,23 +104,23 @@ public class CheckIn extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        bookingId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                bookingIdActionPerformed(evt);
             }
         });
 
         jLabel1.setText("BookingID");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        startDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                startDateActionPerformed(evt);
             }
         });
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        endDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                endDateActionPerformed(evt);
             }
         });
 
@@ -135,15 +135,6 @@ public class CheckIn extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -157,28 +148,38 @@ public class CheckIn extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(280, 280, 280))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(244, 244, 244)))))
+                                .addComponent(bookingId, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(249, 249, 249))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(276, 276, 276)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookingId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -218,23 +219,71 @@ public class CheckIn extends javax.swing.JFrame {
         JFrame jf = new JFrame();
         JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
         //commit rooms
+        rowSelection();
+        
         FrontDesk fd = new FrontDesk();
         sysExit();
         fd.setVisible(true);
     }//GEN-LAST:event_SubmitActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void bookingIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_bookingIdActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void startDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_startDateActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void endDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endDateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_endDateActionPerformed
 
+    public void rowSelection(){
+        // Adding selection functionality for rooms
+        Room.setRowSelectionAllowed(true);
+            ListSelectionModel ls = Room.getSelectionModel();
+            ls.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+            ls.addListSelectionListener(new ListSelectionListener() {
+                public void valueChanged(ListSelectionEvent e) {
+                    String selectedData = null;
+                    // array which stores the indices of selected rows from the table
+                    int[] selectedRow = Room.getSelectedRows();
+                    System.out.println("Room rows selected");
+                    System.out.println(selectedRow[0]);
+//                    for (int i = 0; i < selectedRow.length; i++) {
+//                        for (int j = 0; j < 4; j++) {
+//                            selectedData = (String) Room.getValueAt(selectedRow[i], j);
+//                            System.out.print(selectedData + " ");
+//                        }
+//                        System.out.println("");
+//                    }
+                    //System.out.println("Selected: " + selectedData);
+                }
+            });
+            
+        // Adding selection functionality for rooms
+        Customer.setRowSelectionAllowed(true);
+            ListSelectionModel lsCust = Customer.getSelectionModel();
+            lsCust.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+            lsCust.addListSelectionListener(new ListSelectionListener() {
+                public void valueChanged(ListSelectionEvent e) {
+                    String selectedData = null;
+                    int[] selectedRow = Customer.getSelectedRows();
+                    System.out.println(selectedRow[0]);
+//                    for (int i = 0; i < selectedRow.length; i++) {
+//                        for (int j = 0; j < 3; j++) {
+//                            selectedData = (String) Customer.getValueAt(selectedRow[i], j);
+//                            System.out.print(selectedData + " ");
+//                        }
+//                        System.out.println("");
+//                    }
+                    //System.out.println("Selected: " + selectedData);
+                }
+            });   
+    }
+    
     public void getDetails() {
         db_connection db = new db_connection();
         Connection conn = null;
@@ -243,58 +292,29 @@ public class CheckIn extends javax.swing.JFrame {
         try {
 //            String sid = staffid.getText();
 //            int id = Integer.parseInt(sid);
+
             conn = db.connect_db();
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT roomNum, room.category, capacity, p.price FROM Room, RoomPrice p WHERE avail = 1 AND Room.category = p.category AND HotelId = (SELECT HotelId FROM worksFor WHERE StaffId = " + Intermediate.getItem("1") + ") ORDER BY room.category;");
-            Intermediate.removeItem("1");
+            // Temporary query so you do not have to login. Assuming front desk staff with id 103 logs in everytime
+            rs = stmt.executeQuery("SELECT roomNum, room.category, capacity, p.price FROM Room, RoomPrice p WHERE avail = 1 AND Room.category = p.category AND HotelId = (SELECT HotelId FROM worksFor WHERE StaffId = 103) ORDER BY room.category;");
+
+//            rs = stmt.executeQuery("SELECT roomNum, room.category, capacity, p.price FROM Room, RoomPrice p WHERE avail = 1 AND Room.category = p.category AND HotelId = (SELECT HotelId FROM worksFor WHERE StaffId = " + Intermediate.getItem("1") + ") ORDER BY room.category;");
+//
+//            // We got the rooms for that particular hotel using the id of the front desk staff. We don't need it anymore
+//            // Hence, we remove it
+//            Intermediate.removeItem("1");
+            
+            
             DefaultTableModel model = (DefaultTableModel) Room.getModel();
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
             }
-
-            Room.setRowSelectionAllowed(true);
-            ListSelectionModel ls = Room.getSelectionModel();
-            ls.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-
-            ls.addListSelectionListener(new ListSelectionListener() {
-                public void valueChanged(ListSelectionEvent e) {
-                    String selectedData = null;
-                    int[] selectedRow = Room.getSelectedRows();
-                    for (int i = 0; i < selectedRow.length; i++) {
-                        for (int j = 0; j < 4; j++) {
-                            selectedData = (String) Room.getValueAt(selectedRow[i], j);
-                            System.out.print(selectedData + " ");
-                        }
-                        System.out.println("");
-                    }
-                    //System.out.println("Selected: " + selectedData);
-                }
-            });
-
+            
             rs = stmt.executeQuery("select custid, name, email from customer");
             DefaultTableModel modelCust = (DefaultTableModel) Customer.getModel();
             while (rs.next()) {
                 modelCust.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3)});
             }
-
-            Customer.setRowSelectionAllowed(true);
-            ListSelectionModel lsCust = Customer.getSelectionModel();
-            lsCust.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-
-            lsCust.addListSelectionListener(new ListSelectionListener() {
-                public void valueChanged(ListSelectionEvent e) {
-                    String selectedData = null;
-                    int[] selectedRow = Customer.getSelectedRows();
-                    for (int i = 0; i < selectedRow.length; i++) {
-                        for (int j = 0; j < 3; j++) {
-                            selectedData = (String) Customer.getValueAt(selectedRow[i], j);
-                            System.out.print(selectedData + " ");
-                        }
-                        System.out.println("");
-                    }
-                    //System.out.println("Selected: " + selectedData);
-                }
-            });
 
 //            if(staff == false && frontDesk == false && manager == false){
 //                JFrame jf = new JFrame();
@@ -371,14 +391,14 @@ public class CheckIn extends javax.swing.JFrame {
     private javax.swing.JButton Logout1;
     private javax.swing.JTable Room;
     private javax.swing.JButton Submit;
+    private javax.swing.JTextField bookingId;
+    private javax.swing.JTextField endDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField startDate;
     // End of variables declaration//GEN-END:variables
 }
