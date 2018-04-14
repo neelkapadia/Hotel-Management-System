@@ -29,6 +29,9 @@ public class CheckIn extends javax.swing.JFrame {
     /**
      * Creates new form CheckInNew
      */
+    
+    
+    
     public CheckIn() {
         initComponents();
         getDetails();
@@ -219,8 +222,10 @@ public class CheckIn extends javax.swing.JFrame {
         JFrame jf = new JFrame();
         JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
         //commit rooms
+        System.out.println("Before row selection");
         rowSelection();
-        
+        System.out.println("After row selection");
+
         FrontDesk fd = new FrontDesk();
         sysExit();
         fd.setVisible(true);
@@ -238,50 +243,87 @@ public class CheckIn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_endDateActionPerformed
 
+    public void inserts(){
+        
+    }
+    
     public void rowSelection(){
         // Adding selection functionality for rooms
         Room.setRowSelectionAllowed(true);
-            ListSelectionModel ls = Room.getSelectionModel();
-            ls.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-
-            ls.addListSelectionListener(new ListSelectionListener() {
-                public void valueChanged(ListSelectionEvent e) {
-                    String selectedData = null;
-                    // array which stores the indices of selected rows from the table
-                    int[] selectedRow = Room.getSelectedRows();
-                    System.out.println("Room rows selected");
-                    System.out.println(selectedRow[0]);
-//                    for (int i = 0; i < selectedRow.length; i++) {
-//                        for (int j = 0; j < 4; j++) {
-//                            selectedData = (String) Room.getValueAt(selectedRow[i], j);
-//                            System.out.print(selectedData + " ");
-//                        }
-//                        System.out.println("");
-//                    }
-                    //System.out.println("Selected: " + selectedData);
-                }
-            });
-            
+        ListSelectionModel ls = Room.getSelectionModel();
+        ls.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        
         // Adding selection functionality for rooms
         Customer.setRowSelectionAllowed(true);
-            ListSelectionModel lsCust = Customer.getSelectionModel();
-            lsCust.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        ListSelectionModel lsCust = Customer.getSelectionModel();
+        lsCust.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-            lsCust.addListSelectionListener(new ListSelectionListener() {
-                public void valueChanged(ListSelectionEvent e) {
-                    String selectedData = null;
-                    int[] selectedRow = Customer.getSelectedRows();
-                    System.out.println(selectedRow[0]);
-//                    for (int i = 0; i < selectedRow.length; i++) {
-//                        for (int j = 0; j < 3; j++) {
-//                            selectedData = (String) Customer.getValueAt(selectedRow[i], j);
-//                            System.out.print(selectedData + " ");
-//                        }
-//                        System.out.println("");
-//                    }
-                    //System.out.println("Selected: " + selectedData);
-                }
-            });   
+        System.out.println("Inside row selection - before room");
+
+        int[] selectedRoom = Room.getSelectedRows();
+        System.out.println("Room rows selected");
+        System.out.println(selectedRoom[0]);
+        int row = selectedRoom[0];
+        
+        // Storing room details in variables
+        int roomNum = Integer.parseInt((String)Room.getValueAt(row, 0));
+        String roomCategory = (String)Room.getValueAt(row, 1);
+        int roomCapacity = Integer.parseInt((String)Room.getValueAt(row, 2));
+        int roomPrice = Integer.parseInt((String)Room.getValueAt(row, 3));
+        
+        System.out.println(roomNum + "," + roomCategory + "," + roomCapacity + "," + roomPrice);
+        
+        System.out.println("Inside row selection - before customer");
+        
+        int[] selectedCusts = Customer.getSelectedRows();
+        System.out.println(selectedCusts[0]);
+        
+        // Storing customer details
+        int[] custId = new int[selectedCusts.length];
+        String[] custName = new String[selectedCusts.length];
+        String[] custEmail = new String[selectedCusts.length];
+        
+        for(int i = 0; i < selectedCusts.length; i++){
+            custId[i] = Integer.parseInt((String)Room.getValueAt(i, 0));
+            custName[i] = (String)Room.getValueAt(i, 1);
+            custEmail[i] = (String)Room.getValueAt(i, 2);
+        }
+        
+//        ls.addListSelectionListener(new ListSelectionListener() {
+//            public void valueChanged(ListSelectionEvent e) {
+//                String selectedData = null;
+//                // array which stores the indices of selected rows from the table
+//                int[] selectedRow = Room.getSelectedRows();
+//                System.out.println("Room rows selected");
+//                System.out.println(selectedRow[0]);
+////                    for (int i = 0; i < selectedRow.length; i++) {
+////                        for (int j = 0; j < 4; j++) {
+////                            selectedData = (String) Room.getValueAt(selectedRow[i], j);
+////                            System.out.print(selectedData + " ");
+////                        }
+////                        System.out.println("");
+////                    }
+//                //System.out.println("Selected: " + selectedData);
+//            }
+//        });
+
+
+//        lsCust.addListSelectionListener(new ListSelectionListener() {
+//            public void valueChanged(ListSelectionEvent e) {
+//                String selectedData = null;
+//                int[] selectedRow = Customer.getSelectedRows();
+//                System.out.println(selectedRow[0]);
+////                    for (int i = 0; i < selectedRow.length; i++) {
+////                        for (int j = 0; j < 3; j++) {
+////                            selectedData = (String) Customer.getValueAt(selectedRow[i], j);
+////                            System.out.print(selectedData + " ");
+////                        }
+////                        System.out.println("");
+////                    }
+//                //System.out.println("Selected: " + selectedData);
+//            }
+//        });
+        System.out.println("Exiting row selection");
     }
     
     public void getDetails() {
