@@ -339,6 +339,8 @@ public class CheckIn extends javax.swing.JFrame {
         try {
             conn = db.connect_db();
             Statement stmt = conn.createStatement();
+            Statement stmt2 = conn.createStatement();
+
         
             System.out.println("Inside inserts");
 
@@ -388,7 +390,42 @@ public class CheckIn extends javax.swing.JFrame {
                 String roomAvailabilityToggle = "UPDATE Room SET avail=0 WHERE hotelid="+hotelId+" AND roomnum="+roomNum;
                 stmt.executeUpdate(roomAvailabilityToggle);
                 
+                if(roomCategory.equals("Presidential")){
+                    String cateringStaffAvailable = "SELECT staffid FROM Staff WHERE jobtitle='Catering Staff' AND avail=1 LIMIT 1";
+                    rs = stmt.executeQuery(cateringStaffAvailable);
+                    if(rs.next()){
+                        // Add to isAssignedCaterer
+                        int staffId = rs.getInt("staffid");
+                        String insertCaterer = "INSERT INTO isAssignedCaterer VALUES ("+staffId+", "+hotelId+", "+roomNum+")";
+                        stmt.executeUpdate(insertCaterer);
+                        
+                        String updateCatererAvailability = "UPDATE Staff SET avail=0 WHERE staffid="+staffId;
+                        stmt.executeUpdate(updateCatererAvailability);
+                        
+                        String roomServiceStaffAvailable = "SELECT staffid FROM Staff WHERE jobtitle='Room Service Staff' AND avail=1 LIMIT 1";
+                        rs = stmt2.executeQuery(roomServiceStaffAvailable);
+                        if(rs.next()){
+                            int staffId2 = rs.getInt("staffid");
+                            String insertRoomService = "INSERT INTO isAssignedRoomService VALUES ("+staffId2+", "+hotelId+", "+roomNum+")";
+                            stmt2.executeUpdate(insertRoomService);
+                            
+                            String updateRoomServiceAvailability = "UPDATE Staff SET avail=0 WHERE staffid="+staffId2;
+                            stmt2.executeUpdate(updateRoomServiceAvailability);
+                        }
+                        else{
+                            System.out.println("No Room Service Staff available");
+                        }
+                    }
+                    else{
+                        System.out.println("No Catering Staff available");
+                    }
+                    
+                    
+                }
+                
             } catch (SQLException e) {
+                // If error, rollback
+                
                 e.printStackTrace();
                 JFrame jf = new JFrame();
                 JOptionPane.showMessageDialog(jf, "Error in insertions after checkin", "ERROR", JOptionPane.ERROR_MESSAGE);
