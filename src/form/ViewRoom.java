@@ -41,7 +41,7 @@ public class ViewRoom extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         invoiceFrame = new javax.swing.JTable();
         Logout = new javax.swing.JButton();
-        Home1 = new javax.swing.JButton();
+        Homeb = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,10 +62,10 @@ public class ViewRoom extends javax.swing.JFrame {
             }
         });
 
-        Home1.setText("Home");
-        Home1.addActionListener(new java.awt.event.ActionListener() {
+        Homeb.setText("Home");
+        Homeb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Home1ActionPerformed(evt);
+                HomebActionPerformed(evt);
             }
         });
 
@@ -79,7 +79,7 @@ public class ViewRoom extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Home1)
+                        .addComponent(Homeb)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Logout)))
                 .addContainerGap())
@@ -90,18 +90,18 @@ public class ViewRoom extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Home1)
+                    .addComponent(Homeb)
                     .addComponent(Logout)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Home1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home1ActionPerformed
+    private void HomebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomebActionPerformed
         Manager mng = new Manager();
         sysExit();
         mng.setVisible(true);
-    }//GEN-LAST:event_Home1ActionPerformed
+    }//GEN-LAST:event_HomebActionPerformed
 
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
         Login l = new Login();
@@ -148,7 +148,7 @@ public class ViewRoom extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Home1;
+    private javax.swing.JButton Homeb;
     private javax.swing.JButton Logout;
     public javax.swing.JTable invoiceFrame;
     private javax.swing.JScrollPane jScrollPane1;
