@@ -42,7 +42,7 @@ public class Manager extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         Home = new javax.swing.JButton();
         Logout = new javax.swing.JButton();
-        generateReport1 = new javax.swing.JButton();
+        addService = new javax.swing.JButton();
 
         jLabel2.setText("Please Choose Task:");
 
@@ -102,11 +102,11 @@ public class Manager extends javax.swing.JFrame {
             }
         });
 
-        generateReport1.setText("Generate Report");
-        buttonGroup1.add(generateReport1);
-        generateReport1.addActionListener(new java.awt.event.ActionListener() {
+        addService.setText("Add Service");
+        buttonGroup1.add(addService);
+        addService.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generateReport1ActionPerformed(evt);
+                addServiceActionPerformed(evt);
             }
         });
 
@@ -138,7 +138,7 @@ public class Manager extends javax.swing.JFrame {
                             .addComponent(manageRooms, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(27, 27, 27)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(generateReport1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addService, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(generateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(110, 110, 110))))
@@ -158,7 +158,7 @@ public class Manager extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(generateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(generateReport1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addService, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Home)
@@ -222,11 +222,13 @@ public class Manager extends javax.swing.JFrame {
         l.setVisible(true);
     }//GEN-LAST:event_LogoutActionPerformed
 
-    private void generateReport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReport1ActionPerformed
+    private void addServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addServiceActionPerformed
         // TODO add your handling code here:
+           AddNewService l = new AddNewService();
+        sysExit();
+        l.setVisible(true);
         
-        
-    }//GEN-LAST:event_generateReport1ActionPerformed
+    }//GEN-LAST:event_addServiceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,9 +276,9 @@ public class Manager extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;
     private javax.swing.JButton Logout;
+    private javax.swing.JButton addService;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton generateReport;
-    private javax.swing.JButton generateReport1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

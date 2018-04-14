@@ -255,6 +255,8 @@ public class AddNewService extends javax.swing.JFrame {
         
     }//GEN-LAST:event_AddServiceActionPerformed
 
+    
+    //// (select * from (select * from hotel)c join (select * from HotelCity)b on a.address = b.address)
         
     public void sysExit(){
         WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);

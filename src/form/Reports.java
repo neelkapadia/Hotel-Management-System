@@ -52,6 +52,8 @@ public class Reports extends javax.swing.JFrame {
         City = new javax.swing.JRadioButton();
         Staff = new javax.swing.JRadioButton();
         StaffP = new javax.swing.JRadioButton();
+        Home = new javax.swing.JButton();
+        Logout1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,6 +106,20 @@ public class Reports extends javax.swing.JFrame {
         buttonGroup1.add(StaffP);
         StaffP.setText("Report by Staff Serving Customer (Presidential Suite)");
 
+        Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
+        Logout1.setText("Logout");
+        Logout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,12 +145,16 @@ public class Reports extends javax.swing.JFrame {
                                 .addGap(80, 80, 80)
                                 .addComponent(Submit))
                             .addComponent(jLabel1))
-                        .addGap(55, 55, 55))))
+                        .addGap(55, 55, 55))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Home)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Logout1))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel2)
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
@@ -158,7 +178,10 @@ public class Reports extends javax.swing.JFrame {
                 .addComponent(Staff)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Submit)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home)
+                    .addComponent(Logout1)))
         );
 
         pack();
@@ -170,7 +193,9 @@ public class Reports extends javax.swing.JFrame {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs;
+        ResultSet rs1;
         String query;
+        String query1;
         try {
             conn = db.connect_db();
             stmt = conn.createStatement();
@@ -238,6 +263,14 @@ public class Reports extends javax.swing.JFrame {
                 query = "SELECT q.city, p.rooms_occupied, p.total_rooms FROM(\n" +
 "SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (\n" +
 "SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city;";
+                
+                //query1 = "Select city from Hotelcity where city NOT IN (SELECT q.city FROM (SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city);";
+                
+               query1 = "Select x.city as city, y.total as total_rooms from (select city from hotelcity where city not in (SELECT q.city FROM (SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city))x join (Select a.total,d.city from (select hotelid,count(*) as total from room group by hotelid)a join (select hotelid,city from (select * from hotel)c join (select * from HotelCity)b on c.address = b.address)d on a.hotelid = d.hotelid)y on y.city = x.city;";
+              
+                
+                
+                
                 ReportOccupancyByCity report = new ReportOccupancyByCity();
                 DefaultTableModel model = (DefaultTableModel) report.ReportCity.getModel();
                 try {
@@ -246,6 +279,20 @@ public class Reports extends javax.swing.JFrame {
                         //System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("city"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
                     }
+                    
+                    rs1 = stmt.executeQuery(query1);
+                    
+                    while(rs1.next()){
+                       model.addRow(new Object[]{rs1.getString("city"), "0", rs1.getString("total_rooms")});
+                   
+                    }
+                    //System.out.println(rs1.getString("city"));
+                    /*
+                    while(rs1.next()){
+                       model.addRow(new Object[]{rs.getString("city"), "0", rs.getString("total_rooms")});
+                   
+                    }
+                    */
                     report.setVisible(true);
                 } catch (SQLException e) {
                     JFrame jf = new JFrame();
@@ -331,6 +378,20 @@ public class Reports extends javax.swing.JFrame {
     private void RoomCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoomCategoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RoomCategoryActionPerformed
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        Manager mng = new Manager();
+        sysExit();
+        mng.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
+
+    private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_Logout1ActionPerformed
     public void sysExit() {
         WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
@@ -374,6 +435,8 @@ public class Reports extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton City;
     private javax.swing.JRadioButton Date;
+    private javax.swing.JButton Home;
+    private javax.swing.JButton Logout1;
     private javax.swing.JRadioButton Occupancy;
     private javax.swing.JRadioButton Revenue;
     private javax.swing.JRadioButton RoomCategory;
