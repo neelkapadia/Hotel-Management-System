@@ -4,7 +4,15 @@
  * and open the template in the editor.
  */
 package form;
-
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author saurabhshanbhag
@@ -16,6 +24,7 @@ public class ViewStaff extends javax.swing.JFrame {
      */
     public ViewStaff() {
         initComponents();
+        generateStaff();
     }
 
     /**
@@ -27,25 +36,144 @@ public class ViewStaff extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        invoiceFrame = new javax.swing.JTable();
+        Home = new javax.swing.JButton();
+        Logout1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        invoiceFrame.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Staff ID", "Name", "Job Title", "Phone Number", "Address", "Age", "Availability", "Department"
+            }
+        ));
+        jScrollPane1.setViewportView(invoiceFrame);
+
+        Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
+        Logout1.setText("Logout");
+        Logout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Home)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Logout1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 327, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home)
+                    .addComponent(Logout1)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        Manager mng = new Manager();
+        sysExit();
+        mng.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
+
+    private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_Logout1ActionPerformed
+
+      public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
     /**
      * @param args the command line arguments
      */
+      
+      
+    public void generateStaff() {
+        DefaultTableModel model = (DefaultTableModel) invoiceFrame.getModel();
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt1 = null;
+        
+        ResultSet rs; 
+      
+        
+        try {
+            conn = db.connect_db();
+            stmt1 = conn.createStatement();
+            
+            
+            rs = stmt1.executeQuery("select * from staff");
+            
+            while (rs.next()) {
+                
+                int SID = rs.getInt("staffid");
+                String Name = rs.getString("name");
+                String Adr = rs.getString("address");
+                String jt = rs.getString("jobtitle");
+                String dept = rs.getString("department");
+                int phno = rs.getInt("phoneNum");
+                int age = rs.getInt("age");
+                int av= rs.getInt("avail");
+                
+                
+               
+                
+                model.addRow(new Object[]{SID,Name,jt,phno,Adr,age,av,dept});
+                
+            }
+            
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+
+            if (stmt1 != null) {
+                try {
+                    stmt1.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ViewStaff.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+           
+            try {
+            db.close_db(conn);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -79,5 +207,9 @@ public class ViewStaff extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home;
+    private javax.swing.JButton Logout1;
+    public javax.swing.JTable invoiceFrame;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
