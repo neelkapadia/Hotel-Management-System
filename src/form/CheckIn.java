@@ -277,9 +277,9 @@ public class CheckIn extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Manager mng = new Manager();
+        FrontDesk fd = new FrontDesk();
         sysExit();
-        mng.setVisible(true);
+        fd.setVisible(true);
     }//GEN-LAST:event_HomeActionPerformed
 
     private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
@@ -291,8 +291,6 @@ public class CheckIn extends javax.swing.JFrame {
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
-        JFrame jf = new JFrame();
-        JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
         //commit rooms
         System.out.println("Before row selection");
         rowSelection();
@@ -334,14 +332,18 @@ public class CheckIn extends javax.swing.JFrame {
     public void inserts(int roomNum, String roomCategory, int roomCapacity, int roomPrice, int[] custId, String[] custName, String[] custEmail){
         
         db_connection db = new db_connection();
-        Connection conn;
+        Connection conn = null;
         ResultSet rs;
+        Statement stmt = null;
+        Statement stmt2 = null;
+
         try {
             conn = db.connect_db();
-            Statement stmt = conn.createStatement();
-            Statement stmt2 = conn.createStatement();
-
-        
+            stmt = conn.createStatement();
+            stmt2 = conn.createStatement();
+            
+            conn.setAutoCommit(false);
+            
             System.out.println("Inside inserts");
 
             System.out.println(roomNum + "," + roomCategory + "," + roomCapacity + "," + roomPrice + "," + custId[0] + "," + custName[0] + "," + custEmail[0]);
@@ -368,70 +370,101 @@ public class CheckIn extends javax.swing.JFrame {
             String getHotelId = "SELECT hotelid FROM worksFor WHERE staffid='"+Intermediate.getItem("frontDeskStaffId")+"'";
             
 
-            try {
-                stmt.executeUpdate(insertBookingInfo);
-                stmt.executeUpdate(insertBillInfo);
-                stmt.executeUpdate(insertHas);
-                rs = stmt.executeQuery(getHotelId);
-                rs.next();
-                int hotelId = Integer.parseInt(rs.getString("hotelid"));
-                
-                String insertIsAssigned = "INSERT INTO isAssigned VALUES ("+bookId+", "+hotelId+", "+roomNum+")";
-                stmt.executeUpdate(insertIsAssigned);
 
-                
-                System.out.println("Number of customers selected -"+custId.length);
-                for(int i = 0; i < custId.length; i++){
-                    // Needs to be executed for each customer
-                    System.out.println(custId[i]);
-                    String insertGets = "INSERT INTO gets VALUES ("+custId[i]+", "+bookId+")";
-                    stmt.executeUpdate(insertGets);
-                }
-                String roomAvailabilityToggle = "UPDATE Room SET avail=0 WHERE hotelid="+hotelId+" AND roomnum="+roomNum;
-                stmt.executeUpdate(roomAvailabilityToggle);
-                
-                if(roomCategory.equals("Presidential")){
-                    String cateringStaffAvailable = "SELECT staffid FROM Staff WHERE jobtitle='Catering Staff' AND avail=1 LIMIT 1";
-                    rs = stmt.executeQuery(cateringStaffAvailable);
+            stmt.executeUpdate(insertBookingInfo);
+            stmt.executeUpdate(insertBillInfo);
+            stmt.executeUpdate(insertHas);
+            rs = stmt.executeQuery(getHotelId);
+            rs.next();
+            int hotelId = Integer.parseInt(rs.getString("hotelid"));
+
+            String insertIsAssigned = "INSERT INTO isAssigned VALUES ("+bookId+", "+hotelId+", "+roomNum+")";
+            stmt.executeUpdate(insertIsAssigned);
+
+
+            System.out.println("Number of customers selected -"+custId.length);
+            for(int i = 0; i < custId.length; i++){
+                // Needs to be executed for each customer
+                System.out.println(custId[i]);
+                String insertGets = "INSERT INTO gets VALUES ("+custId[i]+", "+bookId+")";
+                stmt.executeUpdate(insertGets);
+            }
+            String roomAvailabilityToggle = "UPDATE Room SET avail=0 WHERE hotelid="+hotelId+" AND roomnum="+roomNum;
+            stmt.executeUpdate(roomAvailabilityToggle);
+
+            if(roomCategory.equals("Presidential")){
+                String cateringStaffAvailable = "SELECT staffid FROM Staff WHERE jobtitle='Catering Staff' AND avail=1 LIMIT 1";
+                rs = stmt.executeQuery(cateringStaffAvailable);
+                if(rs.next()){
+                    // Add to isAssignedCaterer
+                    int staffId = rs.getInt("staffid");
+                    String insertCaterer = "INSERT INTO isAssignedCaterer VALUES ("+staffId+", "+hotelId+", "+roomNum+")";
+                    stmt.executeUpdate(insertCaterer);
+
+                    String updateCatererAvailability = "UPDATE Staff SET avail=0 WHERE staffid="+staffId;
+                    stmt.executeUpdate(updateCatererAvailability);
+
+                    String roomServiceStaffAvailable = "SELECT staffid FROM Staff WHERE jobtitle='Room Service Staff' AND avail=1 LIMIT 1";
+                    rs = stmt2.executeQuery(roomServiceStaffAvailable);
                     if(rs.next()){
-                        // Add to isAssignedCaterer
-                        int staffId = rs.getInt("staffid");
-                        String insertCaterer = "INSERT INTO isAssignedCaterer VALUES ("+staffId+", "+hotelId+", "+roomNum+")";
-                        stmt.executeUpdate(insertCaterer);
-                        
-                        String updateCatererAvailability = "UPDATE Staff SET avail=0 WHERE staffid="+staffId;
-                        stmt.executeUpdate(updateCatererAvailability);
-                        
-                        String roomServiceStaffAvailable = "SELECT staffid FROM Staff WHERE jobtitle='Room Service Staff' AND avail=1 LIMIT 1";
-                        rs = stmt2.executeQuery(roomServiceStaffAvailable);
-                        if(rs.next()){
-                            int staffId2 = rs.getInt("staffid");
-                            String insertRoomService = "INSERT INTO isAssignedRoomService VALUES ("+staffId2+", "+hotelId+", "+roomNum+")";
-                            stmt2.executeUpdate(insertRoomService);
-                            
-                            String updateRoomServiceAvailability = "UPDATE Staff SET avail=0 WHERE staffid="+staffId2;
-                            stmt2.executeUpdate(updateRoomServiceAvailability);
-                        }
-                        else{
-                            System.out.println("No Room Service Staff available");
-                        }
+                        int staffId2 = rs.getInt("staffid");
+                        String insertRoomService = "INSERT INTO isAssignedRoomService VALUES ("+staffId2+", "+hotelId+", "+roomNum+")";
+                        stmt2.executeUpdate(insertRoomService);
+
+                        String updateRoomServiceAvailability = "UPDATE Staff SET avail=0 WHERE staffid="+staffId2;
+                        stmt2.executeUpdate(updateRoomServiceAvailability);
+
+                        // Success!
+                        conn.commit();
+                        JFrame jf = new JFrame();
+                        JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
                     }
                     else{
-                        System.out.println("No Catering Staff available");
+                        JFrame jf = new JFrame();
+                        JOptionPane.showMessageDialog(jf, "No Room Service Staff available. Rolled back!", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                        System.out.println("No Room Service Staff available");
+                        conn.rollback();
                     }
-                    
-                    
+                }
+                else{
+                    JFrame jf = new JFrame();
+                    JOptionPane.showMessageDialog(jf, "No Catering Staff available. ROlled back!", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                    System.out.println("No Catering Staff available");
+                    conn.rollback();
                 }
                 
-            } catch (SQLException e) {
-                // If error, rollback
-                
-                e.printStackTrace();
-                JFrame jf = new JFrame();
-                JOptionPane.showMessageDialog(jf, "Error in insertions after checkin", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
+            
         } catch (Exception ex) {
             ex.printStackTrace();
+            JFrame jf = new JFrame();
+            JOptionPane.showMessageDialog(jf, "Error in insertions after checkin", "ERROR", JOptionPane.ERROR_MESSAGE);
+            try {
+                conn.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        finally{
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                    stmt2.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true);
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }
     
