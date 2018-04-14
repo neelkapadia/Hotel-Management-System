@@ -137,8 +137,8 @@ public class Login extends javax.swing.JFrame {
             }
             rs = stmt.executeQuery("select staffid from frontdeskstaff where staffid = " + id);
             if (s == false && rs.first()) {
-                Intermediate.addItem("1", id);
-                System.out.println(Intermediate.getItem("1"));
+                Intermediate.addItem("frontDeskStaffId", id);
+                System.out.println(Intermediate.getItem("frontDeskStaffId"));
                 FrontDesk fd = new FrontDesk();
                 sysExit();
                 fd.setVisible(true);
