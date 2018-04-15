@@ -30,7 +30,6 @@ public class UpdateRoomPrice extends javax.swing.JFrame {
 
      public void toggleVisibility(boolean isVisible) {
         
-        category.setVisible(isVisible);
         price.setVisible(isVisible);
         roomNum.setVisible(isVisible);
         updateDetails.setVisible(isVisible);  
@@ -56,7 +55,7 @@ public class UpdateRoomPrice extends javax.swing.JFrame {
         Logout1 = new javax.swing.JButton();
         price = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel6.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel6.setText("Wolf Inns");

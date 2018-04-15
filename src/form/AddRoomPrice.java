@@ -170,7 +170,7 @@ public class AddRoomPrice extends javax.swing.JFrame {
             conn = db.connect_db();
             stmt = conn.createStatement();
             
-            stmt.executeUpdate("insert into roomprice values ("+roomCat.getText()+",'"+price.getText()+")");
+            stmt.executeUpdate("insert into roomprice values ('"+roomCat.getText()+"',"+price.getText()+")");
 
             JOptionPane.showMessageDialog(null, "Room price added!");
             price.setText("");

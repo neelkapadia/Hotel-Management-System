@@ -245,6 +245,9 @@ public class Manager extends javax.swing.JFrame {
 
     private void manageRoomPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageRoomPriceActionPerformed
         
+        ManageRoomPrice l = new ManageRoomPrice();
+        sysExit();
+        l.setVisible(true);
         
         
         

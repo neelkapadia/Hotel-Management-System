@@ -136,7 +136,7 @@ public class DeleteRoomPrice extends javax.swing.JFrame {
 
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // TODO add your handling code here:
-        ConfirmDeleteRoom cdc =  new ConfirmDeleteRoom();
+        ConfirmDeleteRoomPrice cdc =  new ConfirmDeleteRoomPrice();
         Intermediate.addItem("category", category);
         cdc.setVisible(true);
     }//GEN-LAST:event_DeleteActionPerformed
