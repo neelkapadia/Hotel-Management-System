@@ -206,9 +206,9 @@ public class Reports extends javax.swing.JFrame {
             stmt = conn.createStatement();
             if (Occupancy.isSelected()) {
                 query = "SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM (SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid;";
-                
+
                 query1 = "Select a.hotelid, a.total_rooms from (select hotelid,count(*) as total_rooms from room group by hotelid)a join (Select hotelid from hotel where hotelid not in (Select hotelid from isassigned))b on a.hotelid = b.hotelid;";
-                
+
                 ReportOccupancyByHotel report = new ReportOccupancyByHotel();
                 DefaultTableModel model = (DefaultTableModel) report.Report1.getModel();
                 try {
@@ -217,12 +217,12 @@ public class Reports extends javax.swing.JFrame {
                         //System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("hotelid"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
                     }
-                    
+
                     rs1 = stmt.executeQuery(query1);
-                    
-                    while(rs1.next()){
-                       model.addRow(new Object[]{rs1.getString("hotelid"), "0", rs1.getString("total_rooms")});
-                   
+
+                    while (rs1.next()) {
+                        model.addRow(new Object[]{rs1.getString("hotelid"), "0", rs1.getString("total_rooms")});
+
                     }
 
                     report.setVisible(true);
@@ -276,17 +276,13 @@ public class Reports extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             } else if (City.isSelected()) {
-                query = "SELECT q.city, p.rooms_occupied, p.total_rooms FROM(\n" +
-"SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (\n" +
-"SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city;";
-                
+                query = "SELECT q.city, p.rooms_occupied, p.total_rooms FROM(\n"
+                        + "SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (\n"
+                        + "SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city;";
+
                 //query1 = "Select city from Hotelcity where city NOT IN (SELECT q.city FROM (SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city);";
-                
-               query1 = "Select x.city as city, y.total as total_rooms from (select city from hotelcity where city not in (SELECT q.city FROM (SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city))x join (Select a.total,d.city from (select hotelid,count(*) as total from room group by hotelid)a join (select hotelid,city from (select * from hotel)c join (select * from HotelCity)b on c.address = b.address)d on a.hotelid = d.hotelid)y on y.city = x.city;";
-              
-                //query1 = "Select x.city as city, y.total as total_rooms from (select city from hotelcity where city not in (SELECT q.city FROM (SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city))x join (Select sum(a.total) as total,d.city from (select hotelid,count(*) as total from room group by hotelid)a join (select hotelid,city from (select * from hotel)c join (select * from HotelCity)b on c.address = b.address)d on a.hotelid = d.hotelid group by d.city)y on y.city = x.city;";
-                
-                
+                query1 = "Select x.city as city, y.total as total_rooms from (select city from hotelcity where city not in (SELECT q.city FROM (SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city))x join (Select a.total,d.city from (select hotelid,count(*) as total from room group by hotelid)a join (select hotelid,city from (select * from hotel)c join (select * from HotelCity)b on c.address = b.address)d on a.hotelid = d.hotelid)y on y.city = x.city;";
+
                 ReportOccupancyByCity report = new ReportOccupancyByCity();
                 DefaultTableModel model = (DefaultTableModel) report.ReportCity.getModel();
                 try {
@@ -295,42 +291,39 @@ public class Reports extends javax.swing.JFrame {
                         //System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("city"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
                     }
-                    
+
                     rs1 = stmt.executeQuery(query1);
-                    
-                    while(rs1.next()){
-                       model.addRow(new Object[]{rs1.getString("city"), "0", rs1.getString("total_rooms")});
-                   
+
+                    while (rs1.next()) {
+                        model.addRow(new Object[]{rs1.getString("city"), "0", rs1.getString("total_rooms")});
+
                     }
-                    //System.out.println(rs1.getString("city"));
-                    /*
-                    while(rs1.next()){
-                       model.addRow(new Object[]{rs.getString("city"), "0", rs.getString("total_rooms")});
-                   
-                    }
-                    */
+
                     report.setVisible(true);
                 } catch (SQLException e) {
                     JFrame jf = new JFrame();
                     JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             } else if (Date.isSelected()) {
-                query = "select a.occupancy, b.total_rooms from (select x.bookingid as book, count(*) as occupancy from( select bookingId from bookinginfo where DATEDIFF('2018-01-14',enddate) > 0 AND DATEDIFF('2017-05-05',startdate) <= 0) x JOIN (select bookingId, count(*) as room_occupancy from isassigned group by bookingid) y on x.bookingid = y.bookingid) a JOIN (select count(*) as total_rooms from room) b;";
-                ReportOccupancyByDate report = new ReportOccupancyByDate();
-                DefaultTableModel model = (DefaultTableModel) report.ReportDate.getModel();
-                try {
-                    rs = stmt.executeQuery(query);
-                    while (rs.next()) {
-                        //System.out.println("In while");
-                        model.addRow(new Object[]{rs.getString("occupancy"), rs.getString("total_rooms")});
-                    }
-                    report.setVisible(true);
-                } catch (SQLException e) {
-                    JFrame jf = new JFrame();
-                    JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
+                DateRange dr = new DateRange();
+                dr.setVisible(true);
+//                query = "select a.occupancy, b.total_rooms from (select x.bookingid as book, count(*) as occupancy from( select bookingId from bookinginfo where DATEDIFF('2018-01-14',enddate) > 0 AND DATEDIFF('2017-05-05',startdate) <= 0) x JOIN (select bookingId, count(*) as room_occupancy from isassigned group by bookingid) y on x.bookingid = y.bookingid) a JOIN (select count(*) as total_rooms from room) b;";
+//                ReportOccupancyByDate report = new ReportOccupancyByDate();
+//                DefaultTableModel model = (DefaultTableModel) report.ReportDate.getModel();
+//                try {
+//                    rs = stmt.executeQuery(query);
+//                    while (rs.next()) {
+//                        //System.out.println("In while");
+//                        model.addRow(new Object[]{rs.getString("occupancy"), rs.getString("total_rooms")});
+//                    }
+//                    report.setVisible(true);
+//                } catch (SQLException e) {
+//                    JFrame jf = new JFrame();
+//                    JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
+//                }
             } else if (RoomCategory.isSelected()) {
                 query = "select x.category, rooms_occupied, total_rooms from (select r.category,count(*) as rooms_occupied from room r where r.avail = 0 group by r.category) x JOIN (select r1.category,count(*) as total_rooms from room r1 group by r1.category) y on x.category = y.category;";
+                query1 = "Select category, count(*) as total_rooms from room where category not in (select a.cat from (select x.category as cat, rooms_occupied, total_rooms from (select r.category,count(*) as rooms_occupied from room r where r.avail = 0 group by r.category) x JOIN (select r1.category,count(*) as total_rooms from room r1 group by r1.category) y on x.category = y.category)a group by category);";
                 ReportOccupancyByRoom report = new ReportOccupancyByRoom();
                 DefaultTableModel model = (DefaultTableModel) report.ReportRoom.getModel();
                 try {
@@ -338,6 +331,10 @@ public class Reports extends javax.swing.JFrame {
                     while (rs.next()) {
                         //System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("category"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
+                    }
+                    rs = stmt.executeQuery(query1);
+                    while (rs.next()) {
+                        model.addRow(new Object[]{rs.getString("category"), "0", rs.getString("total_rooms")});
                     }
                     report.setVisible(true);
                 } catch (SQLException e) {
@@ -359,10 +356,10 @@ public class Reports extends javax.swing.JFrame {
                     JFrame jf = new JFrame();
                     JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-            }else if (Staff.isSelected()) {
-                query = "SELECT DISTINCT e.custid, f.name as Staff_Name, f.jobtitle, f.age, f.phonenum, f.address from (\n" +
-"SELECT staffid, c.custid from (\n" +
-"SELECT b.serviceid, a.custid FROM (SELECT * FROM gets) a JOIN (SELECT * FROM linkservice) b ON a.bookingid = b.bookingid) c JOIN (SELECT * from updates) d ON d.serviceid = c.serviceid)e JOIN (SELECT staffid, name, jobTitle, age, phonenum,address from staff) f ON e.staffid = f.staffid;";
+            } else if (Staff.isSelected()) {
+                query = "SELECT DISTINCT e.custid, f.name as Staff_Name, f.jobtitle, f.age, f.phonenum, f.address from (\n"
+                        + "SELECT staffid, c.custid from (\n"
+                        + "SELECT b.serviceid, a.custid FROM (SELECT * FROM gets) a JOIN (SELECT * FROM linkservice) b ON a.bookingid = b.bookingid) c JOIN (SELECT * from updates) d ON d.serviceid = c.serviceid)e JOIN (SELECT staffid, name, jobTitle, age, phonenum,address from staff) f ON e.staffid = f.staffid;";
                 ReportOccupancyByStaff report = new ReportOccupancyByStaff();
                 DefaultTableModel model = (DefaultTableModel) report.ReportStaff.getModel();
                 try {
@@ -376,9 +373,7 @@ public class Reports extends javax.swing.JFrame {
                     JFrame jf = new JFrame();
                     JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-            }
-            
-            else {
+            } else {
                 JFrame jf = new JFrame();
                 JOptionPane.showMessageDialog(jf, "INVALID INPUT", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
