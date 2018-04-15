@@ -37,7 +37,7 @@ public class ReportOccupancyByDate extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Occupancy", "Total Rooms"
+                "Rooms Occupied", "Total Rooms"
             }
         ));
         ReportDate.setColumnSelectionAllowed(true);
