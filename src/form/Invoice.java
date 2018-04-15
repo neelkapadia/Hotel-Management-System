@@ -219,9 +219,17 @@ public class Invoice extends javax.swing.JFrame {
                 System.out.println("Before try");
                 
                 try {
+                    // Get staffid of the logged in staff
+                    int staffId = Integer.parseInt((String)Intermediate.getItem("frontDeskStaffId"));
+                    
+                    // Get hotelid from the staffid
+                    String getHotelId = "SELECT hotelid FROM worksFor WHERE staffid="+staffId;
+                    rs = stmt.executeQuery(getHotelId);
+                    rs.next();
+                    int hotelId = Integer.parseInt(rs.getString("hotelid"));
+                    
                     // get category of room from cid, invoiceid (if needed) --> custid-gets-bookingid-isAssigned-hotelid,roomnum-room-category
-
-                    roomCostQuery = "Select Sum(DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where category= (Select category from Room where HotelId=(select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = '"+cid+"')) And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))) AS totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId";
+                    roomCostQuery = "Select Sum(DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where hotelid="+hotelId+" AND category= (Select category from Room where HotelId=(select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = '"+cid+"')) And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))) AS totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId";
                     rs = stmt.executeQuery(roomCostQuery);
                     rs.next();
 //                    //Store value in an integer for convenience
