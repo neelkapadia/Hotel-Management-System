@@ -8,6 +8,7 @@ package form;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -56,6 +57,12 @@ public class AddHotel extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        managerID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managerIDActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel6.setText("Wolf Inns");
@@ -203,15 +210,28 @@ public class AddHotel extends javax.swing.JFrame {
 
             conn = db.connect_db();
             stmt = conn.createStatement();
-           // System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+hotelAddress.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
-            //System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
             
             conn.setAutoCommit(false);
-            stmt.executeUpdate("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
+           // System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+hotelAddress.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
+            //System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
+            String mgrID = managerID.getText();
+            if(mgrID.isEmpty()) {
+                mgrID = null;
+            }
+            // String query1="insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',"+mgrID+")";
+            String query1="insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',?)";
+            System.out.println(query1);
+            PreparedStatement ps = conn.prepareStatement(query1); // c - java.sql.Connection
+            ps.setNull(1, java.sql.Types.BIGINT); // no error, perfect
+            ps.executeUpdate();
             
+            if(mgrID != null) {
+                String query2="insert into worksFor values ('"+managerID.getText()+"','"+hotelID.getText()+"')";
+                stmt.executeUpdate(query2);
+            }
+    
             stmt.executeUpdate("insert into hotelcity values ('"+add.getText()+"','"+city.getText()+"')");
             
-            stmt.executeUpdate("insert into worksFor values ('"+managerID.getText()+"','"+hotelID.getText()+"')");
             conn.commit();
             JOptionPane.showMessageDialog(null, "Hotel added!");
             hotelID.setText("");
@@ -269,6 +289,10 @@ public class AddHotel extends javax.swing.JFrame {
         sysExit();
         l.setVisible(true);
     }//GEN-LAST:event_Logout1ActionPerformed
+
+    private void managerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_managerIDActionPerformed
 
     /**
      * @param args the command line arguments
