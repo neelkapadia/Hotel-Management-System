@@ -190,7 +190,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="addService">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Service"/>
+        <Property name="text" type="java.lang.String" value="Manage Service Type"/>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
         </Property>
