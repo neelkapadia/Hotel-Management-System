@@ -176,6 +176,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Report occupancy by Date Range"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DateActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="City">
       <Properties>

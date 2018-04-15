@@ -101,6 +101,11 @@ public class Reports extends javax.swing.JFrame {
 
         buttonGroup1.add(Date);
         Date.setText("Report occupancy by Date Range");
+        Date.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DateActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(City);
         City.setText("Report occupancy by City");
@@ -407,6 +412,10 @@ public class Reports extends javax.swing.JFrame {
     private void OccupancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OccupancyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_OccupancyActionPerformed
+
+    private void DateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DateActionPerformed
     public void sysExit() {
         WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
