@@ -411,10 +411,6 @@ public class CheckIn extends javax.swing.JFrame {
                         String updateRoomServiceAvailability = "UPDATE Staff SET avail=0 WHERE staffid="+staffId2;
                         stmt2.executeUpdate(updateRoomServiceAvailability);
 
-                        // Success!
-                        conn.commit();
-                        JFrame jf = new JFrame();
-                        JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
                     }
                     else{
                         JFrame jf = new JFrame();
@@ -433,6 +429,11 @@ public class CheckIn extends javax.swing.JFrame {
                 }
                 
             }
+            // Success!
+            conn.commit();
+            JFrame jf = new JFrame();
+            JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
+
             
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -564,13 +565,7 @@ public class CheckIn extends javax.swing.JFrame {
 //            int id = Integer.parseInt(sid);
 
             // Setting values for testing
-            bookingId.setText("1113");
-            startDate.setText("2018-01-10");
-            endDate.setText("2018-01-12");
-            cssn.setText("123411");
-            addr.setText("asdf");
-            payType.setText("credit");
-            cardno.setText("1212");
+           
 
             conn = db.connect_db();
             stmt = conn.createStatement();
