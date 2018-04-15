@@ -204,13 +204,15 @@ public class AddHotel extends javax.swing.JFrame {
             conn = db.connect_db();
             stmt = conn.createStatement();
            // System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+hotelAddress.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
-            System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
+            //System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
             
-            
+            conn.setAutoCommit(false);
             stmt.executeUpdate("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
             
             stmt.executeUpdate("insert into hotelcity values ('"+add.getText()+"','"+city.getText()+"')");
             
+            stmt.executeUpdate("insert into worksFor values ('"+managerID.getText()+"','"+hotelID.getText()+"')");
+            conn.commit();
             JOptionPane.showMessageDialog(null, "Hotel added!");
             hotelID.setText("");
             hotelName.setText("");
@@ -222,6 +224,11 @@ public class AddHotel extends javax.swing.JFrame {
             
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddHotel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
         } finally {
 
@@ -235,6 +242,7 @@ public class AddHotel extends javax.swing.JFrame {
 
             if (conn != null) {
                 try {
+                    conn.setAutoCommit(true);
                     conn.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(AddHotel.class.getName()).log(Level.SEVERE, null, ex);

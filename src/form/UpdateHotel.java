@@ -359,7 +359,9 @@ public class UpdateHotel extends javax.swing.JFrame {
 
             conn = db.connect_db();
             stmt = conn.createStatement();
-
+            conn.setAutoCommit(false);
+            
+            
             String updateQry = "update hotel set";
             boolean first = true;
 
@@ -393,12 +395,22 @@ public class UpdateHotel extends javax.swing.JFrame {
             
             String updateQry1 = "update hotelcity set city = '"+city.getText()+"' where address = '"+add.getText()+"'";
             
+            stmt.executeUpdate(updateQry1);
             
-             stmt.executeUpdate(updateQry1);
+            String updateQry2 = "update worksfor set hotelid = "+HotelID.getText()+" where staffid = "+ManagerID.getText();
+            
+            stmt.executeUpdate(updateQry2);
+            
+            conn.commit();
             JOptionPane.showMessageDialog(null, "Hotel updated!");
 
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(UpdateHotel.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         } finally {
 
@@ -412,6 +424,7 @@ public class UpdateHotel extends javax.swing.JFrame {
 
             if (conn != null) {
                 try {
+                    conn.setAutoCommit(true);
                     conn.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);

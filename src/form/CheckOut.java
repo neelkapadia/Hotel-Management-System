@@ -168,7 +168,7 @@ public class CheckOut extends javax.swing.JFrame {
             String checkoutTime = sdf.format(cal.getTime());
             
             // Update checkout time in bookinginfo
-            String checkoutUpdate = "UPDATE BookingInfo SET checkout="+checkoutTime+" WHERE bookingid="+bookingId;
+            String checkoutUpdate = "UPDATE BookingInfo SET checkout='"+checkoutTime+"' WHERE bookingid="+bookingId;
             stmt.executeUpdate(checkoutUpdate);
             
             // Toggle availability of room
