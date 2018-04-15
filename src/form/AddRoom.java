@@ -186,7 +186,7 @@ public class AddRoom extends javax.swing.JFrame {
              if(category.getText().equals("Presidential")){
                 stmt.executeUpdate("insert into PresidentialSuite values ("+hotelID.getText()+","+roomNum.getText()+")");
             }
-            JOptionPane.showMessageDialog(null, "Room added!");
+            
             hotelID.setText("");
             roomNum.setText("");
             capacity.setText("");
@@ -196,10 +196,11 @@ public class AddRoom extends javax.swing.JFrame {
             if(category.getText().equals("Presidential")){
                 stmt.executeUpdate("insert into PresidentialSuite values ("+hotelID.getText()+","+roomNum.getText()+")");
             }
+            JOptionPane.showMessageDialog(null, "Room added!");
 
         } catch (Exception e) {
             e.printStackTrace();
-
+            JOptionPane.showMessageDialog(null, "Room NOT added!");
         } finally {
 
             if (stmt != null) {
