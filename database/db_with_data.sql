@@ -346,6 +346,7 @@ CREATE TABLE `RoomServiceStaff` (
 
 LOCK TABLES `RoomServiceStaff` WRITE;
 /*!40000 ALTER TABLE `RoomServiceStaff` DISABLE KEYS */;
+INSERT INTO `RoomServiceStaff` VALUES (107);
 /*!40000 ALTER TABLE `RoomServiceStaff` ENABLE KEYS */;
 UNLOCK TABLES;
 

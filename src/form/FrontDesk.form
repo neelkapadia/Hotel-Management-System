@@ -32,10 +32,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="CheckOut" min="-2" pref="194" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="CheckIn" pref="194" max="32767" attributes="0"/>
+                      <Component id="CheckIn" max="32767" attributes="0"/>
                       <Component id="Customer" max="32767" attributes="0"/>
                       <Component id="ViewSR" max="32767" attributes="0"/>
-                      <Component id="Invoice" alignment="0" pref="194" max="32767" attributes="0"/>
+                      <Component id="Invoice" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -90,7 +90,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="ViewSR">
       <Properties>
-        <Property name="text" type="java.lang.String" value="View Service Records"/>
+        <Property name="text" type="java.lang.String" value="Manage Service Records"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewSRActionPerformed"/>

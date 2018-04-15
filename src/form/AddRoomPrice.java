@@ -19,12 +19,12 @@ import javax.swing.JOptionPane;
  *
  * @author saurabhshanbhag
  */
-public class AddRoom extends javax.swing.JFrame {
+public class AddRoomPrice extends javax.swing.JFrame {
 
     /**
      * Creates new form AddRoom
      */
-    public AddRoom() {
+    public AddRoomPrice() {
         initComponents();
     }
 
@@ -37,16 +37,12 @@ public class AddRoom extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        hotelID = new javax.swing.JTextField();
         AddCustomer = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        roomNum = new javax.swing.JTextField();
+        roomCat = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        capacity = new javax.swing.JTextField();
-        category = new javax.swing.JTextField();
+        price = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         Home = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         Logout1 = new javax.swing.JButton();
@@ -60,16 +56,24 @@ public class AddRoom extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Room Number");
+        jLabel2.setText("Room Category");
 
-        jLabel3.setText("Category");
+        roomCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roomCatActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Price");
+
+        price.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                priceActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel6.setText("Wolf Inns");
-
-        jLabel5.setText("Capacity");
-
-        jLabel1.setText("Hotel ID (INT)");
 
         Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +82,7 @@ public class AddRoom extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Add Room");
+        jLabel7.setText("Add Room Price");
 
         Logout1.setText("Logout");
         Logout1.addActionListener(new java.awt.event.ActionListener() {
@@ -103,21 +107,15 @@ public class AddRoom extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3))
+                        .addContainerGap(195, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
                         .addGap(104, 104, 104)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(category, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roomNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hotelID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(price, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roomCat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(90, 90, 90))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,23 +136,15 @@ public class AddRoom extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(roomNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roomCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(28, 28, 28)
+                .addGap(83, 83, 83)
                 .addComponent(AddCustomer)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -179,35 +169,23 @@ public class AddRoom extends javax.swing.JFrame {
 
             conn = db.connect_db();
             stmt = conn.createStatement();
-            // System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+hotelAddress.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
-
-            stmt.executeUpdate("insert into room values ("+hotelID.getText()+","+roomNum.getText()+",'"+category.getText()+"','"+"1"+"',"+capacity.getText()+")");
-
-             if(category.getText().equals("Presidential")){
-                stmt.executeUpdate("insert into PresidentialSuite values ("+hotelID.getText()+","+roomNum.getText()+")");
-            }
             
-            hotelID.setText("");
-            roomNum.setText("");
-            capacity.setText("");
-            
-            category.setText("");
-            
-            if(category.getText().equals("Presidential")){
-                stmt.executeUpdate("insert into PresidentialSuite values ("+hotelID.getText()+","+roomNum.getText()+")");
-            }
-            JOptionPane.showMessageDialog(null, "Room added!");
+            stmt.executeUpdate("insert into roomprice values ('"+roomCat.getText()+"',"+price.getText()+")");
 
+            JOptionPane.showMessageDialog(null, "Room price added!");
+            price.setText("");
+            roomCat.setText("");
+            
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Room NOT added!");
+
         } finally {
 
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(AddRoom.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AddRoomPrice.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -215,7 +193,7 @@ public class AddRoom extends javax.swing.JFrame {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(AddRoom.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AddRoomPrice.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -237,6 +215,14 @@ public class AddRoom extends javax.swing.JFrame {
         l.setVisible(true);
     }//GEN-LAST:event_Logout1ActionPerformed
 
+    private void roomCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomCatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roomCatActionPerformed
+
+    private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_priceActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,20 +240,21 @@ public class AddRoom extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddRoomPrice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddRoomPrice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddRoomPrice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddRoomPrice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddRoom().setVisible(true);
+                new AddRoomPrice().setVisible(true);
             }
         });
     }
@@ -283,15 +270,11 @@ public class AddRoom extends javax.swing.JFrame {
     private javax.swing.JButton AddCustomer;
     private javax.swing.JButton Home;
     private javax.swing.JButton Logout1;
-    private javax.swing.JTextField capacity;
-    private javax.swing.JTextField category;
-    private javax.swing.JTextField hotelID;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField roomNum;
+    private javax.swing.JTextField price;
+    private javax.swing.JTextField roomCat;
     // End of variables declaration//GEN-END:variables
 }
