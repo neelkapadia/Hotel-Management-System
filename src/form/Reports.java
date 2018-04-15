@@ -65,7 +65,12 @@ public class Reports extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(Occupancy);
-        Occupancy.setText("Report by Occupancy");
+        Occupancy.setText("Report occupancy by Hotel");
+        Occupancy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OccupancyActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(TotalOccupancy);
         TotalOccupancy.setText("Report Total and Percentage Occupancy");
@@ -87,7 +92,7 @@ public class Reports extends javax.swing.JFrame {
         jLabel2.setText("Wolf Inns");
 
         buttonGroup1.add(RoomCategory);
-        RoomCategory.setText("Report by Room Category");
+        RoomCategory.setText("Report occupancy by Room Category");
         RoomCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RoomCategoryActionPerformed(evt);
@@ -95,10 +100,10 @@ public class Reports extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(Date);
-        Date.setText("Report by Date Range");
+        Date.setText("Report occupancy by Date Range");
 
         buttonGroup1.add(City);
-        City.setText("Report by City");
+        City.setText("Report occupancy by City");
 
         buttonGroup1.add(Staff);
         Staff.setText("Report by Staff Serving Customer");
@@ -164,9 +169,9 @@ public class Reports extends javax.swing.JFrame {
                 .addComponent(RoomCategory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Date)
-                .addGap(2, 2, 2)
-                .addComponent(City)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(City)
+                .addGap(2, 2, 2)
                 .addComponent(TotalOccupancy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(StaffInfo)
@@ -201,14 +206,25 @@ public class Reports extends javax.swing.JFrame {
             stmt = conn.createStatement();
             if (Occupancy.isSelected()) {
                 query = "SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM (SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid;";
+                
+                query1 = "Select a.hotelid, a.total_rooms from (select hotelid,count(*) as total_rooms from room group by hotelid)a join (Select hotelid from hotel where hotelid not in (Select hotelid from isassigned))b on a.hotelid = b.hotelid;";
+                
                 ReportOccupancyByHotel report = new ReportOccupancyByHotel();
                 DefaultTableModel model = (DefaultTableModel) report.Report1.getModel();
                 try {
                     rs = stmt.executeQuery(query);
                     while (rs.next()) {
-                        System.out.println("In while");
+                        //System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("hotelid"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
                     }
+                    
+                    rs1 = stmt.executeQuery(query1);
+                    
+                    while(rs1.next()){
+                       model.addRow(new Object[]{rs1.getString("hotelid"), "0", rs1.getString("total_rooms")});
+                   
+                    }
+
                     report.setVisible(true);
                 } catch (SQLException e) {
                     JFrame jf = new JFrame();
@@ -268,7 +284,7 @@ public class Reports extends javax.swing.JFrame {
                 
                query1 = "Select x.city as city, y.total as total_rooms from (select city from hotelcity where city not in (SELECT q.city FROM (SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city))x join (Select a.total,d.city from (select hotelid,count(*) as total from room group by hotelid)a join (select hotelid,city from (select * from hotel)c join (select * from HotelCity)b on c.address = b.address)d on a.hotelid = d.hotelid)y on y.city = x.city;";
               
-                
+                //query1 = "Select x.city as city, y.total as total_rooms from (select city from hotelcity where city not in (SELECT q.city FROM (SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city))x join (Select sum(a.total) as total,d.city from (select hotelid,count(*) as total from room group by hotelid)a join (select hotelid,city from (select * from hotel)c join (select * from HotelCity)b on c.address = b.address)d on a.hotelid = d.hotelid group by d.city)y on y.city = x.city;";
                 
                 
                 ReportOccupancyByCity report = new ReportOccupancyByCity();
@@ -392,6 +408,10 @@ public class Reports extends javax.swing.JFrame {
         sysExit();
         l.setVisible(true);
     }//GEN-LAST:event_Logout1ActionPerformed
+
+    private void OccupancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OccupancyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OccupancyActionPerformed
     public void sysExit() {
         WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);

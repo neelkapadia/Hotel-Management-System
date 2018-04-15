@@ -41,7 +41,7 @@ public class ViewStaff extends javax.swing.JFrame {
         Home = new javax.swing.JButton();
         Logout1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         invoiceFrame.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
