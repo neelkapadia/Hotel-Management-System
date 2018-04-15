@@ -324,7 +324,7 @@ public class UpdateCustomer extends javax.swing.JFrame {
                 if (!first) {
                     updateQry += ",";
                 }
-                updateQry += " `phoneNum` = " + Integer.parseInt(customerPhno.getText());
+                updateQry += " `phoneNum` = '" + customerPhno.getText()+"'";
                 first = false;
             }
             if(customerEmail != null) {
