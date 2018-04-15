@@ -411,10 +411,6 @@ public class CheckIn extends javax.swing.JFrame {
                         String updateRoomServiceAvailability = "UPDATE Staff SET avail=0 WHERE staffid="+staffId2;
                         stmt2.executeUpdate(updateRoomServiceAvailability);
 
-                        // Success!
-                        conn.commit();
-                        JFrame jf = new JFrame();
-                        JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
                     }
                     else{
                         JFrame jf = new JFrame();
@@ -433,6 +429,11 @@ public class CheckIn extends javax.swing.JFrame {
                 }
                 
             }
+            // Success!
+            conn.commit();
+            JFrame jf = new JFrame();
+            JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
+
             
         } catch (Exception ex) {
             ex.printStackTrace();
