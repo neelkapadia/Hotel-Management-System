@@ -117,6 +117,7 @@ public class ConfirmDeleteCustomer extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null,"SUCCESSFULLY DELETED"); 
             custID.setText("");
+            Intermediate.removeItem("Cust");
             sysExit();
             
         } catch (Exception e) {

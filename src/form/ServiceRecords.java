@@ -5,6 +5,8 @@
  */
 package form;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -30,25 +32,35 @@ public class ServiceRecords extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        wolfInn1 = new wolfinn.WolfInn();
-        wolfInn2 = new wolfinn.WolfInn();
         buttonGroup1 = new javax.swing.ButtonGroup();
         addServiceRecord = new javax.swing.JRadioButton();
         updateServiceRecord = new javax.swing.JRadioButton();
         deleteServiceRecord = new javax.swing.JRadioButton();
         viewServiceRecord = new javax.swing.JRadioButton();
         submitServiceRecord = new javax.swing.JButton();
+        Home2 = new javax.swing.JButton();
+        Logout = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         buttonGroup1.add(addServiceRecord);
         addServiceRecord.setText("Add Service Record");
 
         buttonGroup1.add(updateServiceRecord);
         updateServiceRecord.setText("Update Service Record");
+        updateServiceRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateServiceRecordActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(deleteServiceRecord);
         deleteServiceRecord.setText("Delete Service Record");
+        deleteServiceRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteServiceRecordActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(viewServiceRecord);
         viewServiceRecord.setText("View Service Records");
@@ -65,22 +77,43 @@ public class ServiceRecords extends javax.swing.JFrame {
             }
         });
 
+        Home2.setText("Home");
+        Home2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Home2ActionPerformed(evt);
+            }
+        });
+
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(157, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewServiceRecord)
-                    .addComponent(deleteServiceRecord)
-                    .addComponent(updateServiceRecord)
-                    .addComponent(addServiceRecord))
-                .addGap(183, 183, 183))
             .addGroup(layout.createSequentialGroup()
                 .addGap(203, 203, 203)
                 .addComponent(submitServiceRecord)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(158, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(viewServiceRecord)
+                            .addComponent(deleteServiceRecord)
+                            .addComponent(updateServiceRecord)
+                            .addComponent(addServiceRecord))
+                        .addGap(182, 182, 182))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Home2)
+                        .addGap(18, 18, 18)
+                        .addComponent(Logout)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +128,11 @@ public class ServiceRecords extends javax.swing.JFrame {
                 .addComponent(viewServiceRecord)
                 .addGap(18, 18, 18)
                 .addComponent(submitServiceRecord)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home2)
+                    .addComponent(Logout))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -132,6 +169,43 @@ public class ServiceRecords extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_viewServiceRecordActionPerformed
 
+    private void updateServiceRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateServiceRecordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateServiceRecordActionPerformed
+
+    private void deleteServiceRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteServiceRecordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteServiceRecordActionPerformed
+
+    private void Home2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home2ActionPerformed
+        // TODO add your handling code here:
+        if((boolean)Intermediate.getItem("isCateringStaff") || (boolean)Intermediate.getItem("isRoomServiceStaff")) {     
+            ServiceRecords sr = new ServiceRecords();
+            sysExit();
+            sr.setVisible(true);
+        } else {
+            if((boolean)Intermediate.getItem("isFrontDeskStaff")) {     
+                FrontDesk fd = new FrontDesk();
+                sysExit();
+                fd.setVisible(true);
+            } else {
+                Manager m = new Manager();
+                sysExit();
+                m.setVisible(true); 
+            }
+        }  
+    }//GEN-LAST:event_Home2ActionPerformed
+
+    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_LogoutActionPerformed
+    public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
     /**
      * @param args the command line arguments
      */
@@ -168,13 +242,15 @@ public class ServiceRecords extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home;
+    private javax.swing.JButton Home1;
+    private javax.swing.JButton Home2;
+    private javax.swing.JButton Logout;
     private javax.swing.JRadioButton addServiceRecord;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton deleteServiceRecord;
     private javax.swing.JButton submitServiceRecord;
     private javax.swing.JRadioButton updateServiceRecord;
     private javax.swing.JRadioButton viewServiceRecord;
-    private wolfinn.WolfInn wolfInn1;
-    private wolfinn.WolfInn wolfInn2;
     // End of variables declaration//GEN-END:variables
 }

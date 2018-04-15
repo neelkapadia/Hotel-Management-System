@@ -96,11 +96,11 @@ public class AddHotel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(221, Short.MAX_VALUE)
+                .addContainerGap(231, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7)
                     .addComponent(AddCustomer))
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Home)
@@ -195,9 +195,11 @@ public class AddHotel extends javax.swing.JFrame {
             conn = db.connect_db();
             stmt = conn.createStatement();
            // System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+hotelAddress.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
+            System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
             
             
-            stmt.executeUpdate("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+managerID.getText()+"','"+hotelphno.getText()+"',"+add.getText()+")");
+            stmt.executeUpdate("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
+            
             
             
             JOptionPane.showMessageDialog(null, "Hotel added!");
@@ -206,6 +208,7 @@ public class AddHotel extends javax.swing.JFrame {
             add.setText("");
             managerID.setText("");
             hotelphno.setText("");
+            
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -216,7 +219,7 @@ public class AddHotel extends javax.swing.JFrame {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AddHotel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -224,7 +227,7 @@ public class AddHotel extends javax.swing.JFrame {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AddHotel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 

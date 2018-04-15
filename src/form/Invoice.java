@@ -7,6 +7,15 @@ package form;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,14 +43,17 @@ public class Invoice extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         GenerateInvoice = new javax.swing.JRadioButton();
-        UpdateInvoice = new javax.swing.JRadioButton();
         GetAmount = new javax.swing.JRadioButton();
         Submit = new javax.swing.JButton();
         amt = new javax.swing.JTextField();
         Home = new javax.swing.JButton();
         Logout = new javax.swing.JButton();
+        custid = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        invoiceid = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel2.setText("Wolf Inns");
@@ -50,9 +62,6 @@ public class Invoice extends javax.swing.JFrame {
 
         buttonGroup1.add(GenerateInvoice);
         GenerateInvoice.setText("Generate Invoice");
-
-        buttonGroup1.add(UpdateInvoice);
-        UpdateInvoice.setText("Update Invoice");
 
         buttonGroup1.add(GetAmount);
         GetAmount.setText("Get total amount owed     $");
@@ -78,55 +87,86 @@ public class Invoice extends javax.swing.JFrame {
             }
         });
 
+        custid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custidActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("CustID:");
+
+        invoiceid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                invoiceidActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("InvoiceID:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(Submit)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
+                .addContainerGap(80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(131, 131, 131))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(GenerateInvoice)
-                                .addComponent(jLabel1)
-                                .addComponent(UpdateInvoice))
-                            .addGap(91, 91, 91))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(GenerateInvoice)
+                                    .addComponent(jLabel1))
+                                .addGap(40, 40, 40))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(GetAmount)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(amt, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(GetAmount)
+                            .addGap(59, 59, 59)
+                            .addComponent(Submit)
+                            .addGap(121, 121, 121)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(Home)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(amt, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap()))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Home)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Logout))))
+                            .addComponent(Logout))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(invoiceid, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(custid, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGap(131, 131, 131)))
+                    .addComponent(jLabel4)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(custid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(invoiceid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GenerateInvoice)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(UpdateInvoice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(GetAmount)
                     .addComponent(amt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Submit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Logout)
                     .addComponent(Home)))
@@ -137,22 +177,144 @@ public class Invoice extends javax.swing.JFrame {
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
-        
-        
-         if(GenerateInvoice.isSelected()){
-            //open add record form
-           
-            //code to get pdf invoice
-
-        } else if(UpdateInvoice.isSelected()){
-            //open update record form
-           
+        String cid = custid.getText();
+        String invid = invoiceid.getText();
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs;
+        float totalRoomCost;
+        float totalAmount;
+        String payTypeQuery;
+        String totalAmountQuery;
+        String updateTotalAmount;
+        String getServicesQuery;
+        String insertInvoiceQuery;
+        String insertGenerateInvoiceQuery;
+        String roomCostQuery;
+        try {
+            conn = db.connect_db();
+            stmt = conn.createStatement();
             
-        } else if(GetAmount.isSelected()){
+            if(GenerateInvoice.isSelected()){
+                //open add record form
+                                
+                getServicesQuery = "Select servicetype, cost from (Select serviceid, time, a.servicetype, cost from (select * from servicerecord) a join(select * from servicecost)b on a.servicetype=b.servicetype)x join (select * from linkservice where BookingId = (Select bookingid from gets where custid = "+cid+")) y ON x.serviceid = y.serviceid;";
+                //code to get pdf invoice
+            
+//                query = "SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM (SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid;";
+//                ReportOccupancyByHotel report = new ReportOccupancyByHotel();
+                GenerateInvoice invoice = new GenerateInvoice();
+                //sysExit();
+                //JTable table = new JTable(report.Report);
+                DefaultTableModel model = (DefaultTableModel) invoice.invoiceFrame.getModel();
+                
+                System.out.println("Before try");
+                
+                try {
+                    insertInvoiceQuery = "Insert into Invoice(invoiceID, invoiceDate,totalAmt) values ("+invid+", (Select enddate from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")), (Select (Select sum(cost) from ServiceCost where ServiceType IN (Select serviceType from ServiceRecord where serviceId IN (Select ServiceID from linkservice where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))+Sum(DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where category= (Select category from Room where HotelId=(select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")) And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))) AS totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId));";
+                    insertGenerateInvoiceQuery = "Insert into generateInvoice values ("+invid+",(Select bookingid from gets where custid = "+cid+"))";
+                    
+                    // Add insert query
+                    stmt.executeUpdate(insertInvoiceQuery);
+                    System.out.println("Invoice insert executed");
+                    stmt.executeUpdate(insertGenerateInvoiceQuery);
+                    
+                    System.out.println("Inserts executed");
 
-            //print amt
-            //open delete record form
-        } 
+                    JOptionPane.showMessageDialog(null, "Invoice added!");
+                    // Add generate invoice query
+                    rs = stmt.executeQuery(getServicesQuery);
+                    System.out.println("After list of services");
+                    while (rs.next()) {
+                        System.out.println("In while");
+                        model.addRow(new Object[]{rs.getString("serviceType"), rs.getString("cost")});
+                    }
+                    System.out.println("After while");
+                    // get category of room from cid, invoiceid (if needed) --> custid-gets-bookingid-isAssigned-hotelid,roomnum-room-category
+                    
+                    roomCostQuery = "Select Sum(DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where category= (Select category from Room where HotelId=(select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = '"+cid+"')) And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))) AS totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId";
+                    rs = stmt.executeQuery(roomCostQuery);
+                    rs.next();
+//                    //Store value in an integer for convenience
+//                    totalRoomCost = Float.parseFloat(rs.getString("totalRoomPrice"));
+                    System.out.println("After room cost query");
+                    model.addRow(new Object[]{"Room", rs.getString("totalRoomPrice")});
+                    
+                    totalAmountQuery = "SELECT totalAmt FROM Invoice WHERE invoiceID = '"+invid+"';";
+                    rs = stmt.executeQuery(totalAmountQuery);
+                    rs.next();
+                    model.addRow(new Object[]{"TOTAL", rs.getString("totalAmt")});
+                    // Storing totalAmount for access if payType is hotel credit
+                    totalAmount = Float.parseFloat(rs.getString("totalAmt"));
+                    
+                    // cid-gets-bookingid-has-ssn-billinfo-paytype
+                    payTypeQuery = "Select paytype from billinfo where ssn=(Select ssn from has where bookingid = (select bookingid from gets where custid="+cid+"));";
+                    rs = stmt.executeQuery(payTypeQuery);
+                    rs.next();
+                    
+                    // if hotel credit card
+                    if(rs.getString("paytype").equals("hotel credit")){
+//                        totalRoomCost = totalRoomCost*(float)0.95;
+                        totalAmount = totalAmount*(float)0.95;
+                        model.addRow(new Object[]{"TOTAL AFTER DISCOUNT", String.valueOf(totalAmount)});
+                        updateTotalAmount = "Update Invoice SET totalAmt="+totalAmount+" WHERE invoiceid='"+invid+"';";
+                        stmt.executeUpdate(updateTotalAmount);
+                        System.out.println("Discounted price is - "+totalAmount);
+                    }
+//                    // if other payment method
+//                    else{
+//                        model.addRow(new Object[]{"Room", String.valueOf(totalRoomCost)});
+//                    }
+                    
+                    invoice.setVisible(true);
+                    System.out.println("Room cost added");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    JFrame jf = new JFrame();
+                    JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            } else if(GetAmount.isSelected()){
+                //print amt
+                // Will not be possible without an existing invoice already present
+                totalAmountQuery = "SELECT totalAmt FROM Invoice WHERE invoiceID = '"+invid+"';";
+                System.out.println(totalAmountQuery);
+                try{
+                    System.out.println("Before total amount");
+                    rs = stmt.executeQuery(totalAmountQuery);
+                    rs.next();
+//                    System.out.println(rs.getString("totalAmt"));
+                    amt.setText(rs.getString("totalAmt"));
+                } catch(SQLException e){
+                    e.printStackTrace();
+                    JFrame jf = new JFrame();
+                    JOptionPane.showMessageDialog(jf, "No amount present!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+             else {
+                JFrame jf = new JFrame();
+                JOptionPane.showMessageDialog(jf, "INVALID INPUT", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            try {
+            db.close_db(conn);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        
+         
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
@@ -168,6 +330,14 @@ public class Invoice extends javax.swing.JFrame {
         sysExit();
         l.setVisible(true);
     }//GEN-LAST:event_LogoutActionPerformed
+
+    private void custidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_custidActionPerformed
+
+    private void invoiceidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoiceidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_invoiceidActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,10 +385,13 @@ public class Invoice extends javax.swing.JFrame {
     private javax.swing.JButton Home;
     private javax.swing.JButton Logout;
     private javax.swing.JButton Submit;
-    private javax.swing.JRadioButton UpdateInvoice;
     private javax.swing.JTextField amt;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField custid;
+    private javax.swing.JTextField invoiceid;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

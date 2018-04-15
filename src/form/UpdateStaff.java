@@ -5,6 +5,16 @@
  */
 package form;
 
+
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author saurabhshanbhag
@@ -16,7 +26,35 @@ public class UpdateStaff extends javax.swing.JFrame {
      */
     public UpdateStaff() {
         initComponents();
+        toggleVisibility(false);
+        
+        
     }
+    
+    public void toggleVisibility(boolean isVisible) {
+       
+        Name.setVisible(isVisible);
+        name.setVisible(isVisible);
+        phno.setVisible(isVisible);
+        title.setVisible(isVisible);
+        age.setVisible(isVisible);
+        avail.setVisible(isVisible);
+        add.setVisible(isVisible);
+        jLabel11.setVisible(isVisible);
+        jLabel12.setVisible(isVisible);
+        jLabel13.setVisible(isVisible);
+        jLabel14.setVisible(isVisible);
+        jLabel15.setVisible(isVisible);
+        Department.setVisible(isVisible);
+        jLabel8.setVisible(isVisible);
+        jLabel9.setVisible(isVisible);
+        jLabel10.setVisible(isVisible);
+        jLabel3.setVisible(isVisible);
+        jLabel4.setVisible(isVisible);
+        jLabel5.setVisible(isVisible);
+        updateDetails.setVisible(isVisible);  
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,21 +65,446 @@ public class UpdateStaff extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        category1 = new javax.swing.JTextField();
+        roomNum1 = new javax.swing.JLabel();
+        HotelID1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        updateDetails1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        getDetails2 = new javax.swing.JButton();
+        capacity1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        availability1 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        RoomNum1 = new javax.swing.JTextField();
+        updateDetails = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        getDetails1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        Logout1 = new javax.swing.JButton();
+        Home = new javax.swing.JButton();
+        Staff = new javax.swing.JLabel();
+        add = new javax.swing.JTextField();
+        title = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        avail = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        age = new javax.swing.JTextField();
+        staffID = new javax.swing.JTextField();
+        Name = new javax.swing.JLabel();
+        phno = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        Department = new javax.swing.JTextField();
+
+        roomNum1.setText("RoomNum");
+
+        jLabel2.setText("Hotel ID (INT)");
+
+        updateDetails1.setText("Update Details");
+        updateDetails1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateDetails1ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Update Room");
+
+        getDetails2.setText("Get Details");
+        getDetails2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getDetails2ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Capacity");
+
+        jLabel10.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
+        jLabel10.setText("Wolf Inns");
+
+        jLabel11.setText("Category");
+
+        jLabel12.setText("Availability");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        updateDetails.setText("Update Details");
+        updateDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateDetailsActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Update Staff");
+
+        getDetails1.setText("Get Details");
+        getDetails1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getDetails1ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
+        jLabel6.setText("Wolf Inns");
+
+        Logout1.setText("Logout");
+        Logout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout1ActionPerformed(evt);
+            }
+        });
+
+        Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
+        Staff.setText("Staff ID (INT)");
+
+        title.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                titleActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("Availability");
+
+        jLabel4.setText("Phone Number");
+
+        jLabel14.setText("Age");
+
+        jLabel3.setText("Job Title");
+
+        staffID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staffIDActionPerformed(evt);
+            }
+        });
+
+        Name.setText("Name");
+
+        jLabel5.setText("Address");
+
+        jLabel15.setText("Department");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Home)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Logout1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(201, 201, 201)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(221, 221, 221)
+                                .addComponent(jLabel7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(117, 117, 117)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(22, 22, 22)
+                                                .addComponent(jLabel15))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel4)
+                                                    .addComponent(Name)
+                                                    .addComponent(Staff)
+                                                    .addComponent(jLabel3)
+                                                    .addComponent(jLabel5)
+                                                    .addComponent(jLabel14)
+                                                    .addComponent(jLabel13))
+                                                .addGap(112, 112, 112)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(staffID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(phno, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(avail, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(getDetails1)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(updateDetails)))))
+                        .addGap(0, 105, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Staff)
+                    .addComponent(staffID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Name)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(phno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(avail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(getDetails1)
+                    .addComponent(updateDetails))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home)
+                    .addComponent(Logout1))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void updateDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDetailsActionPerformed
+        // TODO add your handling code here:
+
+        //update values
+
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt = null;
+
+        ResultSet rs;
+        
+        try {
+
+            conn = db.connect_db();
+            stmt = conn.createStatement();
+            
+            //rs1 = stmt.executeQuery("select * from presidentialSuite where hotelid = " + HotelID.getText() +" and roomnum="+RoomNum.getText());
+
+            
+
+            String updateQry = "update staff set";
+            boolean first = true;
+            if(name != null) {
+
+                updateQry += " `name` = '" + name.getText()+"'";
+                first = false;
+            }
+
+            if(title != null) {
+                if (!first) {
+                    updateQry += ",";
+                }
+                updateQry += " `jobtitle` = '"+title.getText()+"'";
+                first = false;
+            }
+
+            if(phno != null) {
+                if (!first) {
+                    updateQry += ",";
+                }
+                updateQry += " `phoneNum` = '" + Integer.parseInt(phno.getText())+"'";
+            }
+            if(add != null) {
+                if (!first) {
+                    updateQry += ",";
+                }
+                updateQry += " `address` = '"+add.getText()+"'";
+                first = false;
+            }
+            
+            if(age != null) {
+                if (!first) {
+                    updateQry += ",";
+                }
+                updateQry += " `age` = '"+age.getText()+"'";
+                first = false;
+            }
+            
+            if(avail != null) {
+                if (!first) {
+                    updateQry += ",";
+                }
+                updateQry += " `avail` = '" + Integer.parseInt(avail.getText())+"'";
+            }
+            
+            if(Department != null) {
+                if (!first) {
+                    updateQry += ",";
+                }
+                updateQry += " `department` = '"+Department.getText()+"'";
+                first = false;
+            }
+            updateQry += " where staffId = " + Integer.parseInt(staffID.getText());
+
+            stmt.executeUpdate(updateQry);
+
+            
+            //System.out.println("category.getText(): "+category.getText());
+            //System.out.println("cat: "+cat);
+            
+            //System.out.println(cat);
+
+            JOptionPane.showMessageDialog(null, "Staff updated!");
+staffID.setText("");
+            name.setText("");
+            age.setText("");
+            title.setText("");
+            phno.setText("");
+            avail.setText("");
+            add.setText("");
+            Department.setText("");
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddStaff.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddStaff.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+    }//GEN-LAST:event_updateDetailsActionPerformed
+
+    private void getDetails1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getDetails1ActionPerformed
+        // TODO add your handling code here:
+
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs;
+        ResultSet rs2;
+
+        try {
+
+            conn = db.connect_db();
+            stmt = conn.createStatement();
+
+            //System.out.println(cat);
+            //rs2 = stmt.executeQuery("select  from room where hotelid = " + HotelID.getText() + " and roomnum = "+RoomNum.getText());
+            rs = stmt.executeQuery("select * from staff where staffid = " + staffID.getText());
+
+            if (rs.first()) {
+                toggleVisibility(true);
+               
+                name.setText(rs.getString("name"));
+                avail.setText(rs.getString("avail"));
+                age.setText(rs.getString("age"));
+                title.setText(rs.getString("jobtitle"));
+                phno.setText(rs.getString("phoneNum"));
+                add.setText(rs.getString("address"));
+                Department.setText(rs.getString("department"));
+                
+               
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No staff found! Try again.");
+                toggleVisibility(false);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+    }//GEN-LAST:event_getDetails1ActionPerformed
+
+    private void updateDetails1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDetails1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateDetails1ActionPerformed
+
+    private void getDetails2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getDetails2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getDetails2ActionPerformed
+
+    private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_Logout1ActionPerformed
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        Manager mng = new Manager();
+        sysExit();
+        mng.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
+
+    private void titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_titleActionPerformed
+
+    private void staffIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_staffIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,6 +541,47 @@ public class UpdateStaff extends javax.swing.JFrame {
         });
     }
 
+                 public void sysExit(){
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Department;
+    private javax.swing.JButton Home;
+    private javax.swing.JTextField HotelID1;
+    private javax.swing.JButton Logout1;
+    private javax.swing.JLabel Name;
+    private javax.swing.JTextField RoomNum1;
+    private javax.swing.JLabel Staff;
+    private javax.swing.JTextField add;
+    private javax.swing.JTextField age;
+    private javax.swing.JTextField avail;
+    private javax.swing.JTextField availability1;
+    private javax.swing.JTextField capacity1;
+    private javax.swing.JTextField category1;
+    private javax.swing.JButton getDetails1;
+    private javax.swing.JButton getDetails2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField phno;
+    private javax.swing.JLabel roomNum1;
+    private javax.swing.JTextField staffID;
+    private javax.swing.JTextField title;
+    private javax.swing.JButton updateDetails;
+    private javax.swing.JButton updateDetails1;
     // End of variables declaration//GEN-END:variables
 }

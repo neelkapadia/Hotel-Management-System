@@ -52,6 +52,8 @@ public class Reports extends javax.swing.JFrame {
         City = new javax.swing.JRadioButton();
         Staff = new javax.swing.JRadioButton();
         StaffP = new javax.swing.JRadioButton();
+        Home = new javax.swing.JButton();
+        Logout1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -63,7 +65,12 @@ public class Reports extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(Occupancy);
-        Occupancy.setText("Report by Occupancy");
+        Occupancy.setText("Report occupancy by Hotel");
+        Occupancy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OccupancyActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(TotalOccupancy);
         TotalOccupancy.setText("Report Total and Percentage Occupancy");
@@ -85,7 +92,7 @@ public class Reports extends javax.swing.JFrame {
         jLabel2.setText("Wolf Inns");
 
         buttonGroup1.add(RoomCategory);
-        RoomCategory.setText("Report by Room Category");
+        RoomCategory.setText("Report occupancy by Room Category");
         RoomCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RoomCategoryActionPerformed(evt);
@@ -93,16 +100,30 @@ public class Reports extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(Date);
-        Date.setText("Report by Date Range");
+        Date.setText("Report occupancy by Date Range");
 
         buttonGroup1.add(City);
-        City.setText("Report by City");
+        City.setText("Report occupancy by City");
 
         buttonGroup1.add(Staff);
         Staff.setText("Report by Staff Serving Customer");
 
         buttonGroup1.add(StaffP);
         StaffP.setText("Report by Staff Serving Customer (Presidential Suite)");
+
+        Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
+        Logout1.setText("Logout");
+        Logout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,12 +150,16 @@ public class Reports extends javax.swing.JFrame {
                                 .addGap(80, 80, 80)
                                 .addComponent(Submit))
                             .addComponent(jLabel1))
-                        .addGap(55, 55, 55))))
+                        .addGap(55, 55, 55))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Home)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Logout1))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel2)
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
@@ -144,9 +169,9 @@ public class Reports extends javax.swing.JFrame {
                 .addComponent(RoomCategory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Date)
-                .addGap(2, 2, 2)
-                .addComponent(City)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(City)
+                .addGap(2, 2, 2)
                 .addComponent(TotalOccupancy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(StaffInfo)
@@ -158,7 +183,10 @@ public class Reports extends javax.swing.JFrame {
                 .addComponent(Staff)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Submit)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Home)
+                    .addComponent(Logout1)))
         );
 
         pack();
@@ -170,20 +198,33 @@ public class Reports extends javax.swing.JFrame {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs;
+        ResultSet rs1;
         String query;
+        String query1;
         try {
             conn = db.connect_db();
             stmt = conn.createStatement();
             if (Occupancy.isSelected()) {
                 query = "SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM (SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid;";
+
+                query1 = "Select a.hotelid, a.total_rooms from (select hotelid,count(*) as total_rooms from room group by hotelid)a join (Select hotelid from hotel where hotelid not in (Select hotelid from isassigned))b on a.hotelid = b.hotelid;";
+
                 ReportOccupancyByHotel report = new ReportOccupancyByHotel();
                 DefaultTableModel model = (DefaultTableModel) report.Report1.getModel();
                 try {
                     rs = stmt.executeQuery(query);
                     while (rs.next()) {
-                        System.out.println("In while");
+                        //System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("hotelid"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
                     }
+
+                    rs1 = stmt.executeQuery(query1);
+
+                    while (rs1.next()) {
+                        model.addRow(new Object[]{rs1.getString("hotelid"), "0", rs1.getString("total_rooms")});
+
+                    }
+
                     report.setVisible(true);
                 } catch (SQLException e) {
                     JFrame jf = new JFrame();
@@ -196,7 +237,7 @@ public class Reports extends javax.swing.JFrame {
                 try {
                     rs = stmt.executeQuery(query);
                     while (rs.next()) {
-                        System.out.println("In while");
+                        //System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("hotelid"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
                     }
                     report.setVisible(true);
@@ -235,9 +276,13 @@ public class Reports extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             } else if (City.isSelected()) {
-                query = "SELECT q.city, p.rooms_occupied, p.total_rooms FROM(\n" +
-"SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (\n" +
-"SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city;";
+                query = "SELECT q.city, p.rooms_occupied, p.total_rooms FROM(\n"
+                        + "SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (\n"
+                        + "SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city;";
+
+                //query1 = "Select city from Hotelcity where city NOT IN (SELECT q.city FROM (SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city);";
+                query1 = "Select x.city as city, y.total as total_rooms from (select city from hotelcity where city not in (SELECT q.city FROM (SELECT a.hotelid, a.rooms_occupied, a.total_rooms, b.address from (SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM ( SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid) a JOIN (Select hotelid, address from hotel) b ON a.hotelid = b.hotelid) p JOIN (select * from hotelcity) q ON p.address = q.address group by q.city))x join (Select a.total,d.city from (select hotelid,count(*) as total from room group by hotelid)a join (select hotelid,city from (select * from hotel)c join (select * from HotelCity)b on c.address = b.address)d on a.hotelid = d.hotelid)y on y.city = x.city;";
+
                 ReportOccupancyByCity report = new ReportOccupancyByCity();
                 DefaultTableModel model = (DefaultTableModel) report.ReportCity.getModel();
                 try {
@@ -246,28 +291,39 @@ public class Reports extends javax.swing.JFrame {
                         //System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("city"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
                     }
+
+                    rs1 = stmt.executeQuery(query1);
+
+                    while (rs1.next()) {
+                        model.addRow(new Object[]{rs1.getString("city"), "0", rs1.getString("total_rooms")});
+
+                    }
+
                     report.setVisible(true);
                 } catch (SQLException e) {
                     JFrame jf = new JFrame();
                     JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             } else if (Date.isSelected()) {
-                query = "select a.occupancy, b.total_rooms from (select x.bookingid as book, count(*) as occupancy from( select bookingId from bookinginfo where DATEDIFF('2018-01-14',enddate) > 0 AND DATEDIFF('2017-05-05',startdate) <= 0) x JOIN (select bookingId, count(*) as room_occupancy from isassigned group by bookingid) y on x.bookingid = y.bookingid) a JOIN (select count(*) as total_rooms from room) b;";
-                ReportOccupancyByDate report = new ReportOccupancyByDate();
-                DefaultTableModel model = (DefaultTableModel) report.ReportDate.getModel();
-                try {
-                    rs = stmt.executeQuery(query);
-                    while (rs.next()) {
-                        //System.out.println("In while");
-                        model.addRow(new Object[]{rs.getString("occupancy"), rs.getString("total_rooms")});
-                    }
-                    report.setVisible(true);
-                } catch (SQLException e) {
-                    JFrame jf = new JFrame();
-                    JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
+                DateRange dr = new DateRange();
+                dr.setVisible(true);
+//                query = "select a.occupancy, b.total_rooms from (select x.bookingid as book, count(*) as occupancy from( select bookingId from bookinginfo where DATEDIFF('2018-01-14',enddate) > 0 AND DATEDIFF('2017-05-05',startdate) <= 0) x JOIN (select bookingId, count(*) as room_occupancy from isassigned group by bookingid) y on x.bookingid = y.bookingid) a JOIN (select count(*) as total_rooms from room) b;";
+//                ReportOccupancyByDate report = new ReportOccupancyByDate();
+//                DefaultTableModel model = (DefaultTableModel) report.ReportDate.getModel();
+//                try {
+//                    rs = stmt.executeQuery(query);
+//                    while (rs.next()) {
+//                        //System.out.println("In while");
+//                        model.addRow(new Object[]{rs.getString("occupancy"), rs.getString("total_rooms")});
+//                    }
+//                    report.setVisible(true);
+//                } catch (SQLException e) {
+//                    JFrame jf = new JFrame();
+//                    JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
+//                }
             } else if (RoomCategory.isSelected()) {
                 query = "select x.category, rooms_occupied, total_rooms from (select r.category,count(*) as rooms_occupied from room r where r.avail = 0 group by r.category) x JOIN (select r1.category,count(*) as total_rooms from room r1 group by r1.category) y on x.category = y.category;";
+                query1 = "Select category, count(*) as total_rooms from room where category not in (select a.cat from (select x.category as cat, rooms_occupied, total_rooms from (select r.category,count(*) as rooms_occupied from room r where r.avail = 0 group by r.category) x JOIN (select r1.category,count(*) as total_rooms from room r1 group by r1.category) y on x.category = y.category)a group by category);";
                 ReportOccupancyByRoom report = new ReportOccupancyByRoom();
                 DefaultTableModel model = (DefaultTableModel) report.ReportRoom.getModel();
                 try {
@@ -275,6 +331,10 @@ public class Reports extends javax.swing.JFrame {
                     while (rs.next()) {
                         //System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("category"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
+                    }
+                    rs = stmt.executeQuery(query1);
+                    while (rs.next()) {
+                        model.addRow(new Object[]{rs.getString("category"), "0", rs.getString("total_rooms")});
                     }
                     report.setVisible(true);
                 } catch (SQLException e) {
@@ -296,10 +356,10 @@ public class Reports extends javax.swing.JFrame {
                     JFrame jf = new JFrame();
                     JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-            }else if (Staff.isSelected()) {
-                query = "SELECT DISTINCT e.custid, f.name as Staff_Name, f.jobtitle, f.age, f.phonenum, f.address from (\n" +
-"SELECT staffid, c.custid from (\n" +
-"SELECT b.serviceid, a.custid FROM (SELECT * FROM gets) a JOIN (SELECT * FROM linkservice) b ON a.bookingid = b.bookingid) c JOIN (SELECT * from updates) d ON d.serviceid = c.serviceid)e JOIN (SELECT staffid, name, jobTitle, age, phonenum,address from staff) f ON e.staffid = f.staffid;";
+            } else if (Staff.isSelected()) {
+                query = "SELECT DISTINCT e.custid, f.name as Staff_Name, f.jobtitle, f.age, f.phonenum, f.address from (\n"
+                        + "SELECT staffid, c.custid from (\n"
+                        + "SELECT b.serviceid, a.custid FROM (SELECT * FROM gets) a JOIN (SELECT * FROM linkservice) b ON a.bookingid = b.bookingid) c JOIN (SELECT * from updates) d ON d.serviceid = c.serviceid)e JOIN (SELECT staffid, name, jobTitle, age, phonenum,address from staff) f ON e.staffid = f.staffid;";
                 ReportOccupancyByStaff report = new ReportOccupancyByStaff();
                 DefaultTableModel model = (DefaultTableModel) report.ReportStaff.getModel();
                 try {
@@ -313,9 +373,7 @@ public class Reports extends javax.swing.JFrame {
                     JFrame jf = new JFrame();
                     JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-            }
-            
-            else {
+            } else {
                 JFrame jf = new JFrame();
                 JOptionPane.showMessageDialog(jf, "INVALID INPUT", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
@@ -331,6 +389,24 @@ public class Reports extends javax.swing.JFrame {
     private void RoomCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoomCategoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RoomCategoryActionPerformed
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        Manager mng = new Manager();
+        sysExit();
+        mng.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
+
+    private void Logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout1ActionPerformed
+        // TODO add your handling code here:
+        Login l = new Login();
+        sysExit();
+        l.setVisible(true);
+    }//GEN-LAST:event_Logout1ActionPerformed
+
+    private void OccupancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OccupancyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OccupancyActionPerformed
     public void sysExit() {
         WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
@@ -374,6 +450,8 @@ public class Reports extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton City;
     private javax.swing.JRadioButton Date;
+    private javax.swing.JButton Home;
+    private javax.swing.JButton Logout1;
     private javax.swing.JRadioButton Occupancy;
     private javax.swing.JRadioButton Revenue;
     private javax.swing.JRadioButton RoomCategory;

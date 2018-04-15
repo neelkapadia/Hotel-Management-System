@@ -7,7 +7,13 @@ package form;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
-
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author saurabhshanbhag
@@ -19,6 +25,9 @@ public class ViewCustomers extends javax.swing.JFrame {
      */
     public ViewCustomers() {
         initComponents();
+        generateCustomer();
+        
+     
     }
 
     /**
@@ -32,8 +41,10 @@ public class ViewCustomers extends javax.swing.JFrame {
 
         Home = new javax.swing.JButton();
         Logout1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        custTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
@@ -49,6 +60,16 @@ public class ViewCustomers extends javax.swing.JFrame {
             }
         });
 
+        custTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Customer ID", "Name", "Date of Birth", "Email", "Phone No."
+            }
+        ));
+        jScrollPane1.setViewportView(custTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,11 +79,17 @@ public class ViewCustomers extends javax.swing.JFrame {
                 .addComponent(Home)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Logout1))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(343, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Logout1)
                     .addComponent(Home))
@@ -121,6 +148,59 @@ public class ViewCustomers extends javax.swing.JFrame {
         });
     }
     
+    
+    
+     public void generateCustomer() {
+        DefaultTableModel model = (DefaultTableModel) custTable.getModel();
+        db_connection db = new db_connection();
+        Connection conn = null;
+        Statement stmt = null;
+        
+        ResultSet custResult; 
+        
+        
+        try {
+            conn = db.connect_db();
+            stmt = conn.createStatement();
+           
+            custResult = stmt.executeQuery("select * from customer");
+            
+            while (custResult.next()) {
+                
+                int custID = custResult.getInt("CustID");
+                String name = custResult.getString("name");
+                String dob = custResult.getString("dob");
+                String email = custResult.getString("email");
+                int ph = custResult.getInt("phoneNum");
+              
+                model.addRow(new Object[]{custID,name,dob,email,ph});
+                
+            }
+            
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            try {
+            db.close_db(conn);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        
+    }
+    
         
         public void sysExit(){
         WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
@@ -130,5 +210,7 @@ public class ViewCustomers extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;
     private javax.swing.JButton Logout1;
+    public javax.swing.JTable custTable;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

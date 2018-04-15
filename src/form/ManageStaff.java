@@ -59,7 +59,7 @@ public class ManageStaff extends javax.swing.JFrame {
             }
         });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         buttonGroup1.add(deleteStaff);
         deleteStaff.setText("Delete Staff");

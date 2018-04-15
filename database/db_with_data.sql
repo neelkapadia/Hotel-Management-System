@@ -208,7 +208,7 @@ DROP TABLE IF EXISTS `Invoice`;
 CREATE TABLE `Invoice` (
   `InvoiceID` int(11) NOT NULL,
   `InvoiceDate` date NOT NULL,
-  `totalAmt` int(11) NOT NULL,
+  `totalAmt` float(11) NOT NULL,
   PRIMARY KEY (`InvoiceID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -440,7 +440,6 @@ CREATE TABLE `generateInvoice` (
   `InvoiceID` int(11) NOT NULL,
   `BookingId` int(11) NOT NULL,
   PRIMARY KEY (`BookingId`,`InvoiceID`),
-  UNIQUE KEY `BookingId` (`BookingId`),
   KEY `invoice_id_in_invoice` (`InvoiceID`),
   CONSTRAINT `booking_id_in_invoice` FOREIGN KEY (`BookingId`) REFERENCES `BookingInfo` (`BookingID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `invoice_id_in_invoice` FOREIGN KEY (`InvoiceID`) REFERENCES `Invoice` (`InvoiceID`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -611,7 +610,6 @@ CREATE TABLE `linkService` (
   `BookingId` int(11) NOT NULL,
   `ServiceId` int(11) NOT NULL,
   PRIMARY KEY (`ServiceId`,`BookingId`),
-  UNIQUE KEY `ServiceId` (`ServiceId`),
   KEY `service_in_invoice` (`ServiceId`),
   KEY `booking_id_in_linkservice` (`BookingId`),
   CONSTRAINT `booking_id_in_linkservice` FOREIGN KEY (`BookingId`) REFERENCES `BookingInfo` (`BookingID`) ON DELETE CASCADE ON UPDATE CASCADE,
