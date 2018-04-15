@@ -103,7 +103,7 @@ public class Manager extends javax.swing.JFrame {
             }
         });
 
-        addService.setText("Add Service");
+        addService.setText("Manage Service Type");
         buttonGroup1.add(addService);
         addService.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,7 +237,7 @@ public class Manager extends javax.swing.JFrame {
 
     private void addServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addServiceActionPerformed
         // TODO add your handling code here:
-           AddNewService l = new AddNewService();
+        ManageNewService l = new ManageNewService();
         sysExit();
         l.setVisible(true);
         
