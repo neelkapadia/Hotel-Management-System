@@ -54,6 +54,8 @@ public class UpdateRoomPrice extends javax.swing.JFrame {
         roomNum = new javax.swing.JLabel();
         Logout1 = new javax.swing.JButton();
         price = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        HotelId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -94,6 +96,14 @@ public class UpdateRoomPrice extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Hotel ID");
+
+        HotelId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HotelIdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,17 +121,19 @@ public class UpdateRoomPrice extends javax.swing.JFrame {
                                 .addGap(140, 140, 140)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGap(76, 76, 76)
+                                        .addComponent(jLabel6))
+                                    .addComponent(updateDetails, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel2)
                                             .addComponent(jLabel1)
                                             .addComponent(roomNum))
                                         .addGap(79, 79, 79)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(76, 76, 76)
-                                        .addComponent(jLabel6))
-                                    .addComponent(updateDetails, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(price, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                            .addComponent(category, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                            .addComponent(HotelId)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(92, 92, 92)
                                 .addComponent(getDetails1)
@@ -137,7 +149,11 @@ public class UpdateRoomPrice extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addGap(29, 29, 29)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(HotelId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -145,11 +161,11 @@ public class UpdateRoomPrice extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(roomNum)
                     .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(137, 137, 137)
+                .addGap(96, 96, 96)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(getDetails1)
                     .addComponent(updateDetails))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Home)
                     .addComponent(Logout1))
@@ -221,10 +237,10 @@ public class UpdateRoomPrice extends javax.swing.JFrame {
             conn = db.connect_db();
             stmt = conn.createStatement();
             
-            rs1 = stmt.executeQuery("select * from roomprice where category = '" + category.getText() +"'");
+            rs1 = stmt.executeQuery("select * from roomprice where category = '" + category.getText() +"' and hotelid = " + HotelId.getText() + ";");
 
             if(rs1.next()){
-                String updateQry = "update roomprice set price="+price.getText()+" where category='"+category.getText() +"'";  
+                String updateQry = "update roomprice set hotelid="+ HotelId.getText() +", price="+price.getText()+" where category='"+category.getText()+"' and hotelid = " + HotelId.getText() +";";  
                 stmt.executeUpdate(updateQry);
                 JOptionPane.showMessageDialog(null, "Room price updated!");
             }
@@ -271,6 +287,10 @@ public class UpdateRoomPrice extends javax.swing.JFrame {
         l.setVisible(true);
     }//GEN-LAST:event_Logout1ActionPerformed
 
+    private void HotelIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HotelIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HotelIdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -316,10 +336,12 @@ public class UpdateRoomPrice extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;
+    private javax.swing.JTextField HotelId;
     private javax.swing.JButton Logout1;
     private javax.swing.JTextField category;
     private javax.swing.JButton getDetails1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField price;
