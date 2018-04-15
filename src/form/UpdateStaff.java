@@ -46,12 +46,14 @@ public class UpdateStaff extends javax.swing.JFrame {
         jLabel14.setVisible(isVisible);
         jLabel15.setVisible(isVisible);
         Department.setVisible(isVisible);
+        hotelServing.setVisible(isVisible);
         jLabel8.setVisible(isVisible);
         jLabel9.setVisible(isVisible);
         jLabel10.setVisible(isVisible);
         jLabel3.setVisible(isVisible);
         jLabel4.setVisible(isVisible);
         jLabel5.setVisible(isVisible);
+        jLabel16.setVisible(isVisible);
         updateDetails.setVisible(isVisible);  
     }
     
@@ -133,7 +135,7 @@ public class UpdateStaff extends javax.swing.JFrame {
 
         jLabel12.setText("Availability");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         updateDetails.setText("Update Details");
         updateDetails.addActionListener(new java.awt.event.ActionListener() {

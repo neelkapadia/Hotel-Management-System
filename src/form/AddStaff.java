@@ -272,6 +272,7 @@ public class AddStaff extends javax.swing.JFrame {
             avail.setText("");
             add.setText("");
             Department.setText("");
+            hotelServing.setText("");
             
         } catch (Exception e) {
             e.printStackTrace();
