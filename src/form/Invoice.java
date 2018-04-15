@@ -181,6 +181,7 @@ public class Invoice extends javax.swing.JFrame {
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
+        Statement stmt2 = null;
         ResultSet rs;
         ResultSet rs1;
         ResultSet rs2;
@@ -240,11 +241,12 @@ public class Invoice extends javax.swing.JFrame {
                         while(rs.next()){
                             // for each serviceid add the cost
                             String findCost = "SELECT cost FROM ServiceCost WHERE servicetype = (SELECT servicetype FROM ServiceRecord WHERE serviceid = "+rs.getString("serviceid")+")";
-                            rs2 = stmt.executeQuery(findCost);
+                            stmt2 = conn.createStatement();
+                            rs2 = stmt2.executeQuery(findCost);
+                            rs2.next();
                             servicesCost += Integer.parseInt(rs2.getString("cost"));
                         }
                         
-                        System.out.println(rs.getString("serviceid"));
                         insertInvoiceQuery = "Insert into Invoice(invoiceID, invoiceDate,totalAmt) values ("+invid+", (Select enddate from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")),(Select v.totalamt from (Select l.BookingId, sum(roomprice + serviceprice) as totalamt from (Select BookingId, price*(select DATEDIFF (enddate,startdate) from Bookinginfo where bookingid=d.bookingid) as roomprice from (Select Hotelid,roomnum,price from ((Select * from RoomPrice)a join (select HotelId,roomnum,category from Room)b on a.category=b.category))c join (Select * from isAssigned)d on c.hotelid=d.hotelid and c.roomnum=d.roomnum)l join (Select Bookingid, sum(cost) as serviceprice from (Select x.serviceType,cost,serviceid from ((Select * from serviceCost)x join (Select * from servicerecord)y on x.servicetype=y.servicetype))z join (select * from linkservice)w on z.serviceid=w.serviceid group by bookingid)m on l.bookingid = m.bookingid and m.bookingid = (select bookingid from gets where custid="+cid+") group by bookingid)v))";
                         //String q = "select * from (Select * from gets where custid = "+cid+")h join (select * from generateInvoice)i on h.bookingid=i.bookingid";
                         //rs1 = stmt.executeQuery(q);
@@ -310,16 +312,36 @@ public class Invoice extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Invoice added!");
                     invoice.setVisible(true);
                     System.out.println("Room cost added");
+                    conn.commit();
                 } catch (SQLException e) {
                     e.printStackTrace();
                     JFrame jf = new JFrame();
-                    JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(jf, "Check SQL! Rolling back!", "ERROR", JOptionPane.ERROR_MESSAGE);
                     try {
                         conn.rollback();
                     } catch (SQLException ex1) {
                         Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex1);
                     }
                 }
+                finally {
+                    if (stmt != null) {
+                        try {
+                            stmt.close();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
+                    if (conn != null) {
+                        try {
+                            conn.setAutoCommit(true);
+                            conn.close();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(AddRecord.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                
             } else if(GetAmount.isSelected()){
                 //print amt
                 // Will not be possible without an existing invoice already present
@@ -342,34 +364,9 @@ public class Invoice extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(jf, "INVALID INPUT", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
             
-            conn.commit();
-            
         } catch (Exception e) {
-            try {
-                conn.rollback();
-            } catch (SQLException ex) {
-                Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
-            }
             e.printStackTrace();
         }
-        finally {
-
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            try {
-                conn.setAutoCommit(true);
-                db.close_db(conn);
-                } catch(Exception e){
-                    e.printStackTrace();
-                }
-        }
-        
-         
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
