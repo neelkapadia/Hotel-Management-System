@@ -369,8 +369,8 @@ public class CheckIn extends javax.swing.JFrame {
             // Assuming 11am as the common checkout time
             String insertBookingInfo = "INSERT INTO BookingInfo VALUES ("+bookId+", '"+checkinTime+"', '11:00:00', '"+sDate+"', '"+eDate+"')";
             String insertBillInfo = "INSERT INTO BillInfo VALUES('"+ssn+"', '"+paymentType+"', '"+address+"', "+cardNumber+")";
-            String insertHas = "INSERT INTO has VALUES ("+ssn+", "+bookId+")";
-            String getHotelId = "SELECT hotelid FROM worksFor WHERE staffid='"+Intermediate.getItem("frontDeskStaffId")+"'";
+            String insertHas = "INSERT INTO has VALUES ('"+ssn+"', "+bookId+")";
+            String getHotelId = "SELECT hotelid FROM worksFor WHERE staffid="+Integer.parseInt((String)Intermediate.getItem("frontDeskStaffId"));
 
             stmt.executeUpdate(insertBookingInfo);
             stmt.executeUpdate(insertBillInfo);
