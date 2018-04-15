@@ -51,9 +51,9 @@ public class CheckIn extends javax.swing.JFrame {
         Home = new javax.swing.JButton();
         Logout1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Room = new javax.swing.JTable();
+        RoomTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Customer = new javax.swing.JTable();
+        CustomerTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         Submit = new javax.swing.JButton();
         bookingId = new javax.swing.JTextField();
@@ -87,7 +87,7 @@ public class CheckIn extends javax.swing.JFrame {
             }
         });
 
-        Room.setModel(new javax.swing.table.DefaultTableModel(
+        RoomTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -95,9 +95,9 @@ public class CheckIn extends javax.swing.JFrame {
                 "RoomNum", "Category", "Capacity", "Price"
             }
         ));
-        jScrollPane1.setViewportView(Room);
+        jScrollPane1.setViewportView(RoomTable);
 
-        Customer.setModel(new javax.swing.table.DefaultTableModel(
+        CustomerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -105,7 +105,7 @@ public class CheckIn extends javax.swing.JFrame {
                 "Cust ID", "Name", "Email"
             }
         ));
-        jScrollPane2.setViewportView(Customer);
+        jScrollPane2.setViewportView(CustomerTable);
 
         jLabel4.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel4.setText("Wolf Inns");
@@ -296,6 +296,9 @@ public class CheckIn extends javax.swing.JFrame {
         rowSelection();
         System.out.println("After row selection");
 
+       // JFrame jf = new JFrame();
+         //               JOptionPane.showMessageDialog(jf, "Checked In", "Success", JOptionPane.INFORMATION_MESSAGE );
+
         FrontDesk fd = new FrontDesk();
         sysExit();
         fd.setVisible(true);
@@ -474,33 +477,33 @@ public class CheckIn extends javax.swing.JFrame {
     
     public void rowSelection(){
         // Adding selection functionality for rooms
-        Room.setRowSelectionAllowed(true);
-        ListSelectionModel ls = Room.getSelectionModel();
+        RoomTable.setRowSelectionAllowed(true);
+        ListSelectionModel ls = RoomTable.getSelectionModel();
         ls.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         
         // Adding selection functionality for rooms
-        Customer.setRowSelectionAllowed(true);
-        ListSelectionModel lsCust = Customer.getSelectionModel();
+        CustomerTable.setRowSelectionAllowed(true);
+        ListSelectionModel lsCust = CustomerTable.getSelectionModel();
         lsCust.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         System.out.println("Inside row selection - before room");
 
-        int[] selectedRoom = Room.getSelectedRows();
+        int[] selectedRoom = RoomTable.getSelectedRows();
         System.out.println("Room rows selected");
         System.out.println(selectedRoom[0]);
         int row = selectedRoom[0];
         
         // Storing room details in variables
-        int roomNum = Integer.parseInt((String)Room.getValueAt(row, 0));
-        String roomCategory = (String)Room.getValueAt(row, 1);
-        int roomCapacity = Integer.parseInt((String)Room.getValueAt(row, 2));
-        int roomPrice = Integer.parseInt((String)Room.getValueAt(row, 3));
+        int roomNum = Integer.parseInt((String)RoomTable.getValueAt(row, 0));
+        String roomCategory = (String)RoomTable.getValueAt(row, 1);
+        int roomCapacity = Integer.parseInt((String)RoomTable.getValueAt(row, 2));
+        int roomPrice = Integer.parseInt((String)RoomTable.getValueAt(row, 3));
         
         System.out.println(roomNum + "," + roomCategory + "," + roomCapacity + "," + roomPrice);
         
         System.out.println("Inside row selection - before customer");
         
-        int[] selectedCusts = Customer.getSelectedRows();
+        int[] selectedCusts = CustomerTable.getSelectedRows();
         System.out.println(selectedCusts[0]);
         
         // Storing customer details
@@ -517,9 +520,9 @@ public class CheckIn extends javax.swing.JFrame {
         String[] custEmail = new String[selectedCusts.length];
         
         for(int i = 0; i < selectedCusts.length; i++){
-            custId[i] = Integer.parseInt((String)Customer.getValueAt(i, 0));
-            custName[i] = (String)Customer.getValueAt(i, 1);
-            custEmail[i] = (String)Customer.getValueAt(i, 2);
+            custId[i] = Integer.parseInt((String)CustomerTable.getValueAt(i, 0));
+            custName[i] = (String)CustomerTable.getValueAt(i, 1);
+            custEmail[i] = (String)CustomerTable.getValueAt(i, 2);
         }
         
         inserts(roomNum, roomCategory, roomCapacity, roomPrice, custId, custName, custEmail);
@@ -580,13 +583,13 @@ public class CheckIn extends javax.swing.JFrame {
 
             rs = stmt.executeQuery("SELECT roomNum, room.category, capacity, p.price FROM Room, RoomPrice p WHERE avail = 1 AND Room.category = p.category AND HotelId = (SELECT HotelId FROM worksFor WHERE StaffId = " + Intermediate.getItem("frontDeskStaffId") + ") ORDER BY room.category;");
             
-            DefaultTableModel model = (DefaultTableModel) Room.getModel();
+            DefaultTableModel model = (DefaultTableModel) RoomTable.getModel();
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
             }
             
             rs = stmt.executeQuery("select custid, name, email from customer WHERE custid NOT IN (Select custid FROM gets)");
-            DefaultTableModel modelCust = (DefaultTableModel) Customer.getModel();
+            DefaultTableModel modelCust = (DefaultTableModel) CustomerTable.getModel();
             while (rs.next()) {
                 modelCust.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3)});
             }
@@ -661,10 +664,10 @@ public class CheckIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Customer;
+    private javax.swing.JTable CustomerTable;
     private javax.swing.JButton Home;
     private javax.swing.JButton Logout1;
-    private javax.swing.JTable Room;
+    private javax.swing.JTable RoomTable;
     private javax.swing.JButton Submit;
     private javax.swing.JTextField addr;
     private javax.swing.JTextField bookingId;

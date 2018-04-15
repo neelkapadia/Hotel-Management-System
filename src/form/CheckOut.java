@@ -140,12 +140,13 @@ public class CheckOut extends javax.swing.JFrame {
         db_connection db = new db_connection();
         Connection conn = null;
         ResultSet rs;
+        ResultSet rs1;
         Statement stmt = null;
-        
+        Statement stmt1 = null;
         try {
             conn = db.connect_db();
             stmt = conn.createStatement();
-            
+            stmt1 = conn.createStatement();
             conn.setAutoCommit(false);
             
             // get hotel id of the front desk staff
@@ -175,34 +176,42 @@ public class CheckOut extends javax.swing.JFrame {
             String roomAvailabilityToggle = "UPDATE Room SET avail=1 WHERE hotelid="+hotelId+" AND roomnum="+roomNo;
             stmt.executeUpdate(roomAvailabilityToggle);
             
+            String deleteGets = "DELETE FROM gets WHERE bookingid = "+bookingId;
+            stmt.executeUpdate(deleteGets);
+            System.out.println(" done " );
             // Check if presidential suite
             String ifPresidentialSuite = "SELECT * FROM PresidentialSuite WHERE hotelid="+hotelId+" AND roomnum="+roomNo;
             rs = stmt.executeQuery(ifPresidentialSuite);
+            
+              
             // If Presidential Suite
             if(rs.next()){
                 // Get staffid of caterer
                 String getCaterer = "SELECT staffid FROM isAssignedCaterer WHERE hotelid="+hotelId+" AND roomnum="+roomNo;
-                rs = stmt.executeQuery(getCaterer);
-                rs.next();
-                int catererId = Integer.parseInt(rs.getString("staffid"));
+                rs1 = stmt1.executeQuery(getCaterer);
+                rs1.next();
+                int catererId = Integer.parseInt(rs1.getString("staffid"));
                 // Delete from isAssignedCaterer
                 String deleteCaterer = "DELETE FROM isAssignedCaterer WHERE staffid="+catererId+" AND hotelid="+hotelId+" AND roomnum="+roomNo;
-                stmt.executeUpdate(deleteCaterer);
+                stmt1.executeUpdate(deleteCaterer);
                 // Toggle availability from Caterer
                 String catererToggle = "UPDATE Staff SET avail=1 WHERE staffid="+catererId;
-                stmt.executeUpdate(catererToggle);
+                stmt1.executeUpdate(catererToggle);
                 
                 // Get staffid of room service
                 String getRoomService = "SELECT staffid FROM isAssignedRoomService WHERE hotelid="+hotelId+" AND roomnum="+roomNo;
-                rs = stmt.executeQuery(getRoomService);
-                rs.next();
-                int roomServiceId = Integer.parseInt(rs.getString("staffid"));
+                rs1 = stmt1.executeQuery(getRoomService);
+                rs1.next();
+                int roomServiceId = Integer.parseInt(rs1.getString("staffid"));
                 // Delete from isAssignedRoomService
                 String deleteRoomService = "DELETE FROM isAssignedRoomService WHERE staffid="+roomServiceId+" AND hotelid="+hotelId+" AND roomnum="+roomNo;
-                stmt.executeUpdate(deleteRoomService);
+                stmt1.executeUpdate(deleteRoomService);
+                
+                
+              
                 // Toogle availability from RoomService
                 String roomServiceToggle = "UPDATE Staff SET avail=1 WHERE staffid="+roomServiceId;
-                stmt.executeUpdate(roomServiceToggle);
+                stmt1.executeUpdate(roomServiceToggle);
             }
             
             // At the end. Success!
