@@ -567,13 +567,7 @@ public class CheckIn extends javax.swing.JFrame {
 //            int id = Integer.parseInt(sid);
 
             // Setting values for testing
-            bookingId.setText("1113");
-            startDate.setText("2018-01-10");
-            endDate.setText("2018-01-12");
-            cssn.setText("123411");
-            addr.setText("asdf");
-            payType.setText("credit");
-            cardno.setText("1212");
+           
 
             conn = db.connect_db();
             stmt = conn.createStatement();
