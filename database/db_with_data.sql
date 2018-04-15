@@ -310,9 +310,11 @@ DROP TABLE IF EXISTS `RoomPrice`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `RoomPrice` (
+  `HotelId` int(11) NOT NULL,
   `Category` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
-  PRIMARY KEY (`Category`)
+  PRIMARY KEY (`HotelId`,`Category`)
+  CONSTRAINT `hotel_in_room_price` FOREIGN KEY (`HotelId`) REFERENCES `Hotel` (`HotelId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -322,7 +324,8 @@ CREATE TABLE `RoomPrice` (
 
 LOCK TABLES `RoomPrice` WRITE;
 /*!40000 ALTER TABLE `RoomPrice` DISABLE KEYS */;
-INSERT INTO `RoomPrice` VALUES ('Deluxe',200),('Economy',100),('Executive',1000),('Presidential',5000);
+# INSERT INTO `RoomPrice` VALUES ('Deluxe',200),('Economy',100),('Executive',1000),('Presidential',5000);
+INSERT INTO `roomprice`  VALUES      (1,'Deluxe',               200),              (1,'Economy',               100),              (2,'Economy',               100),              (3,'Executive',               1000),              (4,'Presidential',               5000); 
 /*!40000 ALTER TABLE `RoomPrice` ENABLE KEYS */;
 UNLOCK TABLES;
 
