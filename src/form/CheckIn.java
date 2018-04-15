@@ -368,8 +368,6 @@ public class CheckIn extends javax.swing.JFrame {
             String insertBillInfo = "INSERT INTO BillInfo VALUES('"+ssn+"', '"+paymentType+"', '"+address+"', "+cardNumber+")";
             String insertHas = "INSERT INTO has VALUES ("+ssn+", "+bookId+")";
             String getHotelId = "SELECT hotelid FROM worksFor WHERE staffid='"+Intermediate.getItem("frontDeskStaffId")+"'";
-            
-
 
             stmt.executeUpdate(insertBookingInfo);
             stmt.executeUpdate(insertBillInfo);
@@ -380,7 +378,6 @@ public class CheckIn extends javax.swing.JFrame {
 
             String insertIsAssigned = "INSERT INTO isAssigned VALUES ("+bookId+", "+hotelId+", "+roomNum+")";
             stmt.executeUpdate(insertIsAssigned);
-
 
             System.out.println("Number of customers selected -"+custId.length);
             for(int i = 0; i < custId.length; i++){
