@@ -231,14 +231,14 @@ public class Reports extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             } else if (TotalOccupancy.isSelected()) {
-                query = "SELECT x.hotelid, x.rooms_occupied, y.total_rooms FROM (SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid;";
-                ReportOccupancyByHotel report = new ReportOccupancyByHotel();
-                DefaultTableModel model = (DefaultTableModel) report.Report1.getModel();
+                query = "SELECT x.hotelid, x.rooms_occupied, y.total_rooms,(x.rooms_occupied/y.total_rooms)*100 as percentage FROM (SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid;";
+                ReportTotalOccupancy report = new ReportTotalOccupancy();
+                DefaultTableModel model = (DefaultTableModel) report.Total.getModel();
                 try {
                     rs = stmt.executeQuery(query);
                     while (rs.next()) {
                         //System.out.println("In while");
-                        model.addRow(new Object[]{rs.getString("hotelid"), rs.getString("rooms_occupied"), rs.getString("total_rooms")});
+                        model.addRow(new Object[]{rs.getString("hotelid"), rs.getString("rooms_occupied"), rs.getString("total_rooms"),rs.getString("percentage")});
                     }
                     report.setVisible(true);
                 } catch (SQLException e) {
