@@ -411,6 +411,10 @@ public class CheckIn extends javax.swing.JFrame {
                         String updateRoomServiceAvailability = "UPDATE Staff SET avail=0 WHERE staffid="+staffId2;
                         stmt2.executeUpdate(updateRoomServiceAvailability);
 
+                        // Success!
+                        conn.commit();
+                        JFrame jf = new JFrame();
+                        JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
                     }
                     else{
                         JFrame jf = new JFrame();
@@ -419,21 +423,23 @@ public class CheckIn extends javax.swing.JFrame {
                         System.out.println("No Room Service Staff available");
                         conn.rollback();
                     }
+                    
                 }
                 else{
                     JFrame jf = new JFrame();
-                    JOptionPane.showMessageDialog(jf, "No Catering Staff available. ROlled back!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(jf, "No Catering Staff available. Rolled back!", "ERROR", JOptionPane.ERROR_MESSAGE);
 
                     System.out.println("No Catering Staff available");
                     conn.rollback();
                 }
                 
             }
-            // Success!
-            conn.commit();
-            JFrame jf = new JFrame();
-            JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
-
+            else{
+                // Success!
+                conn.commit();
+                JFrame jf = new JFrame();
+                JOptionPane.showMessageDialog(jf, "BOOKING CONFIRMED", "", JOptionPane.INFORMATION_MESSAGE);
+            }
             
         } catch (Exception ex) {
             ex.printStackTrace();
