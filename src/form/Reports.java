@@ -232,6 +232,9 @@ public class Reports extends javax.swing.JFrame {
                 }
             } else if (TotalOccupancy.isSelected()) {
                 query = "SELECT x.hotelid, x.rooms_occupied, y.total_rooms,(x.rooms_occupied/y.total_rooms)*100 as percentage FROM (SELECT i.hotelid, count(*) as rooms_occupied FROM isAssigned i GROUP BY i.hotelid) x JOIN (SELECT r.hotelid, count(*) as total_rooms from Room r group by r.hotelid) y ON x.hotelid = y.hotelid;";
+ 
+                query1 = "Select a.hotelid, a.total_rooms from (select hotelid,count(*) as total_rooms, 0.00 as percentage from room group by hotelid)a join (Select hotelid from hotel where hotelid not in (Select hotelid from isassigned))b on a.hotelid = b.hotelid;";
+
                 ReportTotalOccupancy report = new ReportTotalOccupancy();
                 DefaultTableModel model = (DefaultTableModel) report.Total.getModel();
                 try {
@@ -239,6 +242,13 @@ public class Reports extends javax.swing.JFrame {
                     while (rs.next()) {
                         //System.out.println("In while");
                         model.addRow(new Object[]{rs.getString("hotelid"), rs.getString("rooms_occupied"), rs.getString("total_rooms"),rs.getString("percentage")});
+                    }
+                    
+                    rs1 = stmt.executeQuery(query1);
+
+                    while (rs1.next()) {
+                        model.addRow(new Object[]{rs1.getString("hotelid"), "0", rs1.getString("total_rooms"),"0.00"});
+
                     }
                     report.setVisible(true);
                 } catch (SQLException e) {
