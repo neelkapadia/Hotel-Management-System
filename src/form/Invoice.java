@@ -177,12 +177,14 @@ public class Invoice extends javax.swing.JFrame {
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
-        String cid = custid.getText();
-        String invid = invoiceid.getText();
+        int cid = Integer.parseInt(custid.getText());
+        int invid = Integer.parseInt(invoiceid.getText());
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs;
+        ResultSet rs1;
+        int b=0;
         float totalRoomCost;
         float totalAmount;
         String payTypeQuery;
@@ -198,7 +200,7 @@ public class Invoice extends javax.swing.JFrame {
             
             if(GenerateInvoice.isSelected()){
                 //open add record form
-                                
+                conn.setAutoCommit(false);               
                 getServicesQuery = "Select servicetype, cost from (Select serviceid, time, a.servicetype, cost from (select * from servicerecord) a join(select * from servicecost)b on a.servicetype=b.servicetype)x join (select * from linkservice where BookingId = (Select bookingid from gets where custid = "+cid+")) y ON x.serviceid = y.serviceid;";
                 //code to get pdf invoice
             
@@ -212,17 +214,30 @@ public class Invoice extends javax.swing.JFrame {
                 System.out.println("Before try");
                 
                 try {
-                    insertInvoiceQuery = "Insert into Invoice(invoiceID, invoiceDate,totalAmt) values ("+invid+", (Select enddate from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")), (Select (Select sum(cost) from ServiceCost where ServiceType IN (Select serviceType from ServiceRecord where serviceId IN (Select ServiceID from linkservice where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))+Sum(DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where category= (Select category from Room where HotelId=(select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")) And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))) AS totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId));";
-                    insertGenerateInvoiceQuery = "Insert into generateInvoice values ("+invid+",(Select bookingid from gets where custid = "+cid+"))";
+                    insertInvoiceQuery = "Insert into Invoice(invoiceID, invoiceDate,totalAmt) values ("+invid+", (Select enddate from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")),(Select v.totalamt from (Select l.BookingId, sum(roomprice + serviceprice) as totalamt from (Select BookingId, price*(select DATEDIFF (enddate,startdate) from Bookinginfo where bookingid=d.bookingid) as roomprice from (Select Hotelid,roomnum,price from ((Select * from RoomPrice)a join (select HotelId,roomnum,category from Room)b on a.category=b.category))c join (Select * from isAssigned)d on c.hotelid=d.hotelid and c.roomnum=d.roomnum)l join (Select Bookingid, sum(cost) as serviceprice from (Select x.serviceType,cost,serviceid from ((Select * from serviceCost)x join (Select * from servicerecord)y on x.servicetype=y.servicetype))z join (select * from linkservice)w on z.serviceid=w.serviceid group by bookingid)m on l.bookingid = m.bookingid and m.bookingid = (select bookingid from gets where custid="+cid+") group by bookingid)v))";
+                    //String q = "select * from (Select * from gets where custid = "+cid+")h join (select * from generateInvoice)i on h.bookingid=i.bookingid";
+                    //rs1 = stmt.executeQuery(q);
+                    
+                    
+                    
+                    
+                    //if(!rs1.next()){
+                      //  stmt.executeUpdate(insertGenerateInvoiceQuery);
+                     
+                    //System.out.println("Inserts executed");
+                    //}
                     
                     // Add insert query
                     stmt.executeUpdate(insertInvoiceQuery);
                     System.out.println("Invoice insert executed");
+                    
+                    insertGenerateInvoiceQuery = "Insert into generateInvoice values ("+invid+",(Select bookingid from gets where custid = "+cid+"))";
+                    
                     stmt.executeUpdate(insertGenerateInvoiceQuery);
                     
-                    System.out.println("Inserts executed");
-
                     JOptionPane.showMessageDialog(null, "Invoice added!");
+                    
+                    
                     // Add generate invoice query
                     rs = stmt.executeQuery(getServicesQuery);
                     System.out.println("After list of services");
@@ -269,7 +284,11 @@ public class Invoice extends javax.swing.JFrame {
                     
                     invoice.setVisible(true);
                     System.out.println("Room cost added");
+                    
+                    
+                    
                 } catch (SQLException e) {
+                    
                     e.printStackTrace();
                     JFrame jf = new JFrame();
                     JOptionPane.showMessageDialog(jf, "No data to show", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -295,7 +314,15 @@ public class Invoice extends javax.swing.JFrame {
                 JFrame jf = new JFrame();
                 JOptionPane.showMessageDialog(jf, "INVALID INPUT", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
+            
+            conn.commit();
+            
         } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
+            }
             e.printStackTrace();
         }
         finally {
@@ -308,6 +335,7 @@ public class Invoice extends javax.swing.JFrame {
                 }
             }
             try {
+            conn.setAutoCommit(true);
             db.close_db(conn);
             } catch(Exception e){
                 e.printStackTrace();
