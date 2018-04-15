@@ -313,7 +313,7 @@ CREATE TABLE `RoomPrice` (
   `HotelId` int(11) NOT NULL,
   `Category` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
-  PRIMARY KEY (`HotelId`,`Category`)
+  PRIMARY KEY (`HotelId`,`Category`),
   CONSTRAINT `hotel_in_room_price` FOREIGN KEY (`HotelId`) REFERENCES `Hotel` (`HotelId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
