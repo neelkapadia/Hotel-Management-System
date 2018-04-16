@@ -317,6 +317,7 @@ CREATE TABLE `RoomPrice` (
 
 LOCK TABLES `RoomPrice` WRITE;
 /*!40000 ALTER TABLE `RoomPrice` DISABLE KEYS */;
+INSERT INTO `RoomPrice` VALUES (1,'Deluxe',200),(1,'Economy',100),(2,'Economy',100),(3,'Executive',1000),(4,'Presidential',5000);
 /*!40000 ALTER TABLE `RoomPrice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -679,4 +680,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-15 21:55:11
+-- Dump completed on 2018-04-15 21:59:12
