@@ -37,7 +37,7 @@ CREATE TABLE `BillInfo` (
 
 LOCK TABLES `BillInfo` WRITE;
 /*!40000 ALTER TABLE `BillInfo` DISABLE KEYS */;
-INSERT INTO `BillInfo` VALUES ('593-9846','credit','980 TRT St, Raleigh NC',1052),('777-8352','hotel credit','7720 MHT St, Greensboro NC',3020),('858-9430','credit','231 DRY St, Rochester NY 78',2497);
+INSERT INTO `BillInfo` VALUES ('858-9430','credit','231 DRY St, Rochester NY 78',2497);
 /*!40000 ALTER TABLE `BillInfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +64,7 @@ CREATE TABLE `BookingInfo` (
 
 LOCK TABLES `BookingInfo` WRITE;
 /*!40000 ALTER TABLE `BookingInfo` DISABLE KEYS */;
-INSERT INTO `BookingInfo` VALUES (1,'15:17:00','10:22:00','2017-05-10','2017-05-13'),(2,'16:11:00','09:27:00','2017-05-10','2017-05-13'),(3,'15:45:00','11:10:00','2016-05-10','2016-05-14');
+INSERT INTO `BookingInfo` VALUES (1,'15:17:00','10:22:00','2017-05-10','2017-05-13'),(2,'16:11:00','09:27:00','2017-05-10','2017-05-13'),(3,'15:45:00','11:00:00','2018-05-10','2018-05-14'),(4,'14:30:00','10:00:00','2018-05-10','2018-05-12');
 /*!40000 ALTER TABLE `BookingInfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,6 +219,7 @@ CREATE TABLE `Invoice` (
 
 LOCK TABLES `Invoice` WRITE;
 /*!40000 ALTER TABLE `Invoice` DISABLE KEYS */;
+INSERT INTO `Invoice` VALUES (1,'2017-05-13',331),(2,'2017-05-13',584.25),(3,'2018-05-14',400),(4,'2018-05-12',2005);
 /*!40000 ALTER TABLE `Invoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,7 +299,7 @@ CREATE TABLE `Room` (
 
 LOCK TABLES `Room` WRITE;
 /*!40000 ALTER TABLE `Room` DISABLE KEYS */;
-INSERT INTO `Room` VALUES (1,1,'Economy',1,1),(4,1,'Presidential',1,4),(1,2,'Deluxe',1,2),(3,2,'Executive',1,3),(2,3,'Economy',1,1),(1,5,'Deluxe',1,2);
+INSERT INTO `Room` VALUES (1,1,'Economy',1,1),(4,1,'Presidential',1,4),(1,2,'Deluxe',1,2),(3,2,'Executive',1,3),(2,3,'Economy',0,1),(1,5,'Deluxe',1,2);
 /*!40000 ALTER TABLE `Room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,7 +399,7 @@ CREATE TABLE `ServiceRecord` (
 
 LOCK TABLES `ServiceRecord` WRITE;
 /*!40000 ALTER TABLE `ServiceRecord` DISABLE KEYS */;
-INSERT INTO `ServiceRecord` VALUES (1,'2017-05-11','08:00:00','gyms'),(2,'2017-05-11','20:00:00','dry cleaning'),(3,'2017-05-12','07:00:00','gyms'),(4,'2016-05-11','10:00:00','room service');
+INSERT INTO `ServiceRecord` VALUES (1,'2017-05-11','08:00:00','gyms'),(2,'2017-05-11','20:00:00','dry cleaning'),(3,'2017-05-12','07:00:00','gyms'),(4,'2016-05-11','10:00:00','room service'),(5,'2018-05-11','12:12:12','phone bills');
 /*!40000 ALTER TABLE `ServiceRecord` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -455,6 +456,7 @@ CREATE TABLE `generateInvoice` (
 
 LOCK TABLES `generateInvoice` WRITE;
 /*!40000 ALTER TABLE `generateInvoice` DISABLE KEYS */;
+INSERT INTO `generateInvoice` VALUES (1,1),(2,2),(3,3),(4,4);
 /*!40000 ALTER TABLE `generateInvoice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -481,6 +483,7 @@ CREATE TABLE `gets` (
 
 LOCK TABLES `gets` WRITE;
 /*!40000 ALTER TABLE `gets` DISABLE KEYS */;
+INSERT INTO `gets` VALUES (1003,3);
 /*!40000 ALTER TABLE `gets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -508,7 +511,7 @@ CREATE TABLE `has` (
 
 LOCK TABLES `has` WRITE;
 /*!40000 ALTER TABLE `has` DISABLE KEYS */;
-INSERT INTO `has` VALUES ('593-9846',1),('777-8352',2),('858-9430',3);
+INSERT INTO `has` VALUES ('858-9430',3);
 /*!40000 ALTER TABLE `has` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -539,6 +542,7 @@ CREATE TABLE `isAssigned` (
 
 LOCK TABLES `isAssigned` WRITE;
 /*!40000 ALTER TABLE `isAssigned` DISABLE KEYS */;
+INSERT INTO `isAssigned` VALUES (3,2,3);
 /*!40000 ALTER TABLE `isAssigned` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -624,7 +628,7 @@ CREATE TABLE `linkService` (
 
 LOCK TABLES `linkService` WRITE;
 /*!40000 ALTER TABLE `linkService` DISABLE KEYS */;
-INSERT INTO `linkService` VALUES (1,1),(1,2),(2,3),(3,4);
+INSERT INTO `linkService` VALUES (1,1),(1,2),(2,3),(4,5);
 /*!40000 ALTER TABLE `linkService` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -651,7 +655,7 @@ CREATE TABLE `updates` (
 
 LOCK TABLES `updates` WRITE;
 /*!40000 ALTER TABLE `updates` DISABLE KEYS */;
-INSERT INTO `updates` VALUES (103,1),(103,3),(200,2),(201,4);
+INSERT INTO `updates` VALUES (103,1),(103,3),(200,2),(201,4),(203,5);
 /*!40000 ALTER TABLE `updates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -693,4 +697,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-16  0:33:17
+-- Dump completed on 2018-04-16  2:16:25
