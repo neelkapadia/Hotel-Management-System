@@ -3,6 +3,7 @@ package form;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -391,9 +392,25 @@ public class CheckIn extends javax.swing.JFrame {
             String ssn = cssn.getText();
             String address = addr.getText();
             String paymentType = payType.getText();
-            int cardNumber = Integer.parseInt(cardno.getText());
             String checkinTime = checkin.getText();
-
+                        
+            String cardnum = cardno.getText();
+            if(cardnum.isEmpty()){
+                cardnum = null;
+            }
+            
+            String insertBillInfo = "INSERT INTO BillInfo VALUES('"+ssn+"', '"+paymentType+"', '"+address+"', ?)";
+//            stmt.executeUpdate(insertBillInfo);
+            
+            PreparedStatement ps = conn.prepareStatement(insertBillInfo); // c - java.sql.Connection
+            if(cardnum == null) {
+                ps.setNull(1, java.sql.Types.BIGINT); // no error, perfect
+            }
+            else {
+                ps.setInt(1, Integer.parseInt(cardnum));
+            }
+            ps.executeUpdate();
+            
 //            Calendar cal = Calendar.getInstance();
 //            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 //    //        System.out.println(time);
@@ -403,12 +420,10 @@ public class CheckIn extends javax.swing.JFrame {
             //Write all queries
             // Assuming 11am as the common checkout time
             String insertBookingInfo = "INSERT INTO BookingInfo VALUES ("+bookId+", '"+checkinTime+"', '11:00:00', '"+sDate+"', '"+eDate+"')";
-            String insertBillInfo = "INSERT INTO BillInfo VALUES('"+ssn+"', '"+paymentType+"', '"+address+"', "+cardNumber+")";
             String insertHas = "INSERT INTO has VALUES ('"+ssn+"', "+bookId+")";
             String getHotelId = "SELECT hotelid FROM worksFor WHERE staffid="+(int)Intermediate.getItem("frontDeskStaffId");
 
             stmt.executeUpdate(insertBookingInfo);
-            stmt.executeUpdate(insertBillInfo);
             stmt.executeUpdate(insertHas);
             rs = stmt.executeQuery(getHotelId);
             rs.next();
@@ -555,9 +570,13 @@ public class CheckIn extends javax.swing.JFrame {
         String[] custEmail = new String[selectedCusts.length];
         
         for(int i = 0; i < selectedCusts.length; i++){
-            custId[i] = Integer.parseInt((String)CustomerTable.getValueAt(i, 0));
-            custName[i] = (String)CustomerTable.getValueAt(i, 1);
-            custEmail[i] = (String)CustomerTable.getValueAt(i, 2);
+
+            custId[i] = Integer.parseInt((String)CustomerTable.getValueAt(selectedCusts[i], 0));
+            custName[i] = (String)CustomerTable.getValueAt(selectedCusts[i], 1);
+            custEmail[i] = (String)CustomerTable.getValueAt(selectedCusts[i], 2);
+            
+            System.out.println(i);
+            System.out.println("SELECTED DETAILS - "+custId[i]+" "+custName[i]+" "+custEmail[i]);
         }
         
         inserts(roomNum, roomCategory, roomCapacity, roomPrice, custId, custName, custEmail);
@@ -600,6 +619,17 @@ public class CheckIn extends javax.swing.JFrame {
     }
     
     public void getDetails() {
+        
+        // setTexts
+        bookingId.setText("123");
+        addr.setText("asas");
+//        cardno.setText("1243");
+        checkin.setText("11:11:11");
+        cssn.setText("11341");
+        startDate.setText("2018-01-10");
+        endDate.setText("2018-01-12");
+        payType.setText("cash");
+        
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;

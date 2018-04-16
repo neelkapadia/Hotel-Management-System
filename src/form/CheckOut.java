@@ -175,6 +175,7 @@ public class CheckOut extends javax.swing.JFrame {
             int hotelId = Integer.parseInt(rs.getString("hotelid"));
             int roomNo = Integer.parseInt(room.getText());
             
+            //get booking id from hotel id
             String getBookingId = "SELECT bookingid FROM isAssigned WHERE hotelid="+hotelId+" AND roomnum="+roomNo;
             rs = stmt.executeQuery(getBookingId);
             rs.next();
@@ -182,6 +183,17 @@ public class CheckOut extends javax.swing.JFrame {
                         
             String deleteIsAssigned = "DELETE FROM isAssigned WHERE hotelid="+hotelId+" AND roomnum="+roomNo;
             stmt.executeUpdate(deleteIsAssigned);
+            
+            // get ssn using booking id
+            String getSSN = "SELECT ssn FROM has WHERE bookingid="+bookingId;
+            rs = stmt.executeQuery(getBookingId);
+            rs.next();
+            String ssn = rs.getString("ssn");
+            
+            String deleteHas = "DELETE FROM has WHERE ssn='"+ssn+"' AND bookingid="+bookingId;
+            stmt.executeUpdate(deleteHas);
+            String deleteBillInfo = "DELETE FROM BillInfo WHERE ssn='"+ssn+"'";
+            stmt.executeUpdate(deleteBillInfo);
             
 //            Calendar cal = Calendar.getInstance();
 //            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
@@ -226,8 +238,6 @@ public class CheckOut extends javax.swing.JFrame {
                 // Delete from isAssignedRoomService
                 String deleteRoomService = "DELETE FROM isAssignedRoomService WHERE staffid="+roomServiceId+" AND hotelid="+hotelId+" AND roomnum="+roomNo;
                 stmt1.executeUpdate(deleteRoomService);
-                
-                
               
                 // Toogle availability from RoomService
                 String roomServiceToggle = "UPDATE Staff SET avail=1 WHERE staffid="+roomServiceId;
