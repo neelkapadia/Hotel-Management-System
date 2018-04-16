@@ -3,6 +3,7 @@ package form;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -391,9 +392,25 @@ public class CheckIn extends javax.swing.JFrame {
             String ssn = cssn.getText();
             String address = addr.getText();
             String paymentType = payType.getText();
-            int cardNumber = Integer.parseInt(cardno.getText());
             String checkinTime = checkin.getText();
-
+                        
+            String cardnum = cardno.getText();
+            if(cardnum.isEmpty()){
+                cardnum = null;
+            }
+            
+            String insertBillInfo = "INSERT INTO BillInfo VALUES('"+ssn+"', '"+paymentType+"', '"+address+"', ?)";
+//            stmt.executeUpdate(insertBillInfo);
+            
+            PreparedStatement ps = conn.prepareStatement(insertBillInfo); // c - java.sql.Connection
+            if(cardnum == null) {
+                ps.setNull(1, java.sql.Types.BIGINT); // no error, perfect
+            }
+            else {
+                ps.setInt(1, Integer.parseInt(cardnum));
+            }
+            ps.executeUpdate();
+            
 //            Calendar cal = Calendar.getInstance();
 //            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 //    //        System.out.println(time);
@@ -403,12 +420,10 @@ public class CheckIn extends javax.swing.JFrame {
             //Write all queries
             // Assuming 11am as the common checkout time
             String insertBookingInfo = "INSERT INTO BookingInfo VALUES ("+bookId+", '"+checkinTime+"', '11:00:00', '"+sDate+"', '"+eDate+"')";
-            String insertBillInfo = "INSERT INTO BillInfo VALUES('"+ssn+"', '"+paymentType+"', '"+address+"', "+cardNumber+")";
             String insertHas = "INSERT INTO has VALUES ('"+ssn+"', "+bookId+")";
             String getHotelId = "SELECT hotelid FROM worksFor WHERE staffid="+(int)Intermediate.getItem("frontDeskStaffId");
 
             stmt.executeUpdate(insertBookingInfo);
-            stmt.executeUpdate(insertBillInfo);
             stmt.executeUpdate(insertHas);
             rs = stmt.executeQuery(getHotelId);
             rs.next();
