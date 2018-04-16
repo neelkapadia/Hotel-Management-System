@@ -29,21 +29,19 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="CheckOut" min="-2" pref="194" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="CheckIn" max="32767" attributes="0"/>
-                      <Component id="Customer" max="32767" attributes="0"/>
-                      <Component id="ViewSR" max="32767" attributes="0"/>
-                      <Component id="Invoice" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="CheckIn" max="32767" attributes="0"/>
+                  <Component id="Customer" max="32767" attributes="0"/>
+                  <Component id="ViewSR" max="32767" attributes="0"/>
+                  <Component id="Invoice" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="CheckOut" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="206" max="32767" attributes="0"/>
           </Group>

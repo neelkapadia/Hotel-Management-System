@@ -31,6 +31,8 @@ public class UpdateStaff extends javax.swing.JFrame {
         
     }
     
+    String g= "";
+    
     public void toggleVisibility(boolean isVisible) {
        
         Name.setVisible(isVisible);
@@ -295,7 +297,7 @@ public class UpdateStaff extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(hotelServing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -321,8 +323,9 @@ public class UpdateStaff extends javax.swing.JFrame {
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
-
+Statement stmt1 = null;
         ResultSet rs;
+        ResultSet rs1;
         
         try {
 
@@ -330,6 +333,21 @@ public class UpdateStaff extends javax.swing.JFrame {
             stmt = conn.createStatement();
             
             //rs1 = stmt.executeQuery("select * from presidentialSuite where hotelid = " + HotelID.getText() +" and roomnum="+RoomNum.getText());
+
+            
+            rs = stmt.executeQuery("select * from staff where staffid = " + staffID.getText());
+           // String staffQ = "select * from staff where staffid = "+Integer.parseInt(staffID.getText());
+            
+            //System.out.println(staffQ);
+            //rs1=stmt1.executeQuery(staffQ); 
+            String g="";
+             if (rs.first()) {
+                
+            g = rs.getString("jobtitle");
+
+            } 
+            
+            System.out.println("g : "+g);
 
             String updateQry = "update staff set";
             boolean first = true;
@@ -391,6 +409,63 @@ public class UpdateStaff extends javax.swing.JFrame {
 
             stmt.executeUpdate(updateQry); 
             
+            //System.out.println(g);
+            
+            System.out.println(title.getText());
+            
+            System.out.println(staffID.getText());
+            
+            
+            System.out.println("g : "+g);
+            System.out.println("g : "+title.getText());
+            
+            if(!g.equalsIgnoreCase(title.getText())){
+                
+                String deleteQ = "delete from ";
+                
+                if(g.equalsIgnoreCase("manager")){
+                    deleteQ+= "manager";
+                    
+                }
+                else if(g.equalsIgnoreCase("front desk staff")){
+                    deleteQ+= "frontdeskstaff";
+                }
+                else if(g.equalsIgnoreCase("room service staff")){
+                    deleteQ+= "roomservicestaff";
+                }
+                else if(g.equalsIgnoreCase("catering staff")){
+                    deleteQ+= "cateringstaff";
+                }
+                
+                deleteQ+=" where staffId = " + Integer.parseInt(staffID.getText());
+                
+                System.out.println(deleteQ);
+                stmt.executeUpdate(deleteQ);
+                
+                
+                
+                String insQ = "insert into ";
+                
+                if(title.getText().equalsIgnoreCase("manager")){
+                    insQ+= "manager";
+                    
+                }
+                else if(title.getText().equalsIgnoreCase("front desk staff")){
+                    insQ+= "frontdeskstaff";
+                }
+                else if(title.getText().equalsIgnoreCase("room service staff")){
+                    insQ+= "roomservicestaff";
+                }
+                else if(title.getText().equalsIgnoreCase("catering staff")){
+                    insQ+= "cateringstaff";
+                }
+                
+                insQ+=" values (" + Integer.parseInt(staffID.getText())+")";
+            
+          
+          stmt.executeUpdate(insQ);
+          System.out.println(insQ);
+            }
             //System.out.println("category.getText(): "+category.getText());
             //System.out.println("cat: "+cat);
             
@@ -405,6 +480,7 @@ public class UpdateStaff extends javax.swing.JFrame {
             avail.setText("");
             add.setText("");
             Department.setText("");
+            hotelServing.setText("");
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -429,6 +505,7 @@ public class UpdateStaff extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateDetailsActionPerformed
 
+    
     private void getDetails1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getDetails1ActionPerformed
         // TODO add your handling code here:
 
@@ -447,6 +524,7 @@ public class UpdateStaff extends javax.swing.JFrame {
             //rs2 = stmt.executeQuery("select  from room where hotelid = " + HotelID.getText() + " and roomnum = "+RoomNum.getText());
             rs = stmt.executeQuery("select * from staff where staffid = " + staffID.getText());
 
+            
             if (rs.first()) {
                 toggleVisibility(true);
                

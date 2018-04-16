@@ -102,7 +102,7 @@ public class ConfirmDeleteHotel extends javax.swing.JFrame {
         
         //delete
 
-         javax.swing.JTextField HID = (javax.swing.JTextField)Intermediate.getItem("HotID");
+        javax.swing.JTextField HID = (javax.swing.JTextField)Intermediate.getItem("HotID");
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
@@ -112,9 +112,15 @@ public class ConfirmDeleteHotel extends javax.swing.JFrame {
 
             conn = db.connect_db();
             stmt = conn.createStatement();
-
+            String mngID = null;
+            rs = stmt.executeQuery("select managerid from hotel where hotelid = " + HID.getText());
+            if(rs.next()){
+               mngID = rs.getString("managerid");
+            }
+            if(mngID != null)
+                stmt.executeUpdate("update staff set avail = 1 where staffid = (select managerid from hotel where hotelid = " + HID.getText() + ");");
             stmt.executeUpdate("delete from Hotel where hotelid= " + HID.getText());
-
+            
             JOptionPane.showMessageDialog(null,"SUCCESSFULLY DELETED");
             HID.setText("");
             Intermediate.removeItem("HotID");
