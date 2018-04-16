@@ -37,6 +37,7 @@ CREATE TABLE `BillInfo` (
 
 LOCK TABLES `BillInfo` WRITE;
 /*!40000 ALTER TABLE `BillInfo` DISABLE KEYS */;
+INSERT INTO `BillInfo` VALUES ('593-9846','credit','980 TRT St, Raleigh NC',1052),('777-8352','hotel credit','7720 MHT St, Greensboro NC',3020),('858-9430','credit','231 DRY St, Rochester NY 78',2497);
 /*!40000 ALTER TABLE `BillInfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,6 +64,7 @@ CREATE TABLE `BookingInfo` (
 
 LOCK TABLES `BookingInfo` WRITE;
 /*!40000 ALTER TABLE `BookingInfo` DISABLE KEYS */;
+INSERT INTO `BookingInfo` VALUES (1,'15:17:00','10:22:00','2017-05-10','2017-05-13'),(2,'16:11:00','09:27:00','2017-05-10','2017-05-13'),(3,'15:45:00','11:10:00','2016-05-10','2016-05-14');
 /*!40000 ALTER TABLE `BookingInfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +115,7 @@ CREATE TABLE `Customer` (
 
 LOCK TABLES `Customer` WRITE;
 /*!40000 ALTER TABLE `Customer` DISABLE KEYS */;
-INSERT INTO `Customer` VALUES (1001,'David','1980-01-30','david@gmail.com','123'),(1002,'Sarah','1971-01-30','sarah@gmail.com','456'),(1003,'Joesph','1987-01-30','joseph@gmail.com','789'),(1004,'Lucy','1985-01-30','lucy@gmail.com','213');
+INSERT INTO `Customer` VALUES (1001,'David','1980-01-30','david@gmail.com','123'),(1002,'Sarah','1971-01-30','sarah@gmail.com','456'),(1003,'Joesph','1987-01-30','joseph@gmail.com','789'),(1004,'Lucy','1985-01-30','lucy@gmail.com','213'),(2001,'Farzi','1992-09-09','farzi@gmail.com','919'),(2002,'Jamaal','1990-08-08','jamaal@gmail.com','822');
 /*!40000 ALTER TABLE `Customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +298,7 @@ CREATE TABLE `Room` (
 
 LOCK TABLES `Room` WRITE;
 /*!40000 ALTER TABLE `Room` DISABLE KEYS */;
-INSERT INTO `Room` VALUES (1,1,'Economy',1,1),(4,1,'Presidential',1,4),(1,2,'Deluxe',1,2),(3,2,'Executive',0,3),(2,3,'Economy',1,1),(1,5,'Deluxe',1,2);
+INSERT INTO `Room` VALUES (1,1,'Economy',1,1),(4,1,'Presidential',1,4),(1,2,'Deluxe',1,2),(3,2,'Executive',1,3),(2,3,'Economy',1,1),(1,5,'Deluxe',1,2);
 /*!40000 ALTER TABLE `Room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -396,6 +398,7 @@ CREATE TABLE `ServiceRecord` (
 
 LOCK TABLES `ServiceRecord` WRITE;
 /*!40000 ALTER TABLE `ServiceRecord` DISABLE KEYS */;
+INSERT INTO `ServiceRecord` VALUES (1,'2017-05-11','08:00:00','gyms'),(2,'2017-05-11','20:00:00','dry cleaning'),(3,'2017-05-12','07:00:00','gyms'),(4,'2016-05-11','10:00:00','room service');
 /*!40000 ALTER TABLE `ServiceRecord` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -505,6 +508,7 @@ CREATE TABLE `has` (
 
 LOCK TABLES `has` WRITE;
 /*!40000 ALTER TABLE `has` DISABLE KEYS */;
+INSERT INTO `has` VALUES ('593-9846',1),('777-8352',2),('858-9430',3);
 /*!40000 ALTER TABLE `has` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -620,6 +624,7 @@ CREATE TABLE `linkService` (
 
 LOCK TABLES `linkService` WRITE;
 /*!40000 ALTER TABLE `linkService` DISABLE KEYS */;
+INSERT INTO `linkService` VALUES (1,1),(1,2),(2,3),(3,4);
 /*!40000 ALTER TABLE `linkService` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -646,6 +651,7 @@ CREATE TABLE `updates` (
 
 LOCK TABLES `updates` WRITE;
 /*!40000 ALTER TABLE `updates` DISABLE KEYS */;
+INSERT INTO `updates` VALUES (103,1),(103,3),(200,2),(201,4);
 /*!40000 ALTER TABLE `updates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -687,4 +693,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-15 23:39:33
+-- Dump completed on 2018-04-16  0:33:17
