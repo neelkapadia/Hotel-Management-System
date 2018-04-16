@@ -195,6 +195,8 @@ public class Invoice extends javax.swing.JFrame {
         String insertInvoiceQuery;
         String insertGenerateInvoiceQuery;
         String roomCostQuery;
+        String rcq;
+        int roomCost;
         
         int cid = Integer.parseInt(custid.getText());
         int invid = Integer.parseInt(invoiceid.getText());
@@ -235,12 +237,23 @@ public class Invoice extends javax.swing.JFrame {
                     
                     // get category of room from cid, invoiceid (if needed) --> custid-gets-bookingid-isAssigned-hotelid,roomnum-room-category
 //                    roomCostQuery = "Select Sum(DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where hotelid="+hotelId+" AND category= (Select category from Room where HotelId=(select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = '"+cid+"')) And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))))) AS totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId";
-                    roomCostQuery = "Select DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where hotelid= (select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")) AND category= (Select category from Room where HotelId= (select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))  And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")))) AS totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId";
+                    
+                    
+                        
+                    roomCostQuery = "Select DATEDIFF (enddate,startdate) * (Select Price from RoomPrice where hotelid= (select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")) AND category= (Select category from Room where HotelId= (select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))  And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")))) as totalRoomPrice from BookingInfo where bookingId = (SELECT BookingId FROM gets where custID = "+cid+") Group by bookingId";
                     System.out.println("After roomCostQuery");
                     
                     rs = stmt.executeQuery(roomCostQuery);
                     rs.next();
-                    int roomCost = Integer.parseInt(rs.getString("totalRoomPrice"));
+                    roomCost = Integer.parseInt(rs.getString("totalRoomPrice"));
+                    
+                    if(roomCost == 0){
+                        rcq = "Select Price as totalRoomPrice from RoomPrice where hotelid= (select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")) AND category= (Select category from Room where HotelId= (select hotelId from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+"))  And roomNum= (select roomnum from isAssigned where bookingId = (SELECT BookingId FROM gets where custID = "+cid+")))";
+                        System.out.println(rcq);
+                        rs = stmt.executeQuery(rcq);
+                        rs.next();
+                        roomCost = Integer.parseInt(rs.getString("totalRoomPrice"));
+                    }
                     
                     System.out.println("After execute roomCostQuery");
 //                    //Store value in an integer for convenience
