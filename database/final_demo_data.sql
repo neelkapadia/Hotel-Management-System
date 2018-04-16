@@ -86,6 +86,7 @@ CREATE TABLE `CateringStaff` (
 
 LOCK TABLES `CateringStaff` WRITE;
 /*!40000 ALTER TABLE `CateringStaff` DISABLE KEYS */;
+INSERT INTO `CateringStaff` VALUES (104);
 /*!40000 ALTER TABLE `CateringStaff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,6 +113,7 @@ CREATE TABLE `Customer` (
 
 LOCK TABLES `Customer` WRITE;
 /*!40000 ALTER TABLE `Customer` DISABLE KEYS */;
+INSERT INTO `Customer` VALUES (1001,'David','1980-01-30','david@gmail.com','123'),(1002,'Sarah','1971-01-30','sarah@gmail.com','456'),(1003,'Joesph','1987-01-30','joseph@gmail.com','789'),(1004,'Lucy','1985-01-30','lucy@gmail.com','213');
 /*!40000 ALTER TABLE `Customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,6 +137,7 @@ CREATE TABLE `FrontDeskStaff` (
 
 LOCK TABLES `FrontDeskStaff` WRITE;
 /*!40000 ALTER TABLE `FrontDeskStaff` DISABLE KEYS */;
+INSERT INTO `FrontDeskStaff` VALUES (103),(106),(202),(203);
 /*!40000 ALTER TABLE `FrontDeskStaff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,6 +267,7 @@ CREATE TABLE `PresidentialSuite` (
 
 LOCK TABLES `PresidentialSuite` WRITE;
 /*!40000 ALTER TABLE `PresidentialSuite` DISABLE KEYS */;
+INSERT INTO `PresidentialSuite` VALUES (4,1);
 /*!40000 ALTER TABLE `PresidentialSuite` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,6 +296,7 @@ CREATE TABLE `Room` (
 
 LOCK TABLES `Room` WRITE;
 /*!40000 ALTER TABLE `Room` DISABLE KEYS */;
+INSERT INTO `Room` VALUES (1,1,'Economy',1,1),(4,1,'Presidential',1,4),(1,2,'Deluxe',1,2),(3,2,'Executive',0,3),(2,3,'Economy',1,1),(1,5,'Deluxe',1,2);
 /*!40000 ALTER TABLE `Room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,6 +346,7 @@ CREATE TABLE `RoomServiceStaff` (
 
 LOCK TABLES `RoomServiceStaff` WRITE;
 /*!40000 ALTER TABLE `RoomServiceStaff` DISABLE KEYS */;
+INSERT INTO `RoomServiceStaff` VALUES (200),(201);
 /*!40000 ALTER TABLE `RoomServiceStaff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,6 +370,7 @@ CREATE TABLE `ServiceCost` (
 
 LOCK TABLES `ServiceCost` WRITE;
 /*!40000 ALTER TABLE `ServiceCost` DISABLE KEYS */;
+INSERT INTO `ServiceCost` VALUES ('dry cleaning',16),('gyms',15),('phone bills',5),('room service',10),('special requests',20);
 /*!40000 ALTER TABLE `ServiceCost` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -418,7 +425,7 @@ CREATE TABLE `Staff` (
 
 LOCK TABLES `Staff` WRITE;
 /*!40000 ALTER TABLE `Staff` DISABLE KEYS */;
-INSERT INTO `Staff` VALUES (100,'Mary','Manager','654',40,0,'90 ABC St , Raleigh NC 27','Management'),(101,'John','Manager','564',45,0,'798 XYZ St, Rochester NY 54','Management'),(102,'Carol','Manager','546',55,0,'351 MH St, Greensboro NC 27','Management'),(105,'Peter','Manager','724',52,0,'475 RG St, Raleigh NC 27','Management');
+INSERT INTO `Staff` VALUES (100,'Mary','Manager','654',40,0,'90 ABC St , Raleigh NC 27','Management'),(101,'John','Manager','564',45,0,'798 XYZ St, Rochester NY 54','Management'),(102,'Carol','Manager','546',55,0,'351 MH St, Greensboro NC 27','Management'),(103,'Emma','Front Desk Staff','546',55,1,'49 ABC St, Raleigh NC 27','Management'),(104,'Ava','Catering Staff','777',55,1,'425 RG St, Raleigh NC 27','Catering'),(105,'Peter','Manager','724',52,0,'475 RG St, Raleigh NC 27','Management'),(106,'Olivia','Front Desk Staff','799',27,1,'325 PD St, Raleigh NC 27','Management'),(200,'Rohit','Room Service Staff','919',21,1,'300 St, Raleigh NC 27','Room Service'),(201,'Saurabh','Room Service Staff','982',50,1,'245 Avent, Greensboro NC 27','Room Service'),(202,'Nirav','Front Desk Staff','929',23,1,'300 Kings, Raleigh NC 27','Management'),(203,'Neel','Front Desk Staff','929',20,1,'3002 St, Raleigh NC 27','Management');
 /*!40000 ALTER TABLE `Staff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -667,7 +674,7 @@ CREATE TABLE `worksFor` (
 
 LOCK TABLES `worksFor` WRITE;
 /*!40000 ALTER TABLE `worksFor` DISABLE KEYS */;
-INSERT INTO `worksFor` VALUES (100,1),(101,2),(102,3),(105,4);
+INSERT INTO `worksFor` VALUES (100,1),(101,2),(102,3),(103,1),(104,1),(105,4),(106,4),(200,1),(201,2),(202,2),(203,3);
 /*!40000 ALTER TABLE `worksFor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -680,4 +687,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-15 21:59:12
+-- Dump completed on 2018-04-15 23:39:33
