@@ -180,7 +180,7 @@ public class ViewRoom extends javax.swing.JFrame {
                 
                 String roomPrice = "";
                 
-                roomPriceResult = stmt2.executeQuery("select price from roomprice where category='"+roomCategory+"'");
+                roomPriceResult = stmt2.executeQuery("select price from roomprice where hotelid = "+hotelID+" and category='"+roomCategory+"'");
                 if (roomPriceResult.next()) {
                     roomPrice = roomPriceResult.getString("price");
                 }
