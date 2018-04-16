@@ -124,7 +124,44 @@ public class ConfirmDeleteStaff extends javax.swing.JFrame {
             conn = db.connect_db();
             stmt = conn.createStatement();
 
-            stmt.executeUpdate("delete from Staff where staffid= " + SID.getText());
+            
+            
+              rs = stmt.executeQuery("select * from staff where staffid = " + SID.getText());
+           // String staffQ = "select * from staff where staffid = "+Integer.parseInt(staffID.getText());
+            
+            //System.out.println(staffQ);
+            //rs1=stmt1.executeQuery(staffQ); 
+            String g="";
+             if (rs.first()) {
+                
+            g = rs.getString("jobtitle");
+            
+            System.out.println(g);
+
+            } 
+            
+                String deleteQ = "delete from ";
+                
+                if(g.equalsIgnoreCase("manager")){
+                    deleteQ+= "manager";
+                    
+                }
+                else if(g.equalsIgnoreCase("front desk staff")){
+                    deleteQ+= "frontdeskstaff";
+                }
+                else if(g.equalsIgnoreCase("room service staff")){
+                    deleteQ+= "roomservicestaff";
+                }
+                else if(g.equalsIgnoreCase("catering staff")){
+                    deleteQ+= "cateringstaff";
+                }
+                
+                deleteQ+=" where staffId = " + Integer.parseInt(SID.getText());
+                
+                System.out.println(deleteQ);
+                stmt.executeUpdate(deleteQ);
+            
+                stmt.executeUpdate("delete from Staff where staffid= " + SID.getText());
 
             JOptionPane.showMessageDialog(null,"SUCCESSFULLY DELETED");
             SID.setText("");
