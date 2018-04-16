@@ -186,7 +186,7 @@ public class CheckOut extends javax.swing.JFrame {
             
             // get ssn using booking id
             String getSSN = "SELECT ssn FROM has WHERE bookingid="+bookingId;
-            rs = stmt.executeQuery(getBookingId);
+            rs = stmt.executeQuery(getSSN);
             rs.next();
             String ssn = rs.getString("ssn");
             

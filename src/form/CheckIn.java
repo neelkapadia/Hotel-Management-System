@@ -621,14 +621,14 @@ public class CheckIn extends javax.swing.JFrame {
     public void getDetails() {
         
         // setTexts
-        bookingId.setText("123");
-        addr.setText("asas");
-//        cardno.setText("1243");
-        checkin.setText("11:11:11");
-        cssn.setText("11341");
-        startDate.setText("2018-01-10");
-        endDate.setText("2018-01-12");
-        payType.setText("cash");
+//        bookingId.setText("123");
+//        addr.setText("asas");
+////        cardno.setText("1243");
+//        checkin.setText("11:11:11");
+//        cssn.setText("11341");
+//        startDate.setText("2018-01-10");
+//        endDate.setText("2018-01-12");
+//        payType.setText("cash");
         
         db_connection db = new db_connection();
         Connection conn = null;
