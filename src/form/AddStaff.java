@@ -242,15 +242,14 @@ public class AddStaff extends javax.swing.JFrame {
 
             conn = db.connect_db();
             stmt = conn.createStatement();
-        
-            System.out.println("insert into staff values ("+staffID.getText()+",'"+name.getText()+"','"+title.getText()+"','"+phno.getText()+"','"+age.getText()+"','"+avail.getText()+"','"+add.getText()+"','"+Department.getText()+"')");
-            
+            conn.setAutoCommit(false);
             stmt.executeUpdate("insert into staff values ("+staffID.getText()+",'"+name.getText()+"','"+title.getText()+"','"+phno.getText()+"','"+age.getText()+"','"+avail.getText()+"','"+add.getText()+"','"+Department.getText()+"')");
             
             stmt.executeUpdate("INSERT INTO worksFor VALUES ("+staffID.getText()+", "+hotelServing.getText()+")");
             
             if(title.getText().toLowerCase().equals("manager")){
                  stmt.executeUpdate("insert into manager values ("+staffID.getText()+")");
+                 stmt.executeUpdate("update staff set avail = 0 where staffid = "+staffID.getText());
             }
             else if(title.getText().toLowerCase().equals("front desk staff")){
                  stmt.executeUpdate("insert into frontdeskstaff values ("+staffID.getText()+")");
@@ -262,7 +261,7 @@ public class AddStaff extends javax.swing.JFrame {
                  stmt.executeUpdate("insert into roomservicestaff values ("+staffID.getText()+")");
             }
      
-            
+            conn.commit();
             JOptionPane.showMessageDialog(null, "Staff added!");
             staffID.setText("");
             name.setText("");
@@ -275,6 +274,11 @@ public class AddStaff extends javax.swing.JFrame {
             hotelServing.setText("");
             
         } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddStaff.class.getName()).log(Level.SEVERE, null, ex);
+            }
             e.printStackTrace();
         
         } finally {
@@ -289,6 +293,7 @@ public class AddStaff extends javax.swing.JFrame {
 
             if (conn != null) {
                 try {
+                    conn.setAutoCommit(true);
                     conn.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
