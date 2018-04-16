@@ -37,6 +37,8 @@ public class DeleteRoomPrice extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         Home1 = new javax.swing.JButton();
         Logout = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        HotelId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,13 +76,26 @@ public class DeleteRoomPrice extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Hotel ID");
+
+        HotelId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HotelIdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(247, 247, 247)
-                .addComponent(Home1)
+                .addGap(116, 116, 116)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Home1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(68, 68, 68)
+                        .addComponent(HotelId, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Logout)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -100,13 +115,17 @@ public class DeleteRoomPrice extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addGap(42, 42, 42)
-                            .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(111, Short.MAX_VALUE)))
+                            .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(102, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(271, Short.MAX_VALUE)
+                .addContainerGap(130, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(HotelId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(115, 115, 115)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Home1)
                     .addComponent(Logout)))
@@ -138,6 +157,7 @@ public class DeleteRoomPrice extends javax.swing.JFrame {
         // TODO add your handling code here:
         ConfirmDeleteRoomPrice cdc =  new ConfirmDeleteRoomPrice();
         Intermediate.addItem("category", category);
+        Intermediate.addItem("hotelid", HotelId);
         cdc.setVisible(true);
     }//GEN-LAST:event_DeleteActionPerformed
 
@@ -154,6 +174,10 @@ public class DeleteRoomPrice extends javax.swing.JFrame {
         sysExit();
         l.setVisible(true);
     }//GEN-LAST:event_LogoutActionPerformed
+
+    private void HotelIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HotelIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HotelIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,9 +223,11 @@ public class DeleteRoomPrice extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Delete;
     private javax.swing.JButton Home1;
+    private javax.swing.JTextField HotelId;
     private javax.swing.JButton Logout;
     private javax.swing.JTextField category;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
