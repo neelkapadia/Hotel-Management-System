@@ -107,7 +107,6 @@ public class Login extends javax.swing.JFrame {
         Statement stmt = null;
         ResultSet rs;
         try {
-
             String sid = staffid.getText();
             int id = Integer.parseInt(sid);
             Intermediate.addItem("id", id);
