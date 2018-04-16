@@ -181,8 +181,8 @@ public class CheckOut extends javax.swing.JFrame {
             rs.next();
             int bookingId = Integer.parseInt(rs.getString("bookingid"));
                         
-            String deleteIsAssigned = "DELETE FROM isAssigned WHERE hotelid="+hotelId+" AND roomnum="+roomNo;
-            stmt.executeUpdate(deleteIsAssigned);
+//            String deleteIsAssigned = "DELETE FROM isAssigned WHERE hotelid="+hotelId+" AND roomnum="+roomNo;
+//            stmt.executeUpdate(deleteIsAssigned);
             
             // get ssn using booking id
             String getSSN = "SELECT ssn FROM has WHERE bookingid="+bookingId;
