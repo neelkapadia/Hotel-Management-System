@@ -417,7 +417,7 @@ CREATE TABLE `Staff` (
 
 LOCK TABLES `Staff` WRITE;
 /*!40000 ALTER TABLE `Staff` DISABLE KEYS */;
-INSERT INTO `Staff` VALUES (100,'Mary','Manager','654',40,0,'90 ABC St , Raleigh NC 27','Management'),(101,'John','Manager','564',45,0,'798 XYZ St, Rochester NY 54','Management'),(102,'Carol','Manager','546',55,0,'351 MH St, Greensboro NC 27','Management'),(105,'Peter','Manager','724',52,1,'475 RG St, Raleigh NC 27','Management');
+INSERT INTO `Staff` VALUES (100,'Mary','Manager','654',40,0,'90 ABC St , Raleigh NC 27','Management'),(101,'John','Manager','564',45,0,'798 XYZ St, Rochester NY 54','Management'),(102,'Carol','Manager','546',55,0,'351 MH St, Greensboro NC 27','Management'),(105,'Peter','Manager','724',52,0,'475 RG St, Raleigh NC 27','Management');
 /*!40000 ALTER TABLE `Staff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -679,4 +679,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-15 21:48:25
+-- Dump completed on 2018-04-15 21:55:11
