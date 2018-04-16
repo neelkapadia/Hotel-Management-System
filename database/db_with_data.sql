@@ -15,6 +15,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+CREATE DATABASE IF NOT EXISTS `WolfInn`;
+USE `WolfInn`;
+
 --
 -- Table structure for table `BillInfo`
 --
@@ -325,7 +328,7 @@ CREATE TABLE `RoomPrice` (
 LOCK TABLES `RoomPrice` WRITE;
 /*!40000 ALTER TABLE `RoomPrice` DISABLE KEYS */;
 # INSERT INTO `RoomPrice` VALUES ('Deluxe',200),('Economy',100),('Executive',1000),('Presidential',5000);
-INSERT INTO `roomprice`  VALUES      (1,'Deluxe',               200),              (1,'Economy',               100),              (2,'Economy',               100),              (3,'Executive',               1000),              (4,'Presidential',               5000); 
+INSERT INTO `roomprice`  VALUES      (1,'Deluxe',               200),              (1,'Economy',               100),              (2,'Economy',               100),              (3,'Executive',               1000),              (4,'Presidential',               5000);
 /*!40000 ALTER TABLE `RoomPrice` ENABLE KEYS */;
 UNLOCK TABLES;
 
