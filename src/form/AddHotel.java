@@ -212,17 +212,22 @@ public class AddHotel extends javax.swing.JFrame {
             stmt = conn.createStatement();
             
             conn.setAutoCommit(false);
-           // System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+hotelAddress.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
-            //System.out.println("insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',"+managerID.getText()+")");
+           
             String mgrID = managerID.getText();
+            
             if(mgrID.isEmpty()) {
                 mgrID = null;
             }
-            // String query1="insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',"+mgrID+")";
+            
             String query1="insert into hotel values ("+hotelID.getText()+",'"+hotelName.getText()+"','"+add.getText()+"','"+hotelphno.getText()+"',?)";
-            System.out.println(query1);
+            
             PreparedStatement ps = conn.prepareStatement(query1); // c - java.sql.Connection
-            ps.setNull(1, java.sql.Types.BIGINT); // no error, perfect
+            if(mgrID == null) {
+                ps.setNull(1, java.sql.Types.BIGINT); // no error, perfect
+            }
+            else {
+                ps.setInt(1, Integer.parseInt(mgrID));
+            }
             ps.executeUpdate();
             
             if(mgrID != null) {

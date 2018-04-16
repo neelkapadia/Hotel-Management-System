@@ -50,7 +50,7 @@ public class ViewRoomPrice extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Category", "Price"
+                "Hotel ID", "Category", "Price"
             }
         ));
         jScrollPane1.setViewportView(invoiceFrame);
@@ -169,12 +169,12 @@ public class ViewRoomPrice extends javax.swing.JFrame {
             roomsResult = stmt1.executeQuery("select * from roomprice");
             
             while (roomsResult.next()) {
-                
+                String hotelid = roomsResult.getString("hotelid");
                 String roomCategory = roomsResult.getString("category");
                 String roomPrice = roomsResult.getString("price");
                 
                 
-                model.addRow(new Object[]{roomCategory,roomPrice});
+                model.addRow(new Object[]{hotelid, roomCategory,roomPrice});
                 
             }
             

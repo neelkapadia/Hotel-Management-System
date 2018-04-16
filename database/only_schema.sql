@@ -235,8 +235,8 @@ CREATE TABLE `Manager` (
 
 LOCK TABLES `Manager` WRITE;
 /*!40000 ALTER TABLE `Manager` DISABLE KEYS */;
-INSERT INTO `Manager` VALUES (100);
 /*!40000 ALTER TABLE `Manager` ENABLE KEYS */;
+INSERT INTO `Manager` VALUES (100); 
 UNLOCK TABLES;
 
 --
@@ -301,9 +301,11 @@ DROP TABLE IF EXISTS `RoomPrice`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `RoomPrice` (
+  `HotelId` int(11) NOT NULL,
   `Category` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
-  PRIMARY KEY (`Category`)
+  PRIMARY KEY (`HotelId`,`Category`),
+  CONSTRAINT `hotel_in_room_price` FOREIGN KEY (`HotelId`) REFERENCES `Hotel` (`HotelId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -413,8 +415,8 @@ CREATE TABLE `Staff` (
 
 LOCK TABLES `Staff` WRITE;
 /*!40000 ALTER TABLE `Staff` DISABLE KEYS */;
-INSERT INTO `Staff` VALUES (100,'Mary','Manager','654',40,1,'90 ABC St , Raleigh NC 27','Management');
 /*!40000 ALTER TABLE `Staff` ENABLE KEYS */;
+INSERT INTO `Staff` VALUES (100,'Mary','Manager','654',40,1,'90 ABC St , Raleigh NC 27','Management');
 UNLOCK TABLES;
 
 --
@@ -674,4 +676,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-15  2:06:54
+-- Dump completed on 2018-04-15 20:58:36

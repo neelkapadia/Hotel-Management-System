@@ -100,7 +100,7 @@ public class ConfirmDeleteRoomPrice extends javax.swing.JFrame {
     private void YesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesActionPerformed
         // TODO add your handling code here:
         javax.swing.JTextField category = (javax.swing.JTextField)Intermediate.getItem("category");
-
+        javax.swing.JTextField hotelid = (javax.swing.JTextField)Intermediate.getItem("hotelid");
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
@@ -110,7 +110,7 @@ public class ConfirmDeleteRoomPrice extends javax.swing.JFrame {
             conn = db.connect_db();
             stmt = conn.createStatement();
 
-            stmt.executeUpdate("delete from roomprice where category = '" + category.getText() + "'");
+            stmt.executeUpdate("delete from roomprice where category = '" + category.getText() + "' and hotelid = " + hotelid.getText() + ";");
 
             JOptionPane.showMessageDialog(null,"SUCCESSFULLY DELETED");
             category.setText("");

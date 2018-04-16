@@ -171,7 +171,10 @@ public class ViewHotels extends javax.swing.JFrame {
                 String hotelName = hotelsResult.getString("name");
                 String hotelAdr = hotelsResult.getString("address");
                 String hotelPhn = hotelsResult.getString("phoneNum");
-                int hotelMgrID = hotelsResult.getInt("managerid");
+                String hotelMgrID = hotelsResult.getString("managerid");
+                if (hotelMgrID == null) {
+                    hotelMgrID = "NULL";
+                }
                 String hotelCity = "";
                 
                 hotelCityResult = stmt2.executeQuery("select city from hotelcity where address='"+hotelAdr+"'");

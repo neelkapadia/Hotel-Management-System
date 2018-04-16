@@ -94,7 +94,15 @@ public class CheckIn extends javax.swing.JFrame {
             new String [] {
                 "RoomNum", "Category", "Capacity", "Price"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(RoomTable);
 
         CustomerTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,7 +112,15 @@ public class CheckIn extends javax.swing.JFrame {
             new String [] {
                 "Cust ID", "Name", "Email"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(CustomerTable);
 
         jLabel4.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
@@ -292,9 +308,9 @@ public class CheckIn extends javax.swing.JFrame {
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
         //commit rooms
-        System.out.println("Before row selection");
+        //System.out.println("Before row selection");
         rowSelection();
-        System.out.println("After row selection");
+        //System.out.println("After row selection");
 
        // JFrame jf = new JFrame();
          //               JOptionPane.showMessageDialog(jf, "Checked In", "Success", JOptionPane.INFORMATION_MESSAGE );
@@ -347,9 +363,9 @@ public class CheckIn extends javax.swing.JFrame {
             
             conn.setAutoCommit(false);
             
-            System.out.println("Inside inserts");
+            //System.out.println("Inside inserts");
 
-            System.out.println(roomNum + "," + roomCategory + "," + roomCapacity + "," + roomPrice + "," + custId[0] + "," + custName[0] + "," + custEmail[0]);
+            //System.out.println(roomNum + "," + roomCategory + "," + roomCapacity + "," + roomPrice + "," + custId[0] + "," + custName[0] + "," + custEmail[0]);
 
             int bookId = Integer.parseInt(bookingId.getText());
             String sDate = startDate.getText();
@@ -370,7 +386,7 @@ public class CheckIn extends javax.swing.JFrame {
             String insertBookingInfo = "INSERT INTO BookingInfo VALUES ("+bookId+", '"+checkinTime+"', '11:00:00', '"+sDate+"', '"+eDate+"')";
             String insertBillInfo = "INSERT INTO BillInfo VALUES('"+ssn+"', '"+paymentType+"', '"+address+"', "+cardNumber+")";
             String insertHas = "INSERT INTO has VALUES ('"+ssn+"', "+bookId+")";
-            String getHotelId = "SELECT hotelid FROM worksFor WHERE staffid="+Integer.parseInt((String)Intermediate.getItem("frontDeskStaffId"));
+            String getHotelId = "SELECT hotelid FROM worksFor WHERE staffid="+(int)Intermediate.getItem("frontDeskStaffId");
 
             stmt.executeUpdate(insertBookingInfo);
             stmt.executeUpdate(insertBillInfo);
@@ -486,7 +502,7 @@ public class CheckIn extends javax.swing.JFrame {
         ListSelectionModel lsCust = CustomerTable.getSelectionModel();
         lsCust.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-        System.out.println("Inside row selection - before room");
+        //System.out.println("Inside row selection - before room");
 
         int[] selectedRoom = RoomTable.getSelectedRows();
         System.out.println("Room rows selected");
@@ -499,16 +515,16 @@ public class CheckIn extends javax.swing.JFrame {
         int roomCapacity = Integer.parseInt((String)RoomTable.getValueAt(row, 2));
         int roomPrice = Integer.parseInt((String)RoomTable.getValueAt(row, 3));
         
-        System.out.println(roomNum + "," + roomCategory + "," + roomCapacity + "," + roomPrice);
+        //System.out.println(roomNum + "," + roomCategory + "," + roomCapacity + "," + roomPrice);
         
-        System.out.println("Inside row selection - before customer");
+       // System.out.println("Inside row selection - before customer");
         
         int[] selectedCusts = CustomerTable.getSelectedRows();
-        System.out.println(selectedCusts[0]);
+        //System.out.println(selectedCusts[0]);
         
         // Storing customer details
         
-        System.out.println("Length - "+selectedCusts.length);
+        //System.out.println("Length - "+selectedCusts.length);
         
 //        for(int i = 0; i<selectedCusts.length; i++){
 //            System.out.println(selectedCusts[i]);
@@ -581,9 +597,10 @@ public class CheckIn extends javax.swing.JFrame {
             // Temporary query so you do not have to login. Assuming front desk staff with id 103 logs in everytime
 //            rs = stmt.executeQuery("SELECT roomNum, room.category, capacity, p.price FROM Room, RoomPrice p WHERE avail = 1 AND Room.category = p.category AND HotelId = (SELECT HotelId FROM worksFor WHERE StaffId = 103) ORDER BY room.category;");
 
-            rs = stmt.executeQuery("SELECT roomNum, room.category, capacity, p.price FROM Room, RoomPrice p WHERE avail = 1 AND Room.category = p.category AND HotelId = (SELECT HotelId FROM worksFor WHERE StaffId = " + Intermediate.getItem("frontDeskStaffId") + ") ORDER BY room.category;");
-            
-            DefaultTableModel model = (DefaultTableModel) RoomTable.getModel();
+//            rs = stmt.executeQuery("SELECT roomNum, room.category, capacity, p.price FROM Room, RoomPrice p WHERE avail = 1 AND Room.category = p.category AND HotelId = (SELECT HotelId FROM worksFor WHERE StaffId = " + Intermediate.getItem("frontDeskStaffId") + ") ORDER BY room.category;");
+//              rs = stmt.executeQuery("SELECT roomNum, room.category, capacity, p.price FROM Room, RoomPrice p WHERE avail = 1 AND Room.category = p.category AND HotelId = (SELECT HotelId FROM worksFor WHERE StaffId = " + Intermediate.getItem("frontDeskStaffId") + ") ORDER BY room.category;");
+              rs = stmt.executeQuery("SELECT r.roomNum, r.category, r.capacity, p.price FROM Room r, RoomPrice p WHERE avail = 1 AND r.category = p.category AND r.HotelId = (SELECT HotelId FROM worksFor WHERE StaffId = " + Intermediate.getItem("frontDeskStaffId") + ") AND p.hotelid = r.hotelid ORDER BY r.category;");
+              DefaultTableModel model = (DefaultTableModel) RoomTable.getModel();
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
             }
