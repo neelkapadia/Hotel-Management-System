@@ -570,9 +570,13 @@ public class CheckIn extends javax.swing.JFrame {
         String[] custEmail = new String[selectedCusts.length];
         
         for(int i = 0; i < selectedCusts.length; i++){
-            custId[i] = Integer.parseInt((String)CustomerTable.getValueAt(i, 0));
-            custName[i] = (String)CustomerTable.getValueAt(i, 1);
-            custEmail[i] = (String)CustomerTable.getValueAt(i, 2);
+
+            custId[i] = Integer.parseInt((String)CustomerTable.getValueAt(selectedCusts[i], 0));
+            custName[i] = (String)CustomerTable.getValueAt(selectedCusts[i], 1);
+            custEmail[i] = (String)CustomerTable.getValueAt(selectedCusts[i], 2);
+            
+            System.out.println(i);
+            System.out.println("SELECTED DETAILS - "+custId[i]+" "+custName[i]+" "+custEmail[i]);
         }
         
         inserts(roomNum, roomCategory, roomCapacity, roomPrice, custId, custName, custEmail);
@@ -615,6 +619,17 @@ public class CheckIn extends javax.swing.JFrame {
     }
     
     public void getDetails() {
+        
+        // setTexts
+        bookingId.setText("123");
+        addr.setText("asas");
+//        cardno.setText("1243");
+        checkin.setText("11:11:11");
+        cssn.setText("11341");
+        startDate.setText("2018-01-10");
+        endDate.setText("2018-01-12");
+        payType.setText("cash");
+        
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
