@@ -240,12 +240,13 @@ public class Invoice extends javax.swing.JFrame {
                     
                     rs = stmt.executeQuery(roomCostQuery);
                     rs.next();
+                    int roomCost = Integer.parseInt(rs.getString("totalRoomPrice"));
                     
                     System.out.println("After execute roomCostQuery");
 //                    //Store value in an integer for convenience
 //                    totalRoomCost = Float.parseFloat(rs.getString("totalRoomPrice"));
                     System.out.println("After room cost query");
-                    int roomCost = Integer.parseInt(rs.getString("totalRoomPrice"));
+                    
                     System.out.println(roomCost);
                     // Check if there is any service added to the user's bookingid
                     String checkServices = "SELECT serviceid FROM linkService WHERE bookingid IN (SELECT bookingid FROM gets WHERE custid="+cid+")";
