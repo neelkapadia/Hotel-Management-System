@@ -30,7 +30,7 @@ public class ReportRevenueByDate extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ReportDate = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         ReportDate.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
