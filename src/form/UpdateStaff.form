@@ -68,7 +68,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -109,15 +109,21 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="117" pref="117" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="getDetails1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="updateDetails" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                                   <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
                                                   <Component id="Name" alignment="1" min="-2" max="-2" attributes="0"/>
                                                   <Component id="Staff" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -126,25 +132,22 @@
                                                   <Component id="jLabel14" alignment="1" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel13" alignment="1" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="name" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                                          <Component id="staffID" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                                          <Component id="phno" min="-2" pref="130" max="-2" attributes="0"/>
-                                          <Component id="age" min="-2" pref="131" max="-2" attributes="0"/>
-                                          <Component id="add" min="-2" pref="131" max="-2" attributes="0"/>
-                                          <Component id="avail" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
-                                          <Component id="Department" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
-                                          <Component id="title" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
+                                      <EmptySpace min="108" pref="108" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                              <Component id="name" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                                              <Component id="staffID" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                                              <Component id="phno" min="-2" pref="130" max="-2" attributes="0"/>
+                                              <Component id="age" min="-2" pref="131" max="-2" attributes="0"/>
+                                              <Component id="add" min="-2" pref="131" max="-2" attributes="0"/>
+                                              <Component id="avail" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
+                                              <Component id="Department" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
+                                              <Component id="title" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="hotelServing" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
                                       </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="getDetails1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="updateDetails" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -163,7 +166,7 @@
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Staff" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="staffID" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -203,7 +206,12 @@
                   <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Department" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hotelServing" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="getDetails1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="updateDetails" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -325,6 +333,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Department">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel16">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Hotel Serving"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="hotelServing">
     </Component>
   </SubComponents>
 </Form>

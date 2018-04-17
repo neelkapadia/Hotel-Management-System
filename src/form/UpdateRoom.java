@@ -66,7 +66,7 @@ public class UpdateRoom extends javax.swing.JFrame {
         availability = new javax.swing.JTextField();
         capacity = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel4.setText("Availability");
 

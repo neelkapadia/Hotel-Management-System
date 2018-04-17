@@ -7,9 +7,7 @@ package form;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,7 +20,7 @@ public class db_connection {
         String user = "root";
         String pass = "";
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wolfinn",user, pass);
-        System.out.println("Connected");
+//        System.out.println("Connected");
 //        Statement stmt = con.createStatement();
 //        ResultSet r = stmt.executeQuery("select * from customer");
 //        while(r.next()){

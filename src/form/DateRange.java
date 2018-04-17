@@ -47,23 +47,21 @@ public class DateRange extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Silom", 2, 24)); // NOI18N
         jLabel1.setText("Wolf Inns");
 
-        start.setText("(yyyy-mm-dd)");
         start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Enter Start Date:");
+        jLabel2.setText("Enter Start Date (YYYY-MM-DD):");
 
-        end.setText("(yyyy-mm-dd)");
         end.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Enter End Date:");
+        jLabel3.setText("Enter End Date (YYYY-MM-DD):");
 
         submit.setText("Submit");
         submit.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +75,7 @@ public class DateRange extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(103, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)

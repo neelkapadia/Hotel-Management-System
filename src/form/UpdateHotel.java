@@ -31,7 +31,7 @@ public class UpdateHotel extends javax.swing.JFrame {
 
 
     public void toggleVisibility(boolean isVisible) {
-
+        city.setVisible(isVisible);
         HotelName.setVisible(isVisible);
         ManagerID.setVisible(isVisible);
         phno.setVisible(isVisible);
@@ -40,7 +40,9 @@ public class UpdateHotel extends javax.swing.JFrame {
         jLabel3.setVisible(isVisible);
         jLabel4.setVisible(isVisible);
         jLabel5.setVisible(isVisible);
-//        updateDetails.setVisible(isVisible);
+        jLabel8.setVisible(isVisible);
+//        update;
+//      Details.setVisible(isVisible);
     }
 
     /**
@@ -69,6 +71,8 @@ public class UpdateHotel extends javax.swing.JFrame {
         add = new javax.swing.JTextField();
         getDetails1 = new javax.swing.JButton();
         updateDetails = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        city = new javax.swing.JTextField();
 
         getDetails.setText("Get Details");
         getDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -122,51 +126,49 @@ public class UpdateHotel extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("City");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Home)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Logout1))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3))
-                                        .addGap(79, 79, 79)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(HotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(HotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(76, 76, 76)
-                                        .addComponent(jLabel6))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(updateDetails)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel4)
-                                                .addComponent(jLabel5))
-                                            .addGap(73, 73, 73)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(phno, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(76, 76, 76)
+                                .addComponent(jLabel6))
+                            .addComponent(getDetails1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addComponent(getDetails1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)))
-                        .addGap(0, 137, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8))
+                                .addGap(73, 73, 73)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(phno, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(211, 211, 211)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(updateDetails)))
+                .addGap(122, 122, 122))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Home)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Logout1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -189,19 +191,22 @@ public class UpdateHotel extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(ManagerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(phno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(getDetails1)
-                            .addComponent(updateDetails))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateDetails)
+                    .addComponent(getDetails1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Home)
                     .addComponent(Logout1))
@@ -232,6 +237,7 @@ public class UpdateHotel extends javax.swing.JFrame {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs;
+        ResultSet rs1;
 
         try {
 
@@ -239,18 +245,23 @@ public class UpdateHotel extends javax.swing.JFrame {
             stmt = conn.createStatement();
 
             rs = stmt.executeQuery("select * from hotel where hotelid = " +HotelID.getText());
+            rs1 = stmt.executeQuery("select * from hotelcity where address = '"+rs.getString("address")+"'");
             if (rs.first()) {
                 toggleVisibility(true);
                 HotelName.setText(rs.getString("name"));
                 ManagerID.setText(rs.getString("managerId"));
                 phno.setText(rs.getString("phoneNum"));
-                add.setText(rs.getString("email"));
-
+                add.setText(rs.getString("address"));
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No customer found! Try again.");
                 toggleVisibility(false);
             }
-
+            if(rs1.first()){
+                    city.setText(rs1.getString("city"));
+                }
+            
+           
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -283,6 +294,7 @@ public class UpdateHotel extends javax.swing.JFrame {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs;
+        ResultSet rs1;
 
         try {
 
@@ -290,18 +302,24 @@ public class UpdateHotel extends javax.swing.JFrame {
             stmt = conn.createStatement();
 
             rs = stmt.executeQuery("select * from hotel where hotelid = " + HotelID.getText());
+            //rs1 = stmt.executeQuery("setect * from hotelcity where address = "+add.getText());
             if (rs.first()) {
                 toggleVisibility(true);
                 HotelName.setText(rs.getString("name"));
                 ManagerID.setText(rs.getString("managerId"));
                 phno.setText(rs.getString("phoneNum"));
                 add.setText(rs.getString("address"));
+                
 
             } else {
                 JOptionPane.showMessageDialog(null, "No hotel found! Try again.");
                 toggleVisibility(false);
             }
-
+            
+            rs1 = stmt.executeQuery("select * from hotelcity where address = '"+add.getText()+"'");
+            if(rs1.first()){
+                city.setText(rs1.getString("city"));
+            }
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -341,7 +359,9 @@ public class UpdateHotel extends javax.swing.JFrame {
 
             conn = db.connect_db();
             stmt = conn.createStatement();
-
+            conn.setAutoCommit(false);
+            
+            
             String updateQry = "update hotel set";
             boolean first = true;
 
@@ -372,10 +392,25 @@ public class UpdateHotel extends javax.swing.JFrame {
             updateQry += " where `hotelid` = " + Integer.parseInt(HotelID.getText());
 
             stmt.executeUpdate(updateQry);
+            
+            String updateQry1 = "update hotelcity set city = '"+city.getText()+"' where address = '"+add.getText()+"'";
+            
+            stmt.executeUpdate(updateQry1);
+            
+            String updateQry2 = "update worksfor set hotelid = "+HotelID.getText()+" where staffid = "+ManagerID.getText();
+            
+            stmt.executeUpdate(updateQry2);
+            
+            conn.commit();
             JOptionPane.showMessageDialog(null, "Hotel updated!");
 
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(UpdateHotel.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         } finally {
 
@@ -389,6 +424,7 @@ public class UpdateHotel extends javax.swing.JFrame {
 
             if (conn != null) {
                 try {
+                    conn.setAutoCommit(true);
                     conn.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
@@ -446,6 +482,7 @@ public class UpdateHotel extends javax.swing.JFrame {
     private javax.swing.JButton Logout1;
     private javax.swing.JTextField ManagerID;
     private javax.swing.JTextField add;
+    private javax.swing.JTextField city;
     private javax.swing.JButton getDetails;
     private javax.swing.JButton getDetails1;
     private javax.swing.JLabel jLabel1;
@@ -455,6 +492,7 @@ public class UpdateHotel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField phno;
     private javax.swing.JButton updateDetails;
     // End of variables declaration//GEN-END:variables

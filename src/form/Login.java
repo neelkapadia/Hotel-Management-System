@@ -102,12 +102,11 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         //JFrame jf = new JFrame();
 
-    db_connection db = new db_connection();
+        db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs;
         try {
-
             String sid = staffid.getText();
             int id = Integer.parseInt(sid);
             Intermediate.addItem("id", id);

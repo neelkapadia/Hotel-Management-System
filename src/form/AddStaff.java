@@ -58,6 +58,8 @@ public class AddStaff extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         Department = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        hotelServing = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -109,14 +111,18 @@ public class AddStaff extends javax.swing.JFrame {
 
         jLabel10.setText("Department");
 
+        jLabel11.setText("Hotel serving");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(219, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(AddStaff)
+                        .addGap(80, 80, 80)
                         .addComponent(Home)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Logout1)
@@ -134,7 +140,8 @@ public class AddStaff extends javax.swing.JFrame {
                                     .addGap(1, 1, 1)
                                     .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(avail, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hotelServing, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(141, 141, 141))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,27 +150,24 @@ public class AddStaff extends javax.swing.JFrame {
                         .addComponent(jLabel7))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(117, 117, 117)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel4)
-                                .addComponent(Name)
-                                .addComponent(Staff)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel9))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel10)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(Name)
+                                    .addComponent(Staff)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(22, 22, 22)
+                                    .addComponent(jLabel10))))))
                 .addContainerGap(265, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(201, 201, 201)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(AddStaff)))
+                .addGap(201, 201, 201)
+                .addComponent(jLabel6)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -205,13 +209,20 @@ public class AddStaff extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(AddStaff)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Home)
-                    .addComponent(Logout1))
-                .addContainerGap())
+                    .addComponent(hotelServing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Home)
+                            .addComponent(Logout1))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(AddStaff)
+                        .addGap(30, 30, 30))))
         );
 
         pack();
@@ -231,14 +242,14 @@ public class AddStaff extends javax.swing.JFrame {
 
             conn = db.connect_db();
             stmt = conn.createStatement();
-        
-            System.out.println("insert into staff values ("+staffID.getText()+",'"+name.getText()+"','"+title.getText()+"','"+phno.getText()+"','"+age.getText()+"','"+avail.getText()+"','"+add.getText()+"','"+Department.getText()+"')");
-            
-            
+            conn.setAutoCommit(false);
             stmt.executeUpdate("insert into staff values ("+staffID.getText()+",'"+name.getText()+"','"+title.getText()+"','"+phno.getText()+"','"+age.getText()+"','"+avail.getText()+"','"+add.getText()+"','"+Department.getText()+"')");
+            
+            stmt.executeUpdate("INSERT INTO worksFor VALUES ("+staffID.getText()+", "+hotelServing.getText()+")");
             
             if(title.getText().toLowerCase().equals("manager")){
                  stmt.executeUpdate("insert into manager values ("+staffID.getText()+")");
+                 stmt.executeUpdate("update staff set avail = 0 where staffid = "+staffID.getText());
             }
             else if(title.getText().toLowerCase().equals("front desk staff")){
                  stmt.executeUpdate("insert into frontdeskstaff values ("+staffID.getText()+")");
@@ -250,7 +261,7 @@ public class AddStaff extends javax.swing.JFrame {
                  stmt.executeUpdate("insert into roomservicestaff values ("+staffID.getText()+")");
             }
      
-            
+            conn.commit();
             JOptionPane.showMessageDialog(null, "Staff added!");
             staffID.setText("");
             name.setText("");
@@ -260,8 +271,14 @@ public class AddStaff extends javax.swing.JFrame {
             avail.setText("");
             add.setText("");
             Department.setText("");
+            hotelServing.setText("");
             
         } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddStaff.class.getName()).log(Level.SEVERE, null, ex);
+            }
             e.printStackTrace();
         
         } finally {
@@ -276,6 +293,7 @@ public class AddStaff extends javax.swing.JFrame {
 
             if (conn != null) {
                 try {
+                    conn.setAutoCommit(true);
                     conn.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
@@ -355,7 +373,9 @@ public class AddStaff extends javax.swing.JFrame {
     private javax.swing.JTextField add;
     private javax.swing.JTextField age;
     private javax.swing.JTextField avail;
+    private javax.swing.JTextField hotelServing;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

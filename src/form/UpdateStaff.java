@@ -31,6 +31,8 @@ public class UpdateStaff extends javax.swing.JFrame {
         
     }
     
+    String g= "";
+    
     public void toggleVisibility(boolean isVisible) {
        
         Name.setVisible(isVisible);
@@ -46,12 +48,14 @@ public class UpdateStaff extends javax.swing.JFrame {
         jLabel14.setVisible(isVisible);
         jLabel15.setVisible(isVisible);
         Department.setVisible(isVisible);
+        hotelServing.setVisible(isVisible);
         jLabel8.setVisible(isVisible);
         jLabel9.setVisible(isVisible);
         jLabel10.setVisible(isVisible);
         jLabel3.setVisible(isVisible);
         jLabel4.setVisible(isVisible);
         jLabel5.setVisible(isVisible);
+        jLabel16.setVisible(isVisible);
         updateDetails.setVisible(isVisible);  
     }
     
@@ -101,6 +105,8 @@ public class UpdateStaff extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         Department = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        hotelServing = new javax.swing.JTextField();
 
         roomNum1.setText("RoomNum");
 
@@ -131,7 +137,7 @@ public class UpdateStaff extends javax.swing.JFrame {
 
         jLabel12.setText("Availability");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         updateDetails.setText("Update Details");
         updateDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -194,6 +200,8 @@ public class UpdateStaff extends javax.swing.JFrame {
 
         jLabel15.setText("Department");
 
+        jLabel16.setText("Hotel Serving");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -215,13 +223,18 @@ public class UpdateStaff extends javax.swing.JFrame {
                                 .addComponent(jLabel7))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(117, 117, 117)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(22, 22, 22)
-                                                .addComponent(jLabel15))
-                                            .addGroup(layout.createSequentialGroup()
+                                        .addComponent(getDetails1)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(updateDetails))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel16)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(22, 22, 22)
+                                                    .addComponent(jLabel15))
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                     .addComponent(jLabel4)
                                                     .addComponent(Name)
@@ -229,22 +242,19 @@ public class UpdateStaff extends javax.swing.JFrame {
                                                     .addComponent(jLabel3)
                                                     .addComponent(jLabel5)
                                                     .addComponent(jLabel14)
-                                                    .addComponent(jLabel13))
-                                                .addGap(112, 112, 112)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(staffID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(phno, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(avail, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(getDetails1)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(updateDetails)))))
+                                                    .addComponent(jLabel13))))
+                                        .addGap(108, 108, 108)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(staffID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(phno, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(avail, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(hotelServing, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(0, 105, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -255,7 +265,7 @@ public class UpdateStaff extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Staff)
                     .addComponent(staffID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -287,7 +297,11 @@ public class UpdateStaff extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(hotelServing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(getDetails1)
                     .addComponent(updateDetails))
@@ -309,8 +323,9 @@ public class UpdateStaff extends javax.swing.JFrame {
         db_connection db = new db_connection();
         Connection conn = null;
         Statement stmt = null;
-
+Statement stmt1 = null;
         ResultSet rs;
+        ResultSet rs1;
         
         try {
 
@@ -320,6 +335,19 @@ public class UpdateStaff extends javax.swing.JFrame {
             //rs1 = stmt.executeQuery("select * from presidentialSuite where hotelid = " + HotelID.getText() +" and roomnum="+RoomNum.getText());
 
             
+            rs = stmt.executeQuery("select * from staff where staffid = " + staffID.getText());
+           // String staffQ = "select * from staff where staffid = "+Integer.parseInt(staffID.getText());
+            
+            //System.out.println(staffQ);
+            //rs1=stmt1.executeQuery(staffQ); 
+            String g="";
+             if (rs.first()) {
+                
+            g = rs.getString("jobtitle");
+
+            } 
+            
+            System.out.println("g : "+g);
 
             String updateQry = "update staff set";
             boolean first = true;
@@ -355,7 +383,7 @@ public class UpdateStaff extends javax.swing.JFrame {
                 if (!first) {
                     updateQry += ",";
                 }
-                updateQry += " `age` = '"+age.getText()+"'";
+                updateQry += " `age` = "+age.getText();
                 first = false;
             }
             
@@ -363,7 +391,7 @@ public class UpdateStaff extends javax.swing.JFrame {
                 if (!first) {
                     updateQry += ",";
                 }
-                updateQry += " `avail` = '" + Integer.parseInt(avail.getText())+"'";
+                updateQry += " `avail` = " + Integer.parseInt(avail.getText());
             }
             
             if(Department != null) {
@@ -373,18 +401,78 @@ public class UpdateStaff extends javax.swing.JFrame {
                 updateQry += " `department` = '"+Department.getText()+"'";
                 first = false;
             }
+            
+            if(hotelServing != null){
+                stmt.executeUpdate("UPDATE worksFor SET hotelid = "+hotelServing.getText()+" WHERE staffid = "+staffID.getText());
+            }
             updateQry += " where staffId = " + Integer.parseInt(staffID.getText());
 
-            stmt.executeUpdate(updateQry);
-
+            stmt.executeUpdate(updateQry); 
             
+            //System.out.println(g);
+            
+            System.out.println(title.getText());
+            
+            System.out.println(staffID.getText());
+            
+            
+            System.out.println("g : "+g);
+            System.out.println("g : "+title.getText());
+            
+            if(!g.equalsIgnoreCase(title.getText())){
+                
+                String deleteQ = "delete from ";
+                
+                if(g.equalsIgnoreCase("manager")){
+                    deleteQ+= "manager";
+                    
+                }
+                else if(g.equalsIgnoreCase("front desk staff")){
+                    deleteQ+= "frontdeskstaff";
+                }
+                else if(g.equalsIgnoreCase("room service staff")){
+                    deleteQ+= "roomservicestaff";
+                }
+                else if(g.equalsIgnoreCase("catering staff")){
+                    deleteQ+= "cateringstaff";
+                }
+                
+                deleteQ+=" where staffId = " + Integer.parseInt(staffID.getText());
+                
+                System.out.println(deleteQ);
+                stmt.executeUpdate(deleteQ);
+                
+                
+                
+                String insQ = "insert into ";
+                
+                if(title.getText().equalsIgnoreCase("manager")){
+                    insQ+= "manager";
+                    
+                }
+                else if(title.getText().equalsIgnoreCase("front desk staff")){
+                    insQ+= "frontdeskstaff";
+                }
+                else if(title.getText().equalsIgnoreCase("room service staff")){
+                    insQ+= "roomservicestaff";
+                }
+                else if(title.getText().equalsIgnoreCase("catering staff")){
+                    insQ+= "cateringstaff";
+                }
+                
+                insQ+=" values (" + Integer.parseInt(staffID.getText())+")";
+            
+          
+          stmt.executeUpdate(insQ);
+          System.out.println(insQ);
+            }
             //System.out.println("category.getText(): "+category.getText());
             //System.out.println("cat: "+cat);
             
             //System.out.println(cat);
 
             JOptionPane.showMessageDialog(null, "Staff updated!");
-staffID.setText("");
+            staffID.setText("");
             name.setText("");
             age.setText("");
             title.setText("");
@@ -392,6 +480,7 @@ staffID.setText("");
             avail.setText("");
             add.setText("");
             Department.setText("");
+            hotelServing.setText("");
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -416,6 +505,7 @@ staffID.setText("");
         }
     }//GEN-LAST:event_updateDetailsActionPerformed
 
+    
     private void getDetails1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getDetails1ActionPerformed
         // TODO add your handling code here:
 
@@ -434,6 +524,7 @@ staffID.setText("");
             //rs2 = stmt.executeQuery("select  from room where hotelid = " + HotelID.getText() + " and roomnum = "+RoomNum.getText());
             rs = stmt.executeQuery("select * from staff where staffid = " + staffID.getText());
 
+            
             if (rs.first()) {
                 toggleVisibility(true);
                
@@ -445,7 +536,9 @@ staffID.setText("");
                 add.setText(rs.getString("address"));
                 Department.setText(rs.getString("department"));
                 
-               
+                rs = stmt.executeQuery("SELECT hotelid FROM worksFor WHERE staffid="+staffID.getText());
+                rs.next();
+                hotelServing.setText(rs.getString("hotelid"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "No staff found! Try again.");
@@ -562,12 +655,14 @@ staffID.setText("");
     private javax.swing.JTextField category1;
     private javax.swing.JButton getDetails1;
     private javax.swing.JButton getDetails2;
+    private javax.swing.JTextField hotelServing;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
