@@ -298,7 +298,7 @@ CREATE TABLE `Room` (
 
 LOCK TABLES `Room` WRITE;
 /*!40000 ALTER TABLE `Room` DISABLE KEYS */;
-INSERT INTO `Room` VALUES (1,1,'Economy',1,1),(4,1,'Presidential',1,4),(1,2,'Deluxe',1,2),(3,2,'Executive',1,3),(2,3,'Economy',1,1),(1,5,'Deluxe',1,2);
+INSERT INTO `Room` VALUES (1,1,'Economy',1,1),(4,1,'Presidential',1,4),(1,2,'Deluxe',1,2),(3,2,'Executive',0,3),(2,3,'Economy',1,1),(1,5,'Deluxe',1,2);
 /*!40000 ALTER TABLE `Room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -539,6 +539,7 @@ CREATE TABLE `isAssigned` (
 
 LOCK TABLES `isAssigned` WRITE;
 /*!40000 ALTER TABLE `isAssigned` DISABLE KEYS */;
+INSERT INTO `isAssigned` VALUES (1,1,1),(2,1,2),(3,2,3),(4,3,2);
 /*!40000 ALTER TABLE `isAssigned` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -693,4 +694,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-16  2:25:54
+-- Dump completed on 2018-04-16 22:18:30
